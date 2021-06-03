@@ -35,6 +35,10 @@ Go to [http://127.0.0.1:8080](http://127.0.0.1:8080) in your favorite browser (w
 
 ## Publish
 
+::: tip Note
+The following commands will only work if you are part of the soundworks team. Otherwise, proceed the usual steps and create a pull request for changes.
+:::
+
 Push your changes on the source branch
 
 ```sh
