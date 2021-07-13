@@ -30,7 +30,7 @@ If you are reading this section, you are probably at the wrong place
 :::
 
 - Not a framework to develop regular websites, while its probably feasible to do so if you like problems.
-- Not a ready to use application, you will need to code. If you are looking for this kind of thing, please check the [project page](https://google.com)
+- Not a ready to use application, you will need to code. If you are looking for this kind of thing, please check the [project page](https://github.com/collective-soundworks/soundworks)
 - Probably a lot of other things...
 
 ## Academic Papers

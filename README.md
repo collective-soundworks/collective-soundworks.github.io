@@ -1,6 +1,6 @@
 # `collective-soundworks.github.io`
 
-> Source repository for the `collective-soundworks.github.io` website.
+> Source repository for the [https://collective-soundworks.github.io](`collective-soundworks.github.io`) website.
 
 ## Contributing
 

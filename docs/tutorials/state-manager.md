@@ -99,7 +99,7 @@ Once schemas are registered, they can be instantiated by any server or clients `
 Typically, creating a state server-side will allow to share a common state to all the clients of the application. While creating a state client side will create a novel instance of the state for every client, simplifying remote control and monitoring.
 
 ```js
-// or client-side
+// server-side
 const state = await server.stateManager.create(schemaName, [defaultValues]);
 // or client-side
 const state = await client.stateManager.create(schemaName, [defaultValues]);
@@ -132,7 +132,7 @@ As we want every client connecting to play a different frequency, we initialize 
 Any node of the network (client or server) can attach to a state created by another node.
 
 ```js
-// or client-side
+// on server-side
 const state = await server.stateManager.attach(schemaName, [stateId]);
 // or client-side
 const state = await client.stateManager.attach(schemaName, [stateId]);
@@ -159,7 +159,7 @@ As states can be dynamically created by any node, we need a way to monitor the n
 
 This can be achived using the `observe` method :
 ```js
-// or client-side
+// on server-side
 server.stateManager.observe(observeCallback);
 // or client-side
 client.stateManager.observe(observeCallback);
@@ -190,7 +190,7 @@ this.client.stateManager.observe(async (schemaName, stateId, nodeId) => {
         // clean things
         this.playerStates.delete(playerState);
       });
-      // stoare the player state into a list
+      // store the player state into a list
       this.playerStates.add(playerState);
       break;
   }
@@ -207,7 +207,7 @@ state.set(updates);
 ```
 - [common.SharedState#set](http://collective-soundworks.github.io/soundworks/common.SharedState.html#set)
 
-In our example, the controller, once attached to a player state will update the `frequency` to a new random value every second (ok that probably does not make a lot of sens...):
+In our example, the controller, once attached to a player state will update the `frequency` to a new random value every second (practically, this does not make a lot of sense, but for now it explains the concept...):
 
 ```js
 // src/clients/controller/ControllerExperience (line 33)
@@ -217,7 +217,7 @@ const intervalId = setInterval(() => {
 });
 ```
 
-*note: we wouldn't implement this kind of logic in a real world situation,  indeed here if we open 2 controllers each one will set a new value to the frequency every second*
+*Note: we wouldn't implement this kind of logic in a real world situation. Indeed, if we open 2 controllers each one will set a new value to the frequency every second*
 
 The `subscribe` method allows to be notified when an update occur on the state:
 ```js
@@ -231,13 +231,14 @@ In our example, the player can `subscribe` to the updates triggered by the contr
 // src/clients/controller/ControllerExperience (line 30)
 playerState.subscribe(async updates => {
   console.log('updates:', updates);
-  // updates: { frequency: 288 }
-  // updates: { frequency: 965 }
-  // updates: { frequency: 540 }
-  // updates: { frequency: 120 }
-  // updates: { frequency: 678 }
-  // ...
 });
+
+// updates: { frequency: 288 }
+// updates: { frequency: 965 }
+// updates: { frequency: 540 }
+// updates: { frequency: 120 }
+// updates: { frequency: 678 }
+// ...
 ```
 
 The same logic could be done with the `globals` state, at the difference that every player client would be notified of the update.
