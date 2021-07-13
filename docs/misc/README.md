@@ -15,16 +15,21 @@ _Section about related stuff..._
 > 
 > [__Read Mode →__](/misc/contributing-to-this-site)
 
+## Online Deployment
 
+> Learn how to deploy your application on a local network
+> 
+> [__Read Mode →__](/misc/online-deployment)
+
+<!--
 ## Local Deployment
 
 > Learn how to deploy your application on a local network
 > 
 > [__Read Mode →__](/misc/local-deployment)
-
+-->
 
 ::: warning @todos
-- Online deployment
 - Https issues
 - etc.
 :::

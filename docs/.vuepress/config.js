@@ -50,7 +50,7 @@ module.exports = {
         sidebarDepth: 2,    // optional, defaults to 1
         children: [
           '/misc/setting-up-environment',
-          '/misc/local-deployment',
+          '/misc/online-deployment',
           '/misc/contributing-to-this-site',
         ]
       },
