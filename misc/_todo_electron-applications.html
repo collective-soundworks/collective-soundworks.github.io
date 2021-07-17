@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Creating Electron Applications | soundworks</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Full-stack JavaScript framework for distributed WebAudio and multimedia applications">
+    
+    <link rel="preload" href="/assets/css/0.styles.b69b988d.css" as="style"><link rel="preload" href="/assets/js/app.ee2f1e4e.js" as="script"><link rel="preload" href="/assets/js/2.2ac33e23.js" as="script"><link rel="preload" href="/assets/js/3.da00f0b5.js" as="script"><link rel="preload" href="/assets/js/13.8597cf8a.js" as="script"><link rel="prefetch" href="/assets/js/10.698b8b9d.js"><link rel="prefetch" href="/assets/js/11.36ee408b.js"><link rel="prefetch" href="/assets/js/12.44184e3f.js"><link rel="prefetch" href="/assets/js/14.588e4b2f.js"><link rel="prefetch" href="/assets/js/15.c5f0e5f9.js"><link rel="prefetch" href="/assets/js/16.13295347.js"><link rel="prefetch" href="/assets/js/17.85f59591.js"><link rel="prefetch" href="/assets/js/18.d8799a0a.js"><link rel="prefetch" href="/assets/js/19.ed95d413.js"><link rel="prefetch" href="/assets/js/20.60cb2298.js"><link rel="prefetch" href="/assets/js/4.5dcf7671.js"><link rel="prefetch" href="/assets/js/5.43cbfcb5.js"><link rel="prefetch" href="/assets/js/6.8f95dfeb.js"><link rel="prefetch" href="/assets/js/7.b37a9f79.js"><link rel="prefetch" href="/assets/js/8.3128f425.js"><link rel="prefetch" href="/assets/js/9.7622735e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b69b988d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo-ismm-200x200.png" alt="soundworks" class="logo"> <span class="site-name can-hide">soundworks</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/getting-started.html" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><a href="/ecosystem.html" class="nav-link">
+  Ecosystem
+</a></div><div class="nav-item"><a href="/tutorials/" class="nav-link">
+  Tutorials
+</a></div><div class="nav-item"><a href="/misc/" class="nav-link router-link-active">
+  Misc
+</a></div><div class="nav-item"><a href="http://collective-soundworks.github.io/soundworks/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  API
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/collective-soundworks/" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/getting-started.html" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><a href="/ecosystem.html" class="nav-link">
+  Ecosystem
+</a></div><div class="nav-item"><a href="/tutorials/" class="nav-link">
+  Tutorials
+</a></div><div class="nav-item"><a href="/misc/" class="nav-link router-link-active">
+  Misc
+</a></div><div class="nav-item"><a href="http://collective-soundworks.github.io/soundworks/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  API
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/collective-soundworks/" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/" aria-current="page" class="sidebar-link"></a></li><li><a href="/introduction.html" class="sidebar-link">Introduction</a></li><li><a href="/getting-started.html" class="sidebar-link">Getting Started</a></li><li><a href="/ecosystem.html" class="sidebar-link">Ecosystem</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/tutorials/" class="sidebar-heading clickable"><span>Tutorials</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/misc/" class="sidebar-heading clickable router-link-active"><span>Misc</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="creating-electron-applications"><a href="#creating-electron-applications" class="header-anchor">#</a> Creating Electron Applications</h1> <h2 id="how-to"><a href="#how-to" class="header-anchor">#</a> How to</h2> <h2 id="auto-updates"><a href="#auto-updates" class="header-anchor">#</a> Auto-Updates</h2></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/collective-soundworks/edit/sources/docs/misc/_todo_electron-applications.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/17/2021, 7:14:14 AM</span></div></footer> <!---->  <section class="credits">
+    {Sound Music Movement} Interaction Team - STMS-LAB
+    <a href="https://www.ircam.fr/" class="ircam"></a> <a href="http://www.cnrs.fr/" class="cnrs"></a> <a href="http://www.sorbonne-universite.fr/" class="su"></a> <a href="https://www.culture.gouv.fr/" class="culture"></a></section></main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.ee2f1e4e.js" defer></script><script src="/assets/js/2.2ac33e23.js" defer></script><script src="/assets/js/3.da00f0b5.js" defer></script><script src="/assets/js/13.8597cf8a.js" defer></script>
+  </body>
+</html>
