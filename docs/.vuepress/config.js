@@ -7,7 +7,7 @@ module.exports = {
 
     // Edit on github confiuration
     // cf. https://vuepress.vuejs.org/theme/default-theme-config.html#git-repository-and-edit-links
-    repo: 'collective-soundworks/collective-soundworks.github.io',
+    repo: 'collective-soundworks/',
     // options for generating "Edit this page" link
     docsDir: 'docs',
     docsBranch: 'sources',
