@@ -164,7 +164,7 @@ npm install --save @soundworks/template-build
 *Set of common helpers (init views, etc.) for applications based on the soundworks-template*
 
 ```sh
-npm install --save @soundworks/template-build
+npm install --save @soundworks/template-helpers
 ```
 [__→ github__ ](https://github.com/collective-soundworks/soundworks-template-build)  
 [__→ npm__](https://www.npmjs.com/package/@soundworks/template-build)  
