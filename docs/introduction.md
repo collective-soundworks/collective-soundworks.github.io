@@ -48,7 +48,8 @@ You can see a number of music pieces and artworks created using `soundworks` on 
 
 `soundworks` has been initiated by [Norbert Schnell](https://github.com/NorbertSchnell), [Sébastien Robaszkiewicz](https://github.com/i-Robi), and [Benjamin Matuszewski](https://github.com/b-ma) at the [ISMM](http://ismm.ircam.fr/) team at [Ircam - Centre Pompidou](http://www.ircam.fr/) in the framework of the [*CoSiMa*](http://cosima.ircam.fr/) research project supported by the [French National Research Agency (ANR)](http://www.agence-nationale-recherche.fr/en/).
 
-Futher developments has been supported in the framework of:
+Further development of the framework has been conducted in the context of:
+
 - The [RAPID-MIX project](http://rapidmix.goldsmithsdigital.com/), funded by the European Union’s Horizon 2020 research and innovation programme.
 - The Ircam project _BeCoMe_ 
 - The _Constella(c)tions_ residency of the STARTS program of the European Commission.
