@@ -23,7 +23,7 @@ npm install --save @soundworks/core
 
 ## Plugins
 
-`soundworks/core` functionalities can be extended by installing plugin, here is the list of the available plugins so far:
+`soundworks/core` functionalities can be extended by installing plugins. Here is a list of available plugins so far:
 
 ### `@soundworks/plugin-audio-buffer-loader`
 
@@ -54,7 +54,7 @@ npm install @soundworks/plugin-checkin --save
 
 ### `@soundworks/plugin-filesystem`
 
-*`soundworks plugin to parse and watch directories and distribute their content the all clients in real-time.*
+*`soundworks` plugin to parse and watch directories and distribute their content to all clients in real-time.*
 
 ```sh
 npm install @soundworks/plugin-filesystem --save 
@@ -67,7 +67,7 @@ npm install @soundworks/plugin-filesystem --save
 
 ### `@soundworks/plugin-logger`
 
-*`soundworks` plugin dedicated to recording arbitrary from any node of the network into plain old files.*
+*`soundworks` plugin dedicated to recording arbitrarily from any node of the network into plain old files.*
 
 ```sh
 npm install @soundworks/plugin-logger --save 
@@ -80,7 +80,7 @@ npm install @soundworks/plugin-logger --save
 
 ### `@soundworks/plugin-platform`
 
-*`soundworks` plugin that checks availability and initialize features required by the application. It also provides an entry point for features that may require a user gesture (e.g. clicking on the screen to resume an audio context). The plugin can also be used to simply add a splash screen to the application.*
+*`soundworks` plugin that checks the availability of features required by the application, and their initialisation. It also provides an entry point for features that may require a user gesture (e.g. clicking on the screen to resume an audio context). The plugin can also be used to simply add a splash screen to the application.*
 
 ```sh
 npm install @soundworks/plugin-platform --save 
@@ -94,7 +94,7 @@ npm install @soundworks/plugin-platform --save
 
 ### `@soundworks/plugin-position`
 
-*`soundworks` plugin for locating people in an area. In the `soundworks-template default views, the plugin is associated to an initialization screen where people are asked to give their position on a map.*
+*`soundworks` plugin for locating people in an area. In the `soundworks-template` default views, the plugin is associated with an initialization screen where people are asked to provide their position on a map.*
 
 ```sh
 npm install @soundworks/plugin-position --save 
@@ -107,7 +107,7 @@ npm install @soundworks/plugin-position --save
 
 ### `@soundworks/plugin-scripting`
 
-*`soundworks` plugin for runtime scripting. The plugin allows to define entry point in the application that enable the end user to modify the behavior of the distributed application at runtime, following an end-user programming strategy.*
+*`soundworks` plugin for runtime scripting. The plugin allows to define an entry point of the application that enables the end user to modify the behavior of the distributed application at runtime, following an end-user programming strategy.*
 
 ```sh
 npm install @soundworks/plugin-scripting --save 
@@ -133,7 +133,7 @@ npm install @soundworks/plugin-sync --save
 
 ## `soundworks-template`
 
-*Project template for developing soundworks applications, the template provides a clean code base to start developing an application*
+*Project template for developing `soundworks` applications. The template provides a clean code base to start developing an application.*
 
 ```sh
 git clone https://github.com/collective-soundworks/soundworks-template.git my-application
@@ -145,7 +145,7 @@ npm run dev
 
 [__→ github__ ](https://github.com/collective-soundworks/soundworks-template)  
 
-Additionally to the `@soundworks/core` package, the template install and uses the `@soundworks/template-build` and `@soundworks/template-helpers` to simplify a set of common tasks.
+Additionally to the `@soundworks/core` package, the template installs and uses the `@soundworks/template-build` and `@soundworks/template-helpers` to simplify a set of common tasks.
 
 
 ### `@soundworks/template-build`
@@ -161,7 +161,7 @@ npm install --save @soundworks/template-build
 
 ### `@soundworks/template-helpers`
 
-*Set of common helpers (init views, etc.) for applications based on the soundworks-template*
+*Set of common helpers (init views, etc.) for applications based on the `soundworks-template`*
 
 ```sh
 npm install --save @soundworks/template-helpers
