@@ -21,11 +21,9 @@ npm install --save @soundworks/core
 [__→ github__ ](https://github.com/collective-soundworks/soundworks)  
 [__→ npm__](https://www.npmjs.com/package/@soundworks/core)  
 
-## Plugins
-
 `soundworks/core` functionalities can be extended by installing plugins. Here is a list of available plugins so far:
 
-### `@soundworks/plugin-audio-buffer-loader`
+## `@soundworks/plugin-audio-buffer-loader`
 
 *`soundworks` plugin for loading and managing audio buffers and related JSON data. Currently limited to `.mp3`, `.wav` or `.json` formats to enforce browser compatibility and support (meaning support for Safari...)*
 
@@ -39,7 +37,7 @@ npm install @soundworks/plugin-audio-buffer-loader --save
 [__→ example (w/ filesystem)__ ](https://github.com/collective-soundworks/soundworks-examples/tree/master/plugin-audio-buffer-loader-and-filesystem)  
 
 
-### `@soundworks/plugin-checkin`
+## `@soundworks/plugin-checkin`
 
 *`soundworks` plugin for assigning a ticket (unique index) to the client among the available ones. The number of available tickets can be limited and tickets can be associated with additional data.*
 
@@ -52,7 +50,7 @@ npm install @soundworks/plugin-checkin --save
 [__→ example__ ](https://github.com/collective-soundworks/soundworks-examples/tree/master/plugin-checkin)  
 
 
-### `@soundworks/plugin-filesystem`
+## `@soundworks/plugin-filesystem`
 
 *`soundworks` plugin to parse and watch directories and distribute their content to all clients in real-time.*
 
@@ -65,7 +63,7 @@ npm install @soundworks/plugin-filesystem --save
 [__→ example__ ](https://github.com/collective-soundworks/soundworks-examples/tree/master/plugin-filesystem)  
 
 
-### `@soundworks/plugin-logger`
+## `@soundworks/plugin-logger`
 
 *`soundworks` plugin dedicated to recording arbitrarily from any node of the network into plain old files.*
 
@@ -78,7 +76,7 @@ npm install @soundworks/plugin-logger --save
 [__→ example__ ](https://github.com/collective-soundworks/soundworks-examples/tree/master/plugin-logger)  
 
 
-### `@soundworks/plugin-platform`
+## `@soundworks/plugin-platform`
 
 *`soundworks` plugin that checks the availability of features required by the application, and their initialisation. It also provides an entry point for features that may require a user gesture (e.g. clicking on the screen to resume an audio context). The plugin can also be used to simply add a splash screen to the application.*
 
@@ -92,7 +90,7 @@ npm install @soundworks/plugin-platform --save
 [__→ example (w/ devicemotion)__ ](https://github.com/collective-soundworks/soundworks-examples/tree/master/plugin-platform-devicemotion)  
 
 
-### `@soundworks/plugin-position`
+## `@soundworks/plugin-position`
 
 *`soundworks` plugin for locating people in an area. In the `soundworks-template` default views, the plugin is associated with an initialization screen where people are asked to provide their position on a map.*
 
@@ -105,7 +103,7 @@ npm install @soundworks/plugin-position --save
 [__→ example__ ](https://github.com/collective-soundworks/soundworks-examples/tree/master/plugin-position)  
 
 
-### `@soundworks/plugin-scripting`
+## `@soundworks/plugin-scripting`
 
 *`soundworks` plugin for runtime scripting. The plugin allows to define an entry point of the application that enables the end user to modify the behavior of the distributed application at runtime, following an end-user programming strategy.*
 
@@ -118,7 +116,7 @@ npm install @soundworks/plugin-scripting --save
 [__→ example__ ](https://github.com/collective-soundworks/soundworks-examples/tree/master/plugin-scripting)  
 
 
-### `@soundworks/plugin-sync`
+## `@soundworks/plugin-sync`
 
 *`soundworks` plugin for synchronizing arbitrary clocks across devices. The plugin is basically a wrapper around the [@ircam/sync](https://github.com/collective-soundworks/sync) library.*
 
@@ -131,7 +129,7 @@ npm install @soundworks/plugin-sync --save
 [__→ example__ ](https://github.com/collective-soundworks/soundworks-examples/tree/master/plugin-sync)  
 
 
-## `soundworks-template`
+## `@soundworks-template`
 
 *Project template for developing `soundworks` applications. The template provides a clean code base to start developing an application.*
 
@@ -148,7 +146,7 @@ npm run dev
 Additionally to the `@soundworks/core` package, the template installs and uses the `@soundworks/template-build` and `@soundworks/template-helpers` to simplify a set of common tasks.
 
 
-### `@soundworks/template-build`
+## `@soundworks/template-build`
 
 *Build scripts of the `soundworks-template`*
 
@@ -159,7 +157,7 @@ npm install --save @soundworks/template-build
 [__→ npm__](https://www.npmjs.com/package/@soundworks/template-build)  
 
 
-### `@soundworks/template-helpers`
+## `@soundworks/template-helpers`
 
 *Set of common helpers (init views, etc.) for applications based on the `soundworks-template`*
 

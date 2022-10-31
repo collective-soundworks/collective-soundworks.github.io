@@ -50,7 +50,6 @@ export default {
 </script>
 
 <style lang="stylus">
-
 .page
   padding-bottom 4rem
   display block
@@ -76,6 +75,9 @@ export default {
   background-position 50% 50%
   background-size contain
 
+h1, h2, h3, h4, h5, h6
+  color: lighten(#282922, 15%)
+
 .credits a:first-child
   margin-left 50px
 
@@ -90,4 +92,34 @@ export default {
 
 .credits a.culture
   background-image url(../../public/culture-black.jpg)
+
+.search-box {
+  order: 1;
+  margin-right: 0;
+  margin-left: 1rem;
+
+  .suggestions {
+    left: auto !important;
+    right: 0 !important;
+  }
+}
+
+.action-button {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #282922;
+  padding: 0.8rem 1.6rem;
+  border-radius: 4px;
+  transition: background-color .1s ease;
+  box-sizing: border-box;
+  border-bottom: 1px solid #282922;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.action-button:hover {
+  background-color: lighten(#282922, 20%);
+}
+
 </style>
