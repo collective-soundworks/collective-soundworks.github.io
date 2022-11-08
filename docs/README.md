@@ -14,7 +14,7 @@ footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam S
       <i>Open-source creative coding framework for distributed applications based on Web technologies.</i>
     </p>
     <p>
-      Primarily focused on music, <code>soundworks</code> aims at supporting rapid development of real-time distributed applications using <i>JavaScript</i>. As such, it provides abstractions that hide the complexity of the network to foster <i>very rapid-prototyping</i> and <i>trial-and-error workflows</i> that are typical in artistic practices.
+      Primarily focused on music, <code>soundworks</code> aims at supporting rapid development of real-time distributed applications using JavaScript. It provides abstractions to hide the complexity of the network and to foster very rapid-prototyping and trial-and-error workflows that are typical in artistic practices. 
     </p>
     <p style="margin-bottom: 0; text-align: left;">
       <a href="/guide/getting-started" class="action-button">Get Started →</a>
@@ -22,14 +22,14 @@ footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam S
   </div>
 </div>
 
-## Features
+## Main Features
 
 <div style="display: flex;justify-content: space-between;">
   <ul>
     <li>Support for both <i>browser</i> and <i>Node.js</i> clients</li>
     <li>Real-time communications through WebSockets
     <li>Distributed state management
-    <li>Plugin system for extending functionalities<br /> 
+    <li>Plugin system to extend core functionalities<br /> 
       (clock synchronization, runtime distributed scripting, etc.)
     </li>
   </ul>
@@ -37,7 +37,7 @@ footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam S
   <img src="./assets/high-level-architecture.png" style="height: 240px; margin-left: 20px;" />
 </div>
 
-## Demos & Projects
+## Projects & Demos
 
 <div style="display: flex; justify-content: space-between;">
   <iframe width="560" height="315" style="background-color: #cdcdcd" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLt5gV5YpSJ0w-WgZUzLE1AN6YkwbiKnYn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

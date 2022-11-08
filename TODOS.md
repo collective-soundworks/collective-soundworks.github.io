@@ -20,9 +20,13 @@ same layout as apps.ismm.ircam.fr
   + @soundworks/helpers
   + @soundworks/create and @soundworks/devtools
 - related libraries and tools
-    * sc-* libraries
-    * node-web-audio-api
-    * dot-* ecosystem
+  + sc-* libraries
+  + node-web-audio-api
+  + dot-* ecosystem
+- Generic Applications
+  + Playground
+  + CoMo - Elements
+  + Koryphaios
 
 ### tutorial
 
@@ -34,17 +38,19 @@ same layout as apps.ismm.ircam.fr
   + mixing it all, the "todo-noise" application
   + synchronized audio scheduling, building a distributed step sequencer
   + soundworks-max - sharing state with Max/MSP
-  + todo-noise app
-  + customize the template application
+  + working with MIDI and OSC (some plugin could be welcome)
+  + anatomy of the default template app
+  + customize the @soundworks/helpers
     * change css globals
-    * eject init views
+    * eject @soundworks/helpers
     * customizing the layout
+  + understand and configure the @soundworks/build system
   + creating a connected lamp with a RPi :)
   + create an embedded distributed system with dotpi
 - misc
-  + understanding networks architecture and general principles
   + setting up a development environment
-  + running application on a local network, best practices 
+  + general principles of networks
+  + creating a local network and deploying a soundworks application
   + deploying an application on the internet
     * nginx configuration
     * apache configuration
