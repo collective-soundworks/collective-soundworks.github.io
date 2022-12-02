@@ -20,7 +20,7 @@ module.exports = {
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Tutorials', link: '/tutorials/' },
-      { text: 'API Reference', link: 'http://collective-soundworks.github.io/soundworks/' },
+      { text: 'API Reference', link: '/api' },
       { text: 'Examples', link: 'https://github.com/collective-soundworks/soundworks-examples' },
       { text: 'Credits', link: '/credits' },
     ],

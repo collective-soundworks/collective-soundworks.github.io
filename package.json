@@ -4,11 +4,11 @@
   "description": "document website for the collective-soundworks organization",
   "author": "Benjamin Matuszewski",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs --dest=build"
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider vuepress dev docs",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider vuepress build docs --dest=build"
   },
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "vuepress": "^1.9.7"
+    "vuepress": "^2.0.0-beta.53"
   }
 }
