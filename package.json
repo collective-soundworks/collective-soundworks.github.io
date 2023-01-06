@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
-    "preview": "vitepress preview docs"
+    "preview": "serve docs/.vitepress/dist"
   },
   "author": "",
   "license": "ISC",

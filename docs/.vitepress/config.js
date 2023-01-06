@@ -9,7 +9,7 @@ export default {
   },
 
   themeConfig: {
-    logo: '/assets/logo-nav.png',
+    logo: '/logo-nav.png',
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/collective-soundworks/soundworks' },

@@ -23,7 +23,7 @@ and press `Enter`
 
 ### Install _Node.js_
 
-1. Open [https://nodejs.org/en/](`https://nodejs.org/en/`) in your favorite browser (which shall not be Safari).
+1. Open [https://nodejs.org](https://nodejs.org) in your favorite browser (which shall not be Safari).
 2. Download the LTS (Long Term Support) version.
 3. Follow the instructions...
 4. When done, open a Terminal (cf. `Applications/Utilities/Terminal.app`) and type:
