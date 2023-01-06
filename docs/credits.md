@@ -1,6 +1,6 @@
 # Credits
 
-## Development
+## Design & Development
 
 `soundworks` has been initiated by [Norbert Schnell](https://github.com/NorbertSchnell), [Sébastien Robaszkiewicz](https://github.com/i-Robi), and [Benjamin Matuszewski](https://github.com/b-ma) at the [ISMM](http://ismm.ircam.fr/) team at [Ircam - Centre Pompidou](http://www.ircam.fr/) in the context of the [CoSiMa](http://cosima.ircam.fr/) research project founded by the French National Research Agency (ANR).
 
@@ -16,11 +16,13 @@ Initial and futher developments has been supported by the following research pro
 - The [RAPID-MIX project](http://rapidmix.goldsmithsdigital.com/), funded by the European Union’s Horizon 2020 research and innovation program
 - The [CoSiMa](http://cosima.ircam.fr/) project, funded by the French National Research Agency (ANR)
 
-## Artistic & Research Collaborations
+## Artistic & Research  Collaborations
+
+The design & development of `soundworks` has also been conducted within many collaborations with composers, artists, designers and researchers.
 
 A number of musical pieces and artworks created using `soundworks` can be found on the Ircam - Sound Music Movement Interaction team youtube channel [https://www.youtube.com/ircam-ismm](https://www.youtube.com/ircam-ismm).
 
-Some applications are also accessible online at [https://apps.ismm.ircam.fr](https://apps.ismm.ircam.fr).
+Some generic applications are also accessible online at [https://apps.ismm.ircam.fr](https://apps.ismm.ircam.fr).
 
 ## Citing this Work
 

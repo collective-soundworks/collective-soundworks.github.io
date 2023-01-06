@@ -21,16 +21,18 @@ So first thing first, open a Terminal, go to some directory and execute the foll
 
 ```sh
 cd path/to/working/dir
-npx @soundworks/create@latest getting-started
+npx @soundworks/create@latest
 ```
 
 :::tip
-_If you run the command for the first time (which is quite likely), the `npx` command will tell you that it needs to install the `@soundworks/create` package, just press `Enter` to accept and continue._
+If you run the command for the first time (which is quite likely), the `npx` command will tell you that it needs to install the `@soundworks/create` package, just press `Enter` to accept and continue.
 :::
 
-The wizard will set up and ask you for the enter the name of the directory in which you would like to create the application: just write **`getting-started`** and press **`Enter`**. The wizard will automatically create the directory, copy some files and install the required dependencies as illustrated in the screenshot below.
+The wizard will startup and ask you for the name of the directory in which you want create the application: just write `getting-started` and press `Enter`. The wizard will automatically create the directory, copy some files and install the required dependencies as illustrated in the screenshot below.
 
-_Please, note that the screenshots in this guide may differ slightly from what you actually see in your console, as the CLI tool might have evolved since the screenshots have been made_
+:::info
+Note that the screenshots in this guide may differ slightly from what you actually see in your console, as the CLI tool might have evolved a bit since the screenshots have been made.
+:::
 
 ![create-project](../assets/guide/getting-started/wizard-create-project.png)
 
@@ -52,7 +54,7 @@ Finally, the wizard will ask you to confirm your choices, press `Enter`.
 
 ![create-player-confirm](../assets/guide/getting-started/wizard-create-player-confirm.png)
 
-The wizard, will copy some files and configure the application for you. Your application is ready to be launched.
+The wizard will copy some files and configure the application for you. Your application is ready to be launched.
 
 To make sure the application is correctly set up and installed, just follow the steps 1 and 3 proposed as next steps by the wizard.
 
@@ -119,7 +121,7 @@ const globalSchema = {
 };
 ```
 
-Here, we just create a plain old JavaScript object that follows the `soundworks` schema definition (if you are familiar with databases, you can kind of it as the schema of a table). The full API documentation for a schema is accessible [here](https://soundworks.dev/soundworks/server.StateManager#~schema) but for now, it's ok to just understand that we declared some data structure a parameter named `trigger` that is configured to be a `boolean` event.
+Here, we just create a plain old JavaScript object that follows the `soundworks` schema definition (if you are familiar with databases, you can think of it as the schema of a table). The full API documentation for a schema is accessible [here](https://soundworks.dev/soundworks/server.StateManager#~schema) but for now, it's ok to just understand that we declared some data structure a parameter named `trigger` that is configured to be a `boolean` event.
 
 Then we will need to register this schema into the `soundworks`' state manager:
 
@@ -158,6 +160,10 @@ Let's first add a line of code to display some text on the page to make sure we 
 const $layout = createLayout(client, $container);
 $layout.addComponent(`click here`);
 ```
+
+:::tip
+The `$layout` is just a convenience object proposed by the template as a starting point for building interfaces. It is based on the [lit](https://lit.dev/) library proposed by Google and its source code is located in `src/clients/player/views/layout.js`. `soundworks` does not require usage of this abstraction not of the lit library, they can both perfectly be replaced with other GUI frameworks.
+:::
 
 If you reload the page (`Cmd + Shift + R`), you should see the text "click here" displayed of the top left of your screen. Ok we are ensured, we got some control over this Web page.
 
