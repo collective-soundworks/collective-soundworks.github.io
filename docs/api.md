@@ -1,4 +1,4 @@
 <script>
-  // alias from https://soundworks.dev/api to https://soundworks.dev/soundworks
-  window.location.replace('https://soundworks.dev/soundworks');
+    // redirect from https://soundworks.dev/api to https://soundworks.dev/soundworks
+    window.location.replace('https://soundworks.dev/soundworks');
 </script>

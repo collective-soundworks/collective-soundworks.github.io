@@ -10,16 +10,16 @@ add links to:
 
 same layout as apps.ismm.ircam.fr
 
-### getting-started
+### guide
 
-- Introduction
-- create your first soundworks application
-- ecosystem
+- Getting Started
+- Soundworks Ecosystem
   + @soundworks/core
+  + @soundworks/create
   + @soundworks/plugin-*
   + @soundworks/helpers
-  + @soundworks/create and @soundworks/devtools
-- related libraries and tools
+  + @soundworks/build
+- Related Libraries and Tools
   + sc-* libraries
   + node-web-audio-api
   + dot-* ecosystem
@@ -27,26 +27,38 @@ same layout as apps.ismm.ircam.fr
   + Playground
   + CoMo - Elements
   + Koryphaios
+- Conventions about naming in packages
+    * client / server
+    * node and browser runtimes for clients
 
 ### tutorial
 
 - soundworks internals
   + using the state-manager
-  + using plugins
-    * platform example
+  + using plugins (1)
+    * @soundworks/plugin-platform example
   + using contexts
+    * paragraph on locking contexts to specific roles
+    * paragraph on creating contexts between init and start
   + mixing it all, the "todo-noise" application
-  + synchronized audio scheduling, building a distributed step sequencer
-  + soundworks-max - sharing state with Max/MSP
-  + working with MIDI and OSC (some plugin could be welcome)
-  + anatomy of the default template app
   + customize the @soundworks/helpers
-    * change css globals
+    * customize the css globals variables
+    * customize the text / language
     * eject @soundworks/helpers
-    * customizing the layout
+  + using plugins (2)
+    - @soundworks/plugin-sync example
+  + synchronized audio scheduling, building a distributed step sequencer
+  + using plugins (3)
+    - @soundworks/plugin-scripting example
+  + working with node clients
+  
   + understand and configure the @soundworks/build system
+  + soundworks-max - sharing state with Max/MSP
+  + anatomy of the default template app
   + creating a connected lamp with a RPi :)
   + create an embedded distributed system with dotpi
+  
+  + working with MIDI and OSC (some plugin could be welcome)
 - misc
   + setting up a development environment
   + general principles of networks
@@ -57,3 +69,4 @@ same layout as apps.ismm.ircam.fr
   + contributing to the site
 
 ### Examples
+

@@ -1,17 +1,20 @@
 # Credits
 
-## History and Contributors
+## Development
 
-`soundworks` has been initiated by [Norbert Schnell](https://github.com/NorbertSchnell), [Sébastien Robaszkiewicz](https://github.com/i-Robi), and [Benjamin Matuszewski](https://github.com/b-ma) at the [ISMM](http://ismm.ircam.fr/) team at [Ircam - Centre Pompidou](http://www.ircam.fr/) in the framework of the [*CoSiMa*](http://cosima.ircam.fr/) research project supported by the [French National Research Agency (ANR)](http://www.agence-nationale-recherche.fr/en/).
+`soundworks` has been initiated by [Norbert Schnell](https://github.com/NorbertSchnell), [Sébastien Robaszkiewicz](https://github.com/i-Robi), and [Benjamin Matuszewski](https://github.com/b-ma) at the [ISMM](http://ismm.ircam.fr/) team at [Ircam - Centre Pompidou](http://www.ircam.fr/) in the context of the [CoSiMa](http://cosima.ircam.fr/) research project founded by the French National Research Agency (ANR).
 
-Further development of the framework has been conducted in the context of:
+Development is now led by Benjamin Matuszewski, in the [Sound Music Movement Interaction Team](https://www.stms-lab.fr/team/interaction-son-musique-mouvement/) from the Ircam's STMS-LAB.
 
-- The [RAPID-MIX project](http://rapidmix.goldsmithsdigital.com/), funded by the European Union’s Horizon 2020 research and innovation programme.
-- The Ircam UPI projects _BeCoMe_ and _SO(a)P_
-- The _Constella(c)tions_ residency of the STARTS program of the European Commission.
+## Supporting Research Projects
 
-Development is being pursued, led by [Benjamin Matuszewski](https://github.com/b-ma), in the [Interaction Music Mouvement Team](https://www.stms-lab.fr/team/interaction-son-musique-mouvement/) from the Ircam's [STMS-LAB](https://www.stms-lab.fr/).
+Initial and futher developments has been supported by the following research projects:
 
+- The [DOTS](http://dots.ircam.fr/) project, funded by the French National Research Agency (ANR)
+- The Ircam projects _BeCoMe_ and _SO(a)P_
+- The _Constella(c)tions_ residency, funded by the STARTS program of the European Commission
+- The [RAPID-MIX project](http://rapidmix.goldsmithsdigital.com/), funded by the European Union’s Horizon 2020 research and innovation program
+- The [CoSiMa](http://cosima.ircam.fr/) project, funded by the French National Research Agency (ANR)
 
 ## Artistic & Research Collaborations
 
