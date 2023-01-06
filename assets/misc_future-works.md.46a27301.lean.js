@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as i,a as r}from"./app.1e9c7227.js";const f=JSON.parse('{"title":"Future Works","description":"","frontmatter":{},"headers":[],"relativePath":"misc/future-works.md"}'),o={name:"misc/future-works.md"},a=r("",2),s=[a];function n(l,c,u,_,m,d){return i(),t("div",null,s)}const h=e(o,[["render",n]]);export{f as __pageData,h as default};
