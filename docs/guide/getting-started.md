@@ -74,20 +74,20 @@ Press `Ctrl + C` to stop the server and open the `getting-started` directory in 
 
 ```sh
 getting-started
-├── .build              # The directory where your application is built
+├── .build              # Directory where your application is built
 ├── config              # Configuration files
 │   ├── env
 │   └── application.json  
 ├── node_modules        # Directory where all dependencies are installed
 ├── public              # Directory that is exposed by the server
 ├── src
-│   ├── clients         # The directory where all clients are declared
+│   ├── clients         # Directory where all clients are declared
 │   │   ├── components  
 │   │   ├── player      # Source code of the `player` client you just created
 │   ├── server          # Source code of the server
 │   └── utils   
-├── package.json        # This file contains the declaration of your dependencies
-└── README              # General infos about your application
+├── package.json        # File that contains the declaration of your dependencies
+└── README.md           # General infos about your application
 ```
 
 - The `node_modules` and `.build` directories should **_never_** be edited manually.
