@@ -36,7 +36,7 @@ Note that the screenshots in this guide may differ slightly from what you actual
 
 ![create-project](../assets/guide/getting-started/wizard-create-project.png)
 
-Once the installation is done, the `@soundworks/create` wizard will propose you to install some `soundworks` plugins and some curated libraries. For now, just press `Enter` to skip this steps, we will go back there to install a libraries later.
+Once the installation is done, the `@soundworks/create` wizard will propose you to install some `soundworks` plugins and some curated libraries. For now, just press `Enter` to skip this steps.
 
 ![init-install-deps](../assets/guide/getting-started/wizard-init-install-deps.png)
 
