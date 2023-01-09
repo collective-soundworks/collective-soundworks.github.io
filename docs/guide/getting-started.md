@@ -90,10 +90,14 @@ getting-started
 └── README.md           # General infos about your application
 ```
 
-- The `node_modules` and `.build` directories should **_never_** be edited manually.
-They are used by the Node Package Manager (i.e. `npm`) and the  `soundworks` build tools to install dependencies and bundle your application.
+- The `node_modules` and `.build` directories should **_never_** be edited manually. They are used by the Node Package Manager (i.e. `npm`) and the  `soundworks` build tools to install dependencies and bundle your application.
 - The `src` directory at contrary contains all the source files of your application, this is where you will work most of the time.
-- The `public` directory is the directory that is exposed to the network by the server. This is the place where you should put your static assets such as images or soundfiles that the clients of your application will download and use. It is important to keep in mind that exposing a directory to the network means that all files located in this directory will be accessible by any computer connected to the same network, so please be careful to not expose sensitive or private informations here (this is true whenever you deal with servers and networks, this is not specific to `soundworks` applications).
+- The `public` directory is the directory that is exposed to the network by the server. This is the place where you should put your static assets such as images or soundfiles that the clients of your application will download and use. 
+
+:::warn
+It is **_very_** important to understand that exposing a directory to the network means that all files located in this directory will be accessible by **_any_**computer connected to the same network.  
+**_So, be careful to not expose sensitive or private informations there._**. This is an important thing to keep in mind whenever you deal with servers and networks, it's not specific to soundworks applications.
+:::
 
 Now that we have an overview of the file structure of a `soundworks` application, let's write some code!
 
@@ -155,19 +159,23 @@ Open a browser and go to [http://127.0.0.1:8000](http://127.0.0.1:8000), then go
 
 Let's first add a line of code to display some text on the page to make sure we can act on this fancy black screen:
 
-```js{3}
+```js
 // src/clients/player/index.js
-const $layout = createLayout(client, $container);
-$layout.addComponent(`click here`);
+const $layout = createLayout(client, $container); // [!code --]
+$container.innerHTML = `<h1 style="padding:20px;">Click here!</h1>`; // [!code ++]
 ```
 
+Here, we programmatically modify the HTML of our document directly from the JavaScript code.
+
 :::tip
-The `$layout` is just a convenience object proposed by the template as a starting point for building interfaces. It is based on the [lit](https://lit.dev/) library proposed by Google and its source code is located in `src/clients/player/views/layout.js`. `soundworks` does not require usage of this abstraction not of the lit library, they can both perfectly be replaced with other GUI frameworks.
+The `$container` variable we use in this snippet refers to an HTML element in which our client interface should be displayed.
+
+The `$layout` we just removed is just a convenience object proposed by the template as a starting point for building interfaces. It is based on the [lit](https://lit.dev/) library developped by _Google_ and its source code is located in `src/clients/player/views/layout.js`. As shown in this simple example `soundworks` does not require the usage of this abstraction, nor of the `lit` library.
 :::
 
-If you reload the page (`Cmd + Shift + R`), you should see the text "click here" displayed of the top left of your screen. Ok we are ensured, we got some control over this Web page.
+If you reload the page (`Cmd + Shift + R`), you should see the text "click here" displayed of the top left of your screen, so we are ensured we got some control over this Web page.
 
-Now, let's go back to our client-side logic and add the following code in the same `src/clients/player/index.js` file:
+Now, let's go back to our client-side logic and add the following code in the same  file:
 
 ```js{4-5}
 // src/clients/player/index.js
@@ -176,20 +184,21 @@ await client.start();
 const globals = await client.stateManager.attach('globals');
 console.log('globals shared state', globals.getValues());
 
-const $layout = createLayout(client, $container);
+$container.innerHTML = `<h1 style="padding:20px;">Click here!</h1>`;
 ```
 
-Here, we simply attach our client to the `globals` state created by the server. This means that our client will be able to make some update to the shared state, as well as being notified when a change is made to the state state.
+Here, we simply attach our client to the `globals` state created by the server. This means that our client will be able to make some updates to the shared state, as well as being notified when a change is made to the shared state.
 
-The second line will just log the current state of the `globals` shared state into the browser's console, so that we can check that the shared state has been successfully attached.
+The second line will just log the current values of the `globals` shared state into the browser's console, so that we can check that the shared state has been successfully attached.
 
 ![browser-console](../assets/guide/getting-started/browser-console.png)
 
 :::tip
-To open the JavaScript console in your browser, you can press `Cmd + Alt + J` in Chrome or alternatively `Cmd + Alt + I` in Firefox, then select the `Console` tab.
+To open the _JavaScript_ console in your browser, you can press `Cmd + Alt + J` in 
+_Chrome_ or alternatively `Cmd + Alt + I` in _Firefox_, then select the `Console` tab.
 ::: 
 
-Then, let's write the code that allows us to react to any change made on the shared state
+Then, let's write the code that allows us to react to any change made on the shared state:
 
 ```js{5-7}
 await client.start();
@@ -200,23 +209,22 @@ globals.onUpdate(updates => {
   console.log(updates);
 });
 
-const $layout = createLayout(client, $container);
+$container.innerHTML = `<h1 style="padding:20px;">Click here!</h1>`;
 ````
 
-In this snippet, we use the `onUpdate` method of the `globals` shared state that allows us to trigger a function (to just log the update for now, but we will come back there later).
+In this snippet, we use the `onUpdate` method of the `globals` shared state that allows us to trigger a function (the callback function will just log the updates for now, but we will come back here later).
 
-Now, we have the logic to react to any `globals` shared state change, but nothing to trigger a change. Let's add the following code to update the value of the trigger parameter when the user click on the screen:
+At this point, we have the logic we need to react to any `globals` shared state change, but nothing to actually trigger a change. Let's add the following code to update the value of the `trigger` parameter when the user clicks on the screen:
 
-```js{4-6}
-const $layout = createLayout(client, $container);
-$layout.addComponent(`click here`);
+```js{3-5}
+$container.innerHTML = `<h1 style="padding:20px;">Click here!</h1>`;
 
-$layout.addEventListener('click', () => {
+$container.addEventListener('click', () => {
   globals.set({ trigger: true });
 });
 ```
 
-Reload the page again (`Cmd + Shift + R`), and now whenever you click on the screen you should a new log in the console.
+Reload the page again (`Cmd + Shift + R`), and now whenever you click on the screen you should see a new log in the console.
 
 ![browser-console-2](../assets/guide/getting-started/browser-console-2.png)
 
@@ -229,17 +237,17 @@ const globals = await client.stateManager.attach('globals');
 
 globals.onUpdate(updates => {
   if (updates.trigger === true) {
-    $layout.style.backgroundColor = 'white';
+    $container.style.backgroundColor = 'white';
     setTimeout(() => {
-      $layout.style.backgroundColor = 'black';
+      $container.style.backgroundColor = 'black';
     }, 50);
   }
 });
 ```
 
-Here, whenever the `trigger` parameter of the `globals` shared state is set to `true`, we pass the background of the screen to white and put it back to black after 50ms.
+Here, whenever the `trigger` parameter of the `globals` shared state is set to `true`, we pass the background of the screen to `'white'` and put it back to `'black'` after 50ms.
 
-To see the shared state in action (more precisely why we call it "shared"), let's emulate several clients in our browser window. To that end, open [http://127.0.0.1:8000?emulate=8](http://127.0.0.1:8000?emulate=8) (note the `?emulate=8` at the end of the URL). 
+To see the shared state in action (and understand more precisely why we keep calling it a "_shared state_"), let's emulate several parallel clients in our browser window. To that end, open [http://127.0.0.1:8000?emulate=8](http://127.0.0.1:8000?emulate=8) (note the `?emulate=8` at the end of the URL). 
 
 ![emulated-clients](../assets/guide/getting-started/emulated-clients.png)
 
@@ -247,4 +255,9 @@ If you click on any of these 8 emulated clients all of them will blink, as they 
 
 ## Conclusion
 
-Congrats, you just wrote your first `soundworks` application. Along the way you learned quite a few things: 1. How to setup a `soundworks` application using the `@soundworks/create` wizard, 2. How to use some of the tools that are at your end to simplify the development, and 3. Discovered the shared states that are one of the most versatile abstraction provided by `soundworks` to simplify development and hide some network complexity.
+Congrats, you just wrote your first `soundworks` application. Along the way you learned quite a few things: 
+- 1. How to setup a `soundworks` application using the `@soundworks/create` wizard, 
+- 2. How to use some of the tools that are at your end to simplify the development, and 
+- 3. Discovered the shared states that are one of the most versatile abstraction provided by `soundworks` to simplify development and hide some network complexity.
+
+Yuo can now continue on the next tutorial to better understand the possibilities offered by the `StateManager` and of shared states.
