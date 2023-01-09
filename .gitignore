@@ -3,5 +3,6 @@ Thumbs.db
 
 node_modules
 build
+resources
 
 docs/.vitepress/dist

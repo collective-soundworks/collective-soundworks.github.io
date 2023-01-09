@@ -1,19 +1,46 @@
-# StateManager Tutorial
+# Using the `StateManager` and `SharedState`s
 
-> Learn how to use the soundworks' `stateManager` to:
->   - create shared global and local states
->   - remote control and monitor clients of your application
->
-> Note that the `stateManager` component can simplifies the development of applications by abstracting in large parts network communications and routing.
+In this tutorial, we learn the why and how of the `soundworks` state manager and shared states. More precisely, we will see how the create shared global and local states, and how this pattern helps to implement remote control and monitoring of clients of your application.
 
-## Table of Content
+Along the way, you will see how `StateManager` component can simplify the development of application by abstracting in large parts the network communications and routing.
 
-[[toc]]
+**Relevant API documentation pages**
+- [client.StateManager]()
+- [client.SharedState]()
+- [server.StateManager]()
+- [server.SharedState]()
 
-::: warning @todos
-- make a clean code example
-- review end of tutorial
+## Overview
+
+### The "Why"
+
+First of all, let's start with a bit of theory to understand the concepts and general logic behind the `soundworks`' shared states. 
+
+Most of the time, we think of an application as "something" that runs on a computer with which a user can interact in some way. The idea of _distributed application_ -- which is what `soundworks` aims at promoting and supporting -- extends this idea to an application that runs at the same time on several computer and where several users can interact at the same time.
+
+![distributed-application](../assets/tutorials/state-manager/distributed-application.png)
+
+Additionnaly, in the context of creative applications, it can be very important to be able to have some simple way to monitor and/or control the state of a distant client. This is true both during the development of the artwork / application, e.g. to tweak some synthesizer on distant machines from a central point (even in the studio, modifying some parameters on several machines can get very cumbersome), as well as during the performance, e.g. to control the general volume, to change the color of the screen of every clients at the same time etc.
+
+:::tip
+When we speak of a "node of the network", we mean both the clients and the server. Indeed, from the point of the of the distrubuted state management system proposed by `soundworks`, the server is a node just as the clients, which has certain additionnal features allowed by its central role.
 :::
+
+The `SharedManager` and the `SharedState` abstraction provided by `soundworks` provide a simple way to define and synchronize some sets of parameters, that are of interest by multiple clients, while abstracting all the network communications involved.
+
+### The "How"
+
+From a more technical point of view, the `SharedState` can be seen as circular dataflow pattern (loosely inspired by the [_flux_](https://facebook.github.io/flux/docs/in-depth-overview) pattern proposed by _Facebook_) adapted to the particular needs of real-time distributed applications. 
+
+Hence, in soundworks `SharedState`s,  the dataflow follows a circular path that is always synchronized with the server. For example, if we follow the flow of data in the graph below, we can see that when an input (e.g. some user gesture) triggers a change in the state of a client (arrow 1, red), a data synchronization is automatically made with a server-side representation of the state through WebSockets (arrow 2), which in turn triggers a change in the rendering (be it audio or visual). 
+
+This simple pattern enables an important feature: any other node can make a change on the same server-side representation of the state (arrow 1', blue), while triggering 2 and 3 in a completely transparent way.
+
+![distributed-application](../assets/tutorials/state-manager/distributed-state-management.png)
+
+
+
+--> review after this point
 
 ## Declaring Schemas
 
