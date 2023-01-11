@@ -304,7 +304,7 @@ And open the page [http://127.0.0.1:8000/controller](http://127.0.0.1:8000/contr
 
 So let's begin with creating the controls for the `globals` shared state. Open the `src/clients/controller/index.js` file and add the following code to import some parts the library we just installed:
 
-```js {4-7}
+```js {4-8}
 // src/clients/controller/index.js
 import launcher from '@soundworks/helpers/launcher.js';
 
@@ -426,12 +426,11 @@ The final thing we need to do, is to be able to control the frequency of each pl
 
 So, in the `src/clients/controller/index.js` file add the following snippet:
 
-```js {4-25}
+```js {4-24}
 // src/clients/controller/index.js
 const globals = await client.stateManager.attach('globals');
 
 const players = new Set();
-
 // observe all states created on the network
 client.stateManager.observe(async (schemaName, stateId) => {
   // we are only interested in player schemas
@@ -453,6 +452,10 @@ client.stateManager.observe(async (schemaName, stateId) => {
   }
 });
 ```
+
+:::info
+In a future release of _soundworks_ we will provide a more user-friendly way of handling such collections of similar states.
+:::
 
 And finally, let's create a new graphic component to display the frequency control for all `player` shared states:
 
@@ -586,9 +589,9 @@ Now, if you open a controller ([http://127.0.0.1:8000/controller](http://127.0.0
 
 In this tutorial, we learned how to use the _soundworks_ distributed state management system which we consider one of its most versatile component.
 
-You learned how to create global state that are common to all clients of the application, how to use shared states to describe your clients and how use them to implement remote control and monitoring interfaces.
+You learned how to create global state that are common to all clients of the application, how to use shared states to describe your clients and how use them to implement remote control and monitoring interfaces. Along the way, you have seen how to use the _soundworks_ within your application (i.e. `npx soundworks`) and how to create user interface component working with the `$layout`.
 
-In the next tutorial, we will see another building block, the `Context` class, proposed by _soundworks_ to help keeping your application organized as it gets more complex.
+In the next tutorial, we will see how to extend the possibilities offered by soundworks, as well as novel features of the default application template, by learning the how and why of the `platform` plugin.
 
 
 

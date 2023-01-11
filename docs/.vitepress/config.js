@@ -32,8 +32,8 @@ export default {
         text: 'Tutorials',
         items: [
           { text: 'Using the State Manager', link: '/tutorials/state-manager' },
-          // { text: 'Using Contexts', link: '/tutorials/contexts' },
-          // { text: 'Using Plugins 1 - Platform', link: '/tutorials/plugin-platform' },
+          { text: 'Using Plugins 1 - Platform', link: '/tutorials/plugin-platform' },
+          // { text: 'Using Contexts', link: '/tutorials/context' },
           // { text: 'The "Todo Noise" App', link: '/tutorials/todo-noise' },
           // { text: 'Using Plugins 2 - Sync', link: '/tutorials/plugin-sync' },
           // { text: 'Synchronized Scheduling', link: '/tutorials/synchronized-audio-scheduling' },
