@@ -1,6 +1,6 @@
 # Getting Started
 
-In this guide, you will learn how to setup a simple `soundworks` application where any connected user will be able to trigger a flash on the screen of all connected clients.
+In this guide, you will learn how to setup a simple _soundworks_ application where any connected user will be able to trigger a flash on the screen of all connected clients.
 
 The tutorial requires basic knowledge of _JavaScript_, _Node.js_ and of the command-line. If you are just starting with _JavaScript_ development, please first set up a working environment following the instructions [here](/misc/setting-up-environment.html) and come back when done.
 
@@ -13,7 +13,7 @@ The tutorial requires basic knowledge of _JavaScript_, _Node.js_ and of the comm
 
 ## Step 1 - Setting things up
 
-The best and most simple way to create a new `soundworks` application is to use the dedicated command line tools: 
+The best and most simple way to create a new _soundworks_ application is to use the dedicated command line tools: 
 
 ![soundworks/create](../assets/guide/getting-started/soundworks-create-min.gif)
 
@@ -36,7 +36,7 @@ Note that the screenshots in this guide may differ slightly from what you actual
 
 ![create-project](../assets/guide/getting-started/wizard-create-project.png)
 
-Once the installation is done, the `@soundworks/create` wizard will propose you to install some `soundworks` plugins and some curated libraries. For now, just press `Enter` to skip this steps.
+Once the installation is done, the `@soundworks/create` wizard will propose you to install some _soundworks_ plugins and some curated libraries. For now, just press `Enter` to skip this steps.
 
 ![init-install-deps](../assets/guide/getting-started/wizard-init-install-deps.png)
 
@@ -90,7 +90,7 @@ getting-started
 └── README.md           # General infos about your application
 ```
 
-- The `node_modules` and `.build` directories should **_never_** be edited manually. They are used by the Node Package Manager (i.e. `npm`) and the  `soundworks` build tools to install dependencies and bundle your application.
+- The `node_modules` and `.build` directories should **_never_** be edited manually. They are used by the Node Package Manager (i.e. `npm`) and the  _soundworks_ build tools to install dependencies and bundle your application.
 - The `src` directory at contrary contains all the source files of your application, this is where you will work most of the time.
 - The `public` directory is the directory that is exposed to the network by the server. This is the place where you should put your static assets such as images or soundfiles that the clients of your application will download and use. 
 
@@ -99,7 +99,7 @@ It is **_very_** important to understand that exposing a directory to the networ
 **_So, be careful to not expose sensitive or private informations there._**. This is an important thing to keep in mind whenever you deal with servers and networks, it's not specific to soundworks applications.
 :::
 
-Now that we have an overview of the file structure of a `soundworks` application, let's write some code!
+Now that we have an overview of the file structure of a _soundworks_ application, let's write some code!
 
 ## Step 3 - Create a global shared state
 
@@ -115,7 +115,7 @@ The `dev` command (quite wisely) starts the server in development mode. This mea
 
 Open the `src/server/index.js` file and add the following lines at the end of the file:
 
-```js{5-7}
+```js {5-7}
 // src/server/index.js
 await server.start();
 
@@ -125,11 +125,11 @@ const globalSchema = {
 };
 ```
 
-Here, we just create a plain old JavaScript object that follows the `soundworks` schema definition (if you are familiar with databases, you can think of it as the schema of a table). The full API documentation for a schema is accessible [here](https://soundworks.dev/soundworks/server.StateManager#~schema) but for now, it's ok to just understand that we declared some data structure a parameter named `trigger` that is configured to be a `boolean` event.
+Here, we just create a plain old JavaScript object that follows the _soundworks_ schema definition (if you are familiar with databases, you can think of it as the schema of a table). The full API documentation for a schema is accessible [here](https://soundworks.dev/soundworks/server.StateManager#~schema) but for now, it's ok to just understand that we declared some data structure a parameter named `trigger` that is configured to be a `boolean` event.
 
-Then we will need to register this schema into the `soundworks`' state manager:
+Then we will need to register this schema into the _soundworks_' state manager:
 
-```js{5}
+```js {5}
 const globalsSchema = {
   trigger: { type: 'boolean', event: true },
 };
@@ -139,7 +139,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
 
 Finally, we will create an global shared state instance from this schema definition:
 
-```js{7}
+```js {7}
 const globalsSchema = {
   trigger: { type: 'boolean', event: true },
 };
@@ -170,14 +170,14 @@ Here, we programmatically modify the HTML of our document directly from the Java
 :::tip
 The `$container` variable we use in this snippet refers to an HTML element in which our client interface should be displayed.
 
-The `$layout` we just removed is just a convenience object proposed by the template as a starting point for building interfaces. It is based on the [lit](https://lit.dev/) library developped by _Google_ and its source code is located in `src/clients/player/views/layout.js`. As shown in this simple example `soundworks` does not require the usage of this abstraction, nor of the `lit` library.
+The `$layout` we just removed is just a convenience object proposed by the template as a starting point for building interfaces. It is based on the [lit](https://lit.dev/) library developped by _Google_ and its source code is located in `src/clients/player/views/layout.js`. As shown in this simple example _soundworks_ does not require the usage of this abstraction, nor of the `lit` library.
 :::
 
 If you reload the page (`Cmd + Shift + R`), you should see the text "click here" displayed of the top left of your screen, so we are ensured we got some control over this Web page.
 
 Now, let's go back to our client-side logic and add the following code in the same  file:
 
-```js{4-5}
+```js {4-5}
 // src/clients/player/index.js
 await client.start();
 
@@ -200,7 +200,7 @@ _Chrome_ or alternatively `Cmd + Alt + I` in _Firefox_, then select the `Console
 
 Then, let's write the code that allows us to react to any change made on the shared state:
 
-```js{5-7}
+```js {5-7}
 await client.start();
 
 const globals = await client.stateManager.attach('globals');
@@ -216,7 +216,7 @@ In this snippet, we use the `onUpdate` method of the `globals` shared state that
 
 At this point, we have the logic we need to react to any `globals` shared state change, but nothing to actually trigger a change. Let's add the following code to update the value of the `trigger` parameter when the user clicks on the screen:
 
-```js{3-5}
+```js {3-5}
 $container.innerHTML = `<h1 style="padding:20px;">Click here!</h1>`;
 
 $container.addEventListener('click', () => {
@@ -230,7 +230,7 @@ Reload the page again (`Cmd + Shift + R`), and now whenever you click on the scr
 
 Finally, we just need to review the code inside the `onUpdate` callback to make the screen blink instead of just logging the shared state updates into the console.
 
-```js{6-11}
+```js {6-11}
 await client.start();
 
 const globals = await client.stateManager.attach('globals');
@@ -255,9 +255,9 @@ If you click on any of these 8 emulated clients all of them will blink, as they 
 
 ## Conclusion
 
-Congrats, you just wrote your first `soundworks` application. Along the way you learned quite a few things: 
-- 1. How to setup a `soundworks` application using the `@soundworks/create` wizard, 
+Congrats, you just wrote your first _soundworks_ application. Along the way you learned quite a few things: 
+- 1. How to setup a _soundworks_ application using the `@soundworks/create` wizard, 
 - 2. How to use some of the tools that are at your end to simplify the development, and 
-- 3. Discovered the shared states that are one of the most versatile abstraction provided by `soundworks` to simplify development and hide some network complexity.
+- 3. Discovered the shared states that are one of the most versatile abstraction provided by _soundworks_ to simplify development and hide some network complexity.
 
-Yuo can now continue on the next tutorial to better understand the possibilities offered by the `StateManager` and of shared states.
+On the next tutorial, we will explore the possibilities offered by the distributed staet management system porposed by _soundworks_.
