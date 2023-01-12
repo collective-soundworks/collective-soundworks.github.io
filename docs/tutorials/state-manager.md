@@ -590,7 +590,7 @@ Now, if you open a controller ([http://127.0.0.1:8000/controller](http://127.0.0
 
 ## Conclusion
 
-In this tutorial, you learned how to use the _soundworks_ distributed state management system which we think is one of its most powerfull and versatile component.
+In this tutorial, you learned how to use the _soundworks_ distributed state management system which we think is one of its most powerfull and versatile feature.
 
 You have seen how to create global states that are common to all clients of the application, how to use them to describe the state of each client and how use them to implement remote control and monitoring interfaces. Along the way, you have seen how to use the _soundworks_ wizard within your application (i.e. `npx soundworks`) and how to create user interface components working with the default `$layout` provided in the default application template.
 
