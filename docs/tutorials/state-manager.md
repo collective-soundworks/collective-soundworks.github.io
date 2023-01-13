@@ -1,6 +1,6 @@
 # Using the State Manager
 
-In this tutorial, we will learn more about the distributed state management system proposed by _soundworks_. After a short introduction on the concepts behind, we will see how the create shared states, and how this pattern can help you to implement remote control and monitoring in your applications. Along the way, we will see how shared states can simplify the development of applications by abstracting in large parts the network communications and routing.
+In this tutorial, we will dig into the distributed state management system proposed by _soundworks_. After a short introduction on the concepts behind, we will see how to use shared states, and how this pattern can help you to implement remote control and monitoring in your applications. Along the way, we will see how the shared states simplify the development of distributed applications by abstracting the network communications and messages routing.
 
 ### Relevant API documentation
 
