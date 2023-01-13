@@ -594,7 +594,7 @@ In this tutorial, you learned how to use the _soundworks_ distributed state mana
 
 You have seen how to create global states that are common to all clients of the application, how to use them to describe the state of each client and how use them to implement remote control and monitoring interfaces. Along the way, you have seen how to use the _soundworks_ wizard within your application (i.e. `npx soundworks`) and how to create user interface components working with the default `$layout` provided in the default application template.
 
-In the next tutorial, we will see how to extend the possibilities of _soundworks_ with plugins, by using `@soundworks/plugin-platform`.
+In the next tutorial, we will see how to extend the possibilities of _soundworks_ with plugins. For this first dive into plugins we will use the `@soundworks/plugin-init` plugin that is meant to simplify some redondant and cumbersome tasks such as resuming the audio context, etc.
 
 
 

@@ -32,14 +32,14 @@ export default {
         text: 'Tutorials',
         items: [
           { text: 'Using the State Manager', link: '/tutorials/state-manager' },
-          { text: 'Using Plugins 1 - Platform', link: '/tutorials/plugin-platform' },
+          { text: 'Using Plugins 1 - Init', link: '/tutorials/plugin-init' },
           // { text: 'Using Contexts', link: '/tutorials/context' },
           // { text: 'The "Todo Noise" App', link: '/tutorials/todo-noise' },
           // { text: 'Using Plugins 2 - Sync', link: '/tutorials/plugin-sync' },
           // { text: 'Synchronized Scheduling', link: '/tutorials/synchronized-audio-scheduling' },
           // { text: 'Using Plugins 3 - Scripting', link: '/tutorials/plugin-scripting' },
           // { text: 'Working with Node Clients', link: '/tutorials/node-clients' },
-          // { text: 'Customize the Init Screens', link: '/tutorials/customizing-init-screens' },
+          // { text: 'Customizing Init Screens', link: '/tutorials/customizing-init-screens' },
         ],
       },
       {
