@@ -17,37 +17,38 @@ same layout as apps.ismm.ircam.fr
 
 ### tutorials
 
-- soundworks internals
-  + using the state-manager
-  + using plugins (1)
-    * @soundworks/plugin-platform example
-  + using contexts
-    * what are contexts?
-    * :::note - relation to Experience
-    * using context
-      - simple router
-      - switch between music parts
-    * paragraph on locking contexts to specific roles
-    * paragraph on creating contexts between init and start
-  + mixing it all, the "todo-noise" application
-  + using plugins (2)
-    - @soundworks/plugin-sync example
-  + synchronized audio scheduling, building a distributed step sequencer
-  + using plugins (3)
-    - @soundworks/plugin-scripting example
-  + working with node clients
-    + customize the @soundworks/helpers
-    * customize the css globals variables
-    * customize the text / language
-    * eject @soundworks/helpers
-    
-  + understand and configure the @soundworks/build system
-  + soundworks-max - sharing state with Max/MSP
-  + anatomy of the default template app
-  + creating a connected lamp with a RPi :)
-  + create an embedded distributed system with dotpi
+- using the state-manager
+- using plugins (1)
+  + @soundworks/plugin-platform-init example
+- mixing it all, the "todo-noise" application
+- using contexts
+  + what are contexts?
+  + :::note - relation to Experience
+  + using context
+    * simple router
+    * switch between music parts
+  + paragraph on locking contexts to specific roles
+  + paragraph on creating contexts between init and start
+- advanced state manager
+- using plugins (2)
+  * @soundworks/plugin-sync example
+- synchronized audio scheduling, building a distributed step sequencer
+- using plugins (3)
+  * @soundworks/plugin-scripting example
+- distributed graphic scripting 
+- working with node clients
+  - customize the @soundworks/helpers
+  + customize the css globals variables
+  + customize the text / language
+  + eject @soundworks/helpers
   
-  + working with MIDI and OSC (some plugin could be welcome)
+- understand and configure the @soundworks/build system
+- soundworks-max - sharing state with Max/MSP
+- anatomy of the default template app
+- creating a connected lamp with a RPi :)
+- create an embedded distributed system with dotpi
+
+- working with MIDI and OSC (some plugin could be welcome)
 
 ### ecosystem
 

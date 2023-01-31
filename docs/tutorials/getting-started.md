@@ -1,6 +1,6 @@
 # Getting Started
 
-In this guide, you will learn how to setup a simple _soundworks_ application where any connected user will be able to trigger a flash on the screen of all connected clients.
+In this tutorial, you will learn how to setup a simple _soundworks_ application where any connected user will be able to trigger a flash on the screen of all connected clients.
 
 The tutorial requires basic knowledge of _JavaScript_, _Node.js_ and of the command-line. If you are just starting with _JavaScript_ development, please first set up a working environment following the instructions [here](/misc/setting-up-environment.html) and come back when done.
 
@@ -15,7 +15,7 @@ The tutorial requires basic knowledge of _JavaScript_, _Node.js_ and of the comm
 
 The best and most simple way to create a new _soundworks_ application is to use the dedicated command line tools: 
 
-![soundworks/create](../assets/guide/getting-started/soundworks-create-min.gif)
+![soundworks/create](../assets/tutorials/getting-started/soundworks-create-min.gif)
 
 So first thing first, open a Terminal, go to some directory and execute the following command:
 
@@ -34,35 +34,35 @@ The wizard will startup and ask you for the name of the directory in which you w
 Note that the screenshots in this guide may differ slightly from what you actually see in your console, as the CLI tool might have evolved a bit since the screenshots have been made.
 :::
 
-![create-project](../assets/guide/getting-started/wizard-create-project.png)
+![create-project](../assets/tutorials/getting-started/wizard-create-project.png)
 
 Once the installation is done, the `@soundworks/create` wizard will propose you to install some _soundworks_ plugins and some curated libraries. For now, just press `Enter` to skip this steps.
 
-![init-install-deps](../assets/guide/getting-started/wizard-init-install-deps.png)
+![init-install-deps](../assets/tutorials/getting-started/wizard-init-install-deps.png)
 
 After that step, the wizard will propose you to create a client of your application. Let's call it `player` and press `Enter` as show below.
 
-![create-player-1](../assets/guide/getting-started/wizard-create-player-1.png)
+![create-player-1](../assets/tutorials/getting-started/wizard-create-player-1.png)
 
 The wizard will then ask a few questions to configure your client, again just press `Enter` to select the default values (i.e. type: `browser` and template: `default`):
 
-![create-player-2](../assets/guide/getting-started/wizard-create-player-2.png)
+![create-player-2](../assets/tutorials/getting-started/wizard-create-player-2.png)
 
-![create-player-3](../assets/guide/getting-started/wizard-create-player-3.png)
+![create-player-3](../assets/tutorials/getting-started/wizard-create-player-3.png)
 
 Finally, the wizard will ask you to confirm your choices, press `Enter`.
 
-![create-player-confirm](../assets/guide/getting-started/wizard-create-player-confirm.png)
+![create-player-confirm](../assets/tutorials/getting-started/wizard-create-player-confirm.png)
 
 The wizard will copy some files and configure the application for you. Your application is ready to be launched.
 
 To make sure the application is correctly set up and installed, just follow the steps 1 and 3 proposed as next steps by the wizard.
 
-![init-end](../assets/guide/getting-started/wizard-init-end.png)
+![init-end](../assets/tutorials/getting-started/wizard-init-end.png)
 
 After a few seconds, your server should be running:
 
-![server-launched](../assets/guide/getting-started/server-launched.png)
+![server-launched](../assets/tutorials/getting-started/server-launched.png)
 
 Open you favorite browser (which shall probably not be Safari), go to [http://127.0.0.1:8000](http://127.0.0.1:8000), and tada! You should see a rather pretty black screen!
 
@@ -191,7 +191,7 @@ Here, we simply attach our client to the `globals` state created by the server. 
 
 The second line will just log the current values of the `globals` shared state into the browser's console, so that we can check that the shared state has been successfully attached.
 
-![browser-console](../assets/guide/getting-started/browser-console.png)
+![browser-console](../assets/tutorials/getting-started/browser-console.png)
 
 :::tip
 To open the _JavaScript_ console in your browser, you can press `Cmd + Alt + J` in 
@@ -226,7 +226,7 @@ $container.addEventListener('click', () => {
 
 Reload the page again (`Cmd + Shift + R`), and now whenever you click on the screen you should see a new log in the console.
 
-![browser-console-2](../assets/guide/getting-started/browser-console-2.png)
+![browser-console-2](../assets/tutorials/getting-started/browser-console-2.png)
 
 Finally, we just need to review the code inside the `onUpdate` callback to make the screen blink instead of just logging the shared state updates into the console.
 
@@ -249,7 +249,7 @@ Here, whenever the `trigger` parameter of the `globals` shared state is set to `
 
 To see the shared state in action (and understand more precisely why we keep calling it a "_shared state_"), let's emulate several parallel clients in our browser window. To that end, open [http://127.0.0.1:8000?emulate=8](http://127.0.0.1:8000?emulate=8) (note the `?emulate=8` at the end of the URL). 
 
-![emulated-clients](../assets/guide/getting-started/emulated-clients.png)
+![emulated-clients](../assets/tutorials/getting-started/emulated-clients.png)
 
 If you click on any of these 8 emulated clients all of them will blink, as they are all attached to the same `globals` shared state, and thus react in the same way to the updates of the state.
 
@@ -261,3 +261,4 @@ Congrats, you just wrote your first _soundworks_ application. Along the way you 
 - 3. Discovered the shared states that are one of the most versatile abstraction provided by _soundworks_ to simplify development and hide some network complexity.
 
 On the next tutorial, we will explore the possibilities offered by the distributed staet management system porposed by _soundworks_.
+

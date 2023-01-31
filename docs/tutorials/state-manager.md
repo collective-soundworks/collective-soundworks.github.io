@@ -50,7 +50,7 @@ The `StateManager` component uses "_schemas_" that declare a set of attributes a
 The schema syntax follows the format described [here](https://soundworks.dev/soundworks/server.StateManager#~schema).
 :::
 
-First thing first, let's generate a new empty application with the `@soundworks/create` wizard (when the wizard will ask you for the name of the default client, just call it `player` (with the `browser` target and the `default` template) so that the rest of the tutorial will be more simple to follow):
+First thing first, let's generate a new empty application with the `@soundworks/create` wizard. When the wizard will ask you for the name of the default client, just call it `player` (with the `browser` target and the `default` template) so that the rest of the tutorial will be more simple to follow:
 
 :::info
 If needed, refer to the [getting-started](/guide/getting-started) page to learn more on how to run the wizard
