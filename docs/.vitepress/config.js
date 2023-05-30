@@ -49,7 +49,7 @@ export default {
       {
         text: 'Misc',
         items: [
-          // { text: 'Using the State Manager', link: '/tutorials/state-manager' },
+          { text: 'Setting up an Environment', link: '/misc/setting-up-environment' },
           // { text: 'Using Contexts', link: '/tutorials/contexts' },
           // { text: 'Using Plugins', link: '/tutorials/plugins' },
         ],

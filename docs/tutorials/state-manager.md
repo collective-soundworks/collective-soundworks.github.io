@@ -2,12 +2,15 @@
 
 In this tutorial, we will dig into the distributed state management system proposed by _soundworks_. After a short introduction on the concepts behind, we will see how to use shared states, and how this pattern can help you to implement remote control and monitoring in your applications. Along the way, we will see how the shared states simplify the development of distributed applications by abstracting the network communications and messages routing.
 
+Along the way, we will discover a related library called `@ircam/simple-components` to simply create usable (and hopefully elegant) graphical user interfaces.
+
 ### Relevant API documentation
 
 - [client.StateManager](https://soundworks.dev/soundworks/client.ContextManager)
 - [client.SharedState](https://soundworks.dev/soundworks/client.SharedState)
 - [server.StateManager](https://soundworks.dev/soundworks/server.StateManager)
 - [server.SharedState](https://soundworks.dev/soundworks/server.SharedState)
+- [@ircam/simple-components](https://ircam-ismm.github.io/simple-components/)
 
 ## Introduction
 

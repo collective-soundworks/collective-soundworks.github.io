@@ -21,11 +21,20 @@
   /* code bg color */
   --vp-code-block-bg: var(--sw-brown);
   /* non-active nav link */
-  --vp-c-text-light-2: rgba(60, 60, 60, 0.95);
+  --vp-c-text-light-2: rgba(120, 120, 120, 0.95);
 }
 
 body {
   font-size: 15px;
+}
+
+.VPContent a {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.VPContent .VPDocAside a {
+  text-decoration: none;
 }
 
 .VPHome {

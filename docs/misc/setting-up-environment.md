@@ -6,21 +6,6 @@ How to set up an environment to get started with `soundworks`.
 
 ## Mac OSX
 
-## Install Build Tools
-
-For some applications you will need tools to compile code, etc.
-
-1. Open a Terminal (in `Applications/Utilities/Terminal.app`) and type:
-
-```
-xcode-select --install
-```
-
-and press `Enter`
-
-2. Click "Install" in the pop-up window and wait (this can be a bit long)...
-3. Done!
-
 ### Install _Node.js_
 
 1. Open [https://nodejs.org](https://nodejs.org) in your favorite browser (which shall not be Safari).
@@ -52,25 +37,25 @@ npm install -g n
 Check package documentation to learn how to avoid using `sudo`
 :::
 
-## Install a Text Editor
+### Install a Text Editor
 
 Pick a text editor of your choice, popular text editor nowadays seems to be
 - Sublime Text 3 - [download](https://sublimetext.com/3) - _tells you from time to time that it would be nice to buy a license, but that's all_
 - VSCode - [download](https://code.visualstudio.com/) - _probably a good idea if your are on windows_
 - Atom - [download](https://atom.io/)
 
-### Sublime Text 3 - Advanced Configuration
+#### Sublime Text 3 - Advanced Configuration
 
 If you just want to run an application, you can stop here.
 
 _The following are just the author preferences, do whatever suits best for you._
 
-#### Package Control
+##### Package Control
 
 Package control allows to install new packages and extends sublime text,
 follow instruction [here](https://packagecontrol.io/installation).
 
-#### EcmaScript Syntax
+##### EcmaScript Syntax
 
 It's nice to install a new package to support new JavaScript language features:
 
@@ -78,7 +63,7 @@ It's nice to install a new package to support new JavaScript language features:
 2. Type "Install" in the dialog box, select "Package Control: Install Package"
 3. Search for the "Ecmascript Syntax" package and install it
 
-#### Sublime Settings
+##### Sublime Settings
 
 Go to `Preferences > Settings`, paste the following in the `Preferences.sublime-settings - User` file and save (`cmd + s`):
 
@@ -111,3 +96,17 @@ Go to `Preferences > Settings`, paste the following in the `Preferences.sublime-
 }
 ```
 
+### [optional] Install Build Tools
+
+In some applications, i.e. to use native node add-ons which are not shipped with binaries, you will need all the tools to compile the code.
+
+1. Open a Terminal (in `Applications/Utilities/Terminal.app`) and type:
+
+```
+xcode-select --install
+```
+
+and press `Enter`
+
+2. Click "Install" in the pop-up window and wait (this can be a bit long)...
+3. Note that you may need to re-install Node.js in such case.
