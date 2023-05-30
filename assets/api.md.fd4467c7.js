@@ -1,1 +1,0 @@
-import{_ as e,c as t,o}from"./app.4ed1cc89.js";typeof window<"u"&&(window.location="https://soundworks.dev/soundworks/");const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"api.md"}'),a={name:"api.md"};function n(s,r,i,c,d,p){return o(),t("div")}const m=e(a,[["render",n]]);export{f as __pageData,m as default};
