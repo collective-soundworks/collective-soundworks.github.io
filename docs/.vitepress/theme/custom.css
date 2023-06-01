@@ -194,6 +194,19 @@ body {
   transition: opacity 200ms;
 }
 
+.VPHome .related-work a.web-apps {
+  background-image: url(/assets/home/related-apps-ismm.jpeg);
+}
+.VPHome .related-work a.youtube {
+  background-image: url(/assets/home/related-youtube.png);
+}
+.VPHome .related-work a.team {
+  background-image: url(/assets/home/related-team-website.png);
+}
+.VPHome .related-work a.libs {
+  background-image: url(/assets/home/related-code.png);
+}
+
 .VPHome .related-work a:hover {
   opacity: 1;
 }

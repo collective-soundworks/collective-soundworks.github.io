@@ -65,24 +65,16 @@ footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam S
 <h2>Related links and projects</h2>
 
 <div class="related-work">
-  <a href="https://apps.ismm.ircam.fr" target="_blank"
-     style="background-image: url('./assets/home/related-apps-ismm.jpeg');"
-  >
+  <a href="https://apps.ismm.ircam.fr" target="_blank" class="web-apps">
     <span>Web Apps</span>
   </a>
-  <a href="https://www.youtube.com/ircam-ismm" target="_blank"
-     style="background-image: url('./assets/home/related-youtube.png');"
-  >
+  <a href="https://www.youtube.com/ircam-ismm" target="_blank" class="youtube">
     <span>Youtube</span>
   </a>
-  <a href="https://ismm.ircam.fr/" target="_blank"
-     style="background-image: url('./assets/home/related-team-website.png');"
-  >
+  <a href="https://ismm.ircam.fr/" target="_blank" class="team">
     <span>Team Website</span>
   </a>
-  <a href="https://ircam-ismm.github.io" target="_blank"
-     style="background-image: url('./assets/home/related-code.png');"
-  >
+  <a href="https://ircam-ismm.github.io" target="_blank" class="libs">
     <span>Related Libs</span>
   </a>
 </div>
