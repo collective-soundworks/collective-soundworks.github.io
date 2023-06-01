@@ -6,7 +6,7 @@ Along the way, we will discover a related library called `@ircam/simple-componen
 
 ### Relevant API documentation
 
-- [client.StateManager](https://soundworks.dev/soundworks/client.ContextManager)
+- [client.StateManager](https://soundworks.dev/soundworks/client.StateManager)
 - [client.SharedState](https://soundworks.dev/soundworks/client.SharedState)
 - [server.StateManager](https://soundworks.dev/soundworks/server.StateManager)
 - [server.SharedState](https://soundworks.dev/soundworks/server.SharedState)

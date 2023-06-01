@@ -62,6 +62,31 @@ footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam S
   </li>
 </ul>
 
+<h2>Related links and projects</h2>
+
+<div class="related-work">
+  <a href="https://apps.ismm.ircam.fr" target="_blank"
+     style="background-image: url('./assets/home/related-apps-ismm.jpeg');"
+  >
+    <span>Web Apps</span>
+  </a>
+  <a href="https://www.youtube.com/ircam-ismm" target="_blank"
+     style="background-image: url('./assets/home/related-youtube.png');"
+  >
+    <span>Youtube</span>
+  </a>
+  <a href="https://ismm.ircam.fr/" target="_blank"
+     style="background-image: url('./assets/home/related-team-website.png');"
+  >
+    <span>Team Website</span>
+  </a>
+  <a href="https://ircam-ismm.github.io" target="_blank"
+     style="background-image: url('./assets/home/related-code.png');"
+  >
+    <span>Related Libs</span>
+  </a>
+</div>
+
 <footer class="credits">
   <a class="license" href="https://github.com/collective-soundworks/soundworks/blob/main/LICENSE">BSD-3-Clause</a> - {Sound Music Movement} Interaction Team - STMS-LAB
 

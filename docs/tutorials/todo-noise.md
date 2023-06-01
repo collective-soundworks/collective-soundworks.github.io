@@ -4,16 +4,14 @@ In this tutorial we will build a simple application, which shows the most common
 
 The tutorial requires basic knowledge of the `soundworks` [state manager](./state-manager.html) and of the [platform-init plugin](./plugin-platform-init.html), so please refer to the relevant tutorials if you didn't check them yet.
 
-Along the way, we will see how to create our own reusable [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) using the [Lit](https://lit.dev/) which is the default view framework used by soundworks.
+Along the way, we will discover the [SharedStateCollection](https://soundworks.dev/soundworks/client.SharedStateCollection.html) proposed by the soundworks' state manager and, how to create our own reusable [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) using the [Lit](https://lit.dev/) which is the default view framework used by soundworks.
 
 ### Relevant documentation and links
 
-- [client.StateManager](https://soundworks.dev/soundworks/client.ContextManager)
-- [client.SharedState](https://soundworks.dev/soundworks/client.SharedState)
+- [client.StateManager](https://soundworks.dev/soundworks/client.StateManager)
+- [client.SharedStateCollection](https://soundworks.dev/soundworks/client.SharedStateCollection.html)
 - [server.StateManager](https://soundworks.dev/soundworks/server.StateManager)
-- [server.SharedState](https://soundworks.dev/soundworks/server.SharedState)
-- [client.PluginManager](https://soundworks.dev/soundworks/client.PluginManager)
-- [server.PluginManager](https://soundworks.dev/soundworks/server.PluginManager)
+- [server.SharedStateCollection](https://soundworks.dev/soundworks/server.SharedStateCollection.html)
 - [@soundworks/plugin-platform-init](https://github.com/collective-soundworks/soundworks-plugin-platform-init)
 - [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
 - [Lit](https://lit.dev/)
@@ -25,7 +23,7 @@ The application purposely privileges the point of view of a user in a working si
 The `player` can be envisioned as the client dedicated to the end users. The application can accept any number of players and each player has access to the following fonctionalities:
 - It can trigger a sound.
 - It can start and stop a synthesizer.
-- It can update a parameter (i.e. a volume).
+- It can update a parameter (i.e. the frequency of the synths).
 
 The `controller` is dedicated to the user in working situation, be it during the creation or the performance of the artwork. The application can accept any number of controllers and each of them has access to the following fonctionalities:
 - It controls global parameters of the application (i.e. mute, master volume). These globals parameters must indeed be synchronized across every clients of the application (i.e. player and controller).
@@ -265,23 +263,25 @@ As defined in our user story, we also want the clients to have some controls on 
 Indeed, one you start working with several physical devices (e.g. smartphones, tablets), being able to control each of them from a single point can save you a lot of time, which will be better used to improve your artwork and experience. 
 :::
 
+### Creating the state
+
 To that end, let's first create and register another schema, from which we will create a new state for each connected players. So let's create a new `src/server/schemas/player.js` file with the following snippet:
 
 ```js
 // src/server/schemas/player.js
 export default {
-  ìd: {
+  id: {
     type: 'integer',
     default: null,
     nullable: true,
   },
   frequency: {
-    type: 'integer',
+    type: 'float',
     default: 200,
     min: 50,
     max: 2000,
   },
-  synthStart: {
+  synthStartStop: {
     type: 'boolean',
     default: false,
     immediate: true,
@@ -307,10 +307,10 @@ server.stateManager.registerSchema('globals', globalsSchema);
 server.stateManager.registerSchema('player', playerSchema);
 ```
 
-This values contains in these states will allow us to implement two different types of synthesizer with very common behavior: one which can be started and stopped (e.g. playing a sound file in a loop, see `synthStart`) and a second that is triggered by an event (see `synthTrigger`). To keep the audio code simple and focus on the architecture and the logic of the application we will create very simple synthesizers based on oscillators and use the same `frequency` value for the two synths.
+This values contains in these states will allow us to implement two different types of synthesizer with very common behavior: one which can be started and stopped (e.g. playing a sound file in a loop, see `synthStartStop`) and a second that is triggered by an event (see `synthTrigger`). To keep the audio code simple and focus on the architecture and the logic of the application we will create very simple synthesizers based on oscillators and use the same `frequency` value for the two synths.
 
 :::tip
-Note the `immediate` attribute for the `synthStart` and `synthTrigger` which one of the different behavior that can be twicked in shared states. In this case `immediate` means that the value is propagated locally before being propagated on the network to keep the latency and responsiveness of the interface to the minimum. See the different [schema type definitions](https://soundworks.dev/soundworks/server.StateManager.html#~schema) for more informations.
+Note the `immediate` attribute for the `synthStartStop` and `synthTrigger` which one of the different behavior that can be twicked in shared states. In this case `immediate` means that the value is propagated locally before being propagated on the network to keep the latency and responsiveness of the interface to the minimum. See the different [schema type definitions](https://soundworks.dev/soundworks/server.StateManager.html#~schema) for more informations.
 :::
 
 So let's first create a new `player` state on each `player` client. To that end, add the following snippet in `src/clients/player/index.js`:
@@ -325,14 +325,367 @@ const player = await client.stateManager.create('player', {
 });
 ```
 
-The second argument passed the `stateManager.create` method allows to define initialization values to the state. Here we pass the `client.id` generated by `soundworks` to the state so we can very simply track which state is bound to which client.
+The second argument passed the `stateManager.create` method allows to define initialization values of the state. Here, we simply pass the `client.id` generated by `soundworks` to the state so we can easily track which state is bound to which client.
 
-Then, let's create the `player` interface that we will...
+### Creating the graphical user interface
 
-To be continued
+Then, let's create the `player` state control interface. To that end, we will create a simple Web Component using the `Lit` library which will allow us to simply reuse the component later in the `controller` interface to remotely take control over any connected `player`. Let's thus create a new file `sw-player.js` in the `src/clients/components` directory, and add the following snippet:
 
+```js
+// src/players/components/sw-player.js
+import { LitElement, html, css } from 'lit';
+import { live } from 'lit/directives/live.js';
 
+// import needed GUI components
+import '@ircam/simple-components/sc-text.js';
+import '@ircam/simple-components/sc-slider.js';
+import '@ircam/simple-components/sc-toggle.js';
+import '@ircam/simple-components/sc-bang.js';
 
+class SwPlayer extends LitElement {
+  constructor() {
+    super();
+    // stores the `player` state
+    this.playerState = null;
+    // stores the `unsubscribe` callback returned by the `state.onUpdate` methos
+    // https://soundworks.dev/soundworks/client.SharedState.html#onUpdate
+    this._unobserve = null;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    // update the component when a state change occurs
+    this._unobserve = this.playerState.onUpdate(() => this.requestUpdate());
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    // stop reacting to state change when the element is removed from the DOM
+    this._unobserve();
+  }
+
+  render() {
+    // create controls for the player state
+    return html`
+      <h2>Player [id: ${this.playerState.get('id')}]</h2>
+      <div style="padding-bottom: 4px;">
+        <sc-text value="Frequency" readonly></sc-text>
+        <sc-slider
+          width="400"
+          min=${this.playerState.getSchema('frequency').min}
+          max=${this.playerState.getSchema('frequency').max}
+          value=${this.playerState.get('frequency')}
+          @input=${e => this.playerState.set({ frequency: e.detail.value })}
+        ></sc-slider>
+      </div>
+      <div style="padding-bottom: 4px;">
+        <sc-text value="Start / Stop synth" readonly></sc-text>
+        <sc-toggle
+          ?active=${this.playerState.get('synthStartStop')}
+          @change=${e => this.playerState.set({ synthStartStop: e.detail.value })}
+        ></sc-toggle>
+      </div>
+      <div style="padding-bottom: 4px;">
+        <sc-text value="Trigger Synth" readonly></sc-text>
+        <sc-bang
+          ?active=${live(this.playerState.get('synthTrigger'))}
+          @input=${e => this.playerState.set({ synthTrigger: e.detail.value })}
+        ></sc-bang>
+      </div>
+    `;
+  }
+}
+
+// register the component into the custom elements registry
+customElements.define('sw-player', SwPlayer);
+```
+
+Once done, we only need to import and add our newly created component to the layout and pass it our `player` state:
+
+```js {3,12}
+// src/clients/player/index.js
+import createLayout from './views/layout.js';
+import '../components/sw-player.js';
+
+// ...
+
+const player = await client.stateManager.create('player', {
+  id: client.id,
+});
+
+const $layout = createLayout(client, $container);
+$layout.addComponent(html`<sw-player .playerState=${player}></sc-player>`);
+```
+ 
+Your player should now look like the following:
+
+![player-full](../assets/tutorials/todo-noise/player-full.png)
+
+### Creating the synths
+
+Eveything is ready to react to our states (both `player` and `globals` states) changes to trigger some sounds.
+
+Let's first instanciate a new `AudioContext`:
+
+```js {4-5}
+// src/clients/player/index.js
+const config = window.SOUNDWORKS_CONFIG;
+
+// If multiple clients are emulated you might to want to share the audio context
+const audioContext = new AudioContext();
+
+async function main($container) {
+  // ...
+}
+```
+
+#### Resume the context with the `platform-init` plugin
+
+As seen in in the [platform-init plugin](./plugin-platform-init.html) tutorial, the audio context needs a user gesture to be resume and be allowed to produce sound by the browser, so let's just import and configure it properly (just remind that we have already asked the wizard to install it at the beginning of the tutorial).  
+Let's start with the server side:
+
+```js {2,12}
+// src/server/index.js
+import pluginPlatformInit from '@soundworks/plugin-platform-init/server.js';
+
+import globalsSchema from './schemas/globals.js';
+import playerSchema from './schemas/player.js';
+
+// ...
+
+const server = new Server(config);
+server.useDefaultApplicationTemplate();
+
+server.pluginManager.register('platform-init', pluginPlatformInit);
+```
+
+And do the same on the client side:
+
+```js {2,9-13}
+// src/clients/player/index.js
+import pluginPlatformInit from '@soundworks/plugin-platform-init/client.js';
+import createLayout from './views/layout.js';
+
+// ...
+
+const client = new Client(config);
+
+// register the platform-init plugin, and pass it the AudioContext instance
+// so that it is resumed on the splashscreen user gesture
+client.pluginManager.register('platform-init', pluginPlatformInit, {
+  audioContext
+});
+```
+
+#### Create the master chain
+
+Then we will start by creating the master bus chain that will be controlled by the `globals` state, i.e. a [`GainNode`](https://developer.mozilla.org/en-US/docs/Web/API/GainNode) for the `master` volume parameter, and another one for the `mute` parameter:
+
+```js {1-9}
+// create the audio chain
+// [mute] -> [master] -> [destination]
+const master = audioContext.createGain();
+master.gain.value = globals.get('master');
+master.connect(audioContext.destination);
+
+const mute = audioContext.createGain();
+mute.gain.value = globals.get('mute') ? 0 : 1;
+mute.connect(master);
+
+// update the view each time the globals state is changed
+globals.onUpdate(() => $layout.requestUpdate());
+```
+
+Now, let's modify our `globals.onUpdate` callback, so that any change to the parameters are applied on the audio nodes:
+
+```js 
+globals.onUpdate(updates => {
+  for (let [key, value] of Object.entries(updates)) {
+    switch (key) {
+      case 'master': {
+        const now = audioContext.currentTime;
+        master.gain.setTargetAtTime(value, now, 0.02);
+        break;
+      }
+      case 'mute': {
+        const gain = value ? 0 : 1;
+        const now = audioContext.currentTime;
+        mute.gain.setTargetAtTime(gain, now, 0.02);
+        break;
+      }
+    }
+  }
+  // update the view each time to log current globals values
+  $layout.requestUpdate();
+});
+```
+
+:::tip
+The [`AudioParam::setTargetAtTime`](https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setTargetAtTime) method is very usefull to simply control audio parameters in real-time without click and pops.
+:::
+
+To test that eveything works as expected you can simply add a simple oscillator at the beginning of the chain, and play with a controller to control one or several `player` clients:
+
+```js
+const osc = audioContext.createOscillator();
+osc.connect(mute);
+osc.start();
+```
+
+Don't forget to remove this snippet once before going to the next step...
+
+#### Implement the two synths
+
+Now that everything is ready, we can finally implement our two synths. Just recall that to keep things simple and focus on the general architecture we will only create simple synths based on oscillators, however the exact same principles could be used for complex synthesizers with numerous parameters.
+
+Let's thus add the following snippet to our code in order to react to `player` state updates:
+
+```js
+let synthStartStop = null;
+
+player.onUpdate(updates => {
+  for (let [key, value] of Object.entries(updates)) {
+    switch (key) {
+      case 'synthStartStop': {
+        if (value === true) {
+          // start the synth
+          synthStartStop = audioContext.createOscillator();
+          synthStartStop.connect(mute);
+          synthStartStop.frequency.value = player.get('frequency');
+          synthStartStop.start();
+        } else {
+          // stop the synth
+          synthStartStop.stop();
+          synthStartStop = null;
+        }
+        break;
+      }
+      case 'synthTrigger': {
+        // trigger a 1 second sound at twice the frequency
+        const now = audioContext.currentTime;
+
+        const env = audioContext.createGain();
+        env.connect(mute);
+        env.gain.value = 0;
+        env.gain.setValueAtTime(0, now);
+        env.gain.linearRampToValueAtTime(1, now + 0.01);
+        env.gain.exponentialRampToValueAtTime(0.001, now + 1);
+
+        const osc = audioContext.createOscillator();
+        osc.connect(env);
+        osc.frequency.value = player.get('frequency') * 2;
+        osc.start(now);
+        osc.stop(now + 1);
+        break;
+      }
+      case 'frequency': {
+        // update the start / stop synth frequency if it is runnings
+        if (synthStartStop !== null) {
+          const now = audioContext.currentTime;
+          synthStartStop.frequency.setTargetAtTime(value, now, 0.02);
+        }
+        break;
+      }
+    }
+  }
+});
+```
+
+And that's all! Our players are now fully functionnal, and their master chain can be controlled remotely from the controllers.
+
+Let's now finish the project by enabling full remote control of any player client from a controller.
+
+## Remotely control players from the controller
+
+Let's go back to our controller and to get a list of all connected players. To that end, the soundworks state manager expose a [`getCollection`](https://soundworks.dev/soundworks/client.StateManager.html#getCollection) method which allows to grab a list that mirror all the state created on the network according to a given schema name. The collection automatically kept synchonized with the states that are created and deleted on the network.
+
+First, we need to import new dependencies, among them the Web Component we created for the player client:
+
+```js {3,8-9}
+// src/clients/controller/index.js
+import { html, nothing } from 'lit';
+import { keyed } from 'lit/directives/keyed.js';
+
+import '@ircam/simple-components/sc-text.js';
+import '@ircam/simple-components/sc-slider.js';
+import '@ircam/simple-components/sc-toggle.js';
+import '@ircam/simple-components/sc-button.js';
+import '../components/sw-player.js';
+```
+
+Then, let's create our `player` collection using the state manager:
+
+```js {3}
+// src/clients/controller/index.js
+const globals = await client.stateManager.attach('globals');
+const players = await client.stateManager.getCollection('player');
+
+const $layout = createLayout(client, $container);
+```
+
+Finally we just need to add a component to our layout listing the connected player, and instanciating the `sw-player` component when a player is selected to be controlled remotely:
+
+```js {2-30,35-43}
+// src/clients/controller/index.js
+// placeholder of the remote controlled player state instance
+let remoteControlledPlayer = null;
+// collection
+$layout.addComponent({
+  render: () => {
+    return html`
+      <h2>Connected players</h2>
+      ${players.map(player => {
+        return html`
+          <sc-button
+            value=${player.get('id')}
+            @input=${e => {
+              remoteControlledPlayer = player;
+              $layout.requestUpdate();
+            }}
+          ></sc-button>
+        `;
+      })}
+      <h2>Remote controlled player</h2>
+      ${remoteControlledPlayer !== null
+        ? keyed(
+            remoteControlledPlayer.get('id'),
+            html`<sw-player .playerState=${remoteControlledPlayer}></sw-player>`
+          )
+        : nothing
+      }
+    `;
+  }
+});
+
+// update the view when the globals state change
+globals.onUpdate(() => $layout.requestUpdate());
+
+// if a player connects or disconnect, we want to update the view accordingly
+players.onAttach(() => $layout.requestUpdate());
+players.onDetach(player => {
+  // if the player is deleted, we reset the view
+  if (player === remoteControlledPlayer) {
+    remoteControlledPlayer = null;
+  }
+  $layout.requestUpdate();
+});
+```
+
+If you now open a controller ([http://127.0.0.1:8000/controller](http://127.0.0.1:8000/controller)) and emulate several clients in a different window (([http://127.0.0.1:8000?emulate=3](http://127.0.0.1:8000?emulate=3)), you should now see the full application and how the players and controller are kept synchronized through the shared states:
+
+![todo-noise-full](../assets/tutorials/todo-noise/todo-noise-full.png)
+
+## Going Further
+
+In this tutorial, you have learned an important pattern that soundworks aims to simplify: the ability of simply creating remote control and monitoring of clients through the shared states. Along the way, you have learned how to create a reusable Web Component using the Lit library.
+
+While the application purposely simplified important aspects of the application to focus on these points, a number of features could improved with simple modification to the structure. For example:
+
+- Improve the start / stop synth so that no click occurs when it is stopped.
+- Create more complex synthesizers with more complex audio chains and more parameters.
+- Improve the master chain, e.g. use decibels for the master volume to make the slider behavior more natural, add low pass and high pass filters.
+- Refactor the synthsizers with classes to create reusable components.
+- etc.
 
 
 
