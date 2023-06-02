@@ -4,16 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "preview": "serve docs/.vitepress/dist"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "flexsearch": "^0.7.31",
     "markdown-it": "^13.0.1",
-    "vitepress": "^1.0.0-alpha.29",
+    "vitepress": "^1.0.0-beta.1",
     "vitepress-plugin-search": "^1.0.4-alpha.17",
     "vue": "^3.2.45"
   }
