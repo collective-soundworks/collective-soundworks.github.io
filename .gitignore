@@ -5,4 +5,4 @@ node_modules
 build
 resources
 
-docs/.vitepress/dist
+.vitepress/dist
