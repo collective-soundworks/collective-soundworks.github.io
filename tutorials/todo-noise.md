@@ -4,13 +4,11 @@ In this tutorial we will build a simple application, which shows the most common
 
 The tutorial requires basic knowledge of the `soundworks` [state manager](./state-manager.html) and of the [platform-init plugin](./plugin-platform-init.html), so please refer to the relevant tutorials if you didn't check them yet.
 
-Along the way, we will discover the [SharedStateCollection](https://soundworks.dev/soundworks/client.SharedStateCollection.html) proposed by the soundworks' state manager and, how to create our own reusable [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) using the [Lit](https://lit.dev/) which is the default view framework used by soundworks.
+Along the way, we will discover the [SharedStateCollection](https://soundworks.dev/soundworks/client.SharedStateCollection.html) proposed by the soundworks' state manager and, how to create our own reusable [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) using the [Lit](https://lit.dev/) library proposed by default in soundworks applications.
 
 ### Relevant documentation and links
 
-- [client.StateManager](https://soundworks.dev/soundworks/client.StateManager)
 - [client.SharedStateCollection](https://soundworks.dev/soundworks/client.SharedStateCollection.html)
-- [server.StateManager](https://soundworks.dev/soundworks/server.StateManager)
 - [server.SharedStateCollection](https://soundworks.dev/soundworks/server.SharedStateCollection.html)
 - [@soundworks/plugin-platform-init](https://github.com/collective-soundworks/soundworks-plugin-platform-init)
 - [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
@@ -251,11 +249,11 @@ $layout.addComponent({
 globals.onUpdate(() => $layout.requestUpdate());
 ```
 
-Now if you open a `player` ([`http://127.0.0.1:8000`](http://127.0.0.1:8000)) and a `controller` ([`http://127.0.0.1:8000/controller`](http://127.0.0.1:8000/controller)) in two different windows side by side you should how you can remote control all `player`s from a central controller:
+Now, if you open a `player` ([`http://127.0.0.1:8000`](http://127.0.0.1:8000)) and a `controller` ([`http://127.0.0.1:8000/controller`](http://127.0.0.1:8000/controller)) in two different windows side by side ,you should be able to remote control all `player`s from a central controller:
 
 ![globals-player-controller](../assets/tutorials/todo-noise/globals-player-controller.png)
 
-## Creating and using the `player` state
+## Creating and using the `player` states
 
 As defined in our user story, we also want the clients to have some controls on their own interface, but importantly we want to be able to take control on any client remotely to simplify and fasten our development and creation process.
 
@@ -263,7 +261,7 @@ As defined in our user story, we also want the clients to have some controls on 
 Indeed, one you start working with several physical devices (e.g. smartphones, tablets), being able to control each of them from a single point can save you a lot of time, which will be better used to improve your artwork and experience. 
 :::
 
-### Creating the state
+### Registering the schema and creating the states
 
 To that end, let's first create and register another schema, from which we will create a new state for each connected players. So let's create a new `src/server/schemas/player.js` file with the following snippet:
 
@@ -310,7 +308,7 @@ server.stateManager.registerSchema('player', playerSchema);
 This values contains in these states will allow us to implement two different types of synthesizer with very common behavior: one which can be started and stopped (e.g. playing a sound file in a loop, see `synthStartStop`) and a second that is triggered by an event (see `synthTrigger`). To keep the audio code simple and focus on the architecture and the logic of the application we will create very simple synthesizers based on oscillators and use the same `frequency` value for the two synths.
 
 :::tip
-Note the `immediate` attribute for the `synthStartStop` and `synthTrigger` which one of the different behavior that can be twicked in shared states. In this case `immediate` means that the value is propagated locally before being propagated on the network to keep the latency and responsiveness of the interface to the minimum. See the different [schema type definitions](https://soundworks.dev/soundworks/server.StateManager.html#~schema) for more informations.
+Note the `immediate` attribute for the `synthStartStop` and `synthTrigger` which is one of the different behaviors that can be applied to shared states. In this case `immediate` means that the value is propagated locally before being propagated on the network to keep the latency and responsiveness of the interface to the minimum. See the different [schema type definitions](https://soundworks.dev/soundworks/server.StateManager.html#~schema) for more informations on these additional attributes.
 :::
 
 So let's first create a new `player` state on each `player` client. To that end, add the following snippet in `src/clients/player/index.js`:
@@ -421,7 +419,7 @@ Your player should now look like the following:
 
 ![player-full](../assets/tutorials/todo-noise/player-full.png)
 
-### Creating the synths
+### Creating the synthesizers
 
 Eveything is ready to react to our states (both `player` and `globals` states) changes to trigger some sounds.
 
@@ -597,7 +595,7 @@ Let's now finish the project by enabling full remote control of any player clien
 
 ## Remotely control players from the controller
 
-Let's go back to our controller and to get a list of all connected players. To that end, the soundworks state manager expose a [`getCollection`](https://soundworks.dev/soundworks/client.StateManager.html#getCollection) method which allows to grab a list that mirror all the state created on the network according to a given schema name. The collection automatically kept synchonized with the states that are created and deleted on the network.
+Let's go back to our controller and to get a list of all connected players. To that end, the soundworks state manager expose a [`getCollection`](https://soundworks.dev/soundworks/client.StateManager.html#getCollection) method which allows to grab a collection of states that mirror all the states created on the network according to a given schema name. The returned collection is automatically kept synchonized with the states that are created and deleted on the network and offer several methods to work with the list.
 
 First, we need to import new dependencies, among them the Web Component we created for the player client:
 
@@ -675,7 +673,7 @@ If you now open a controller ([http://127.0.0.1:8000/controller](http://127.0.0.
 
 ![todo-noise-full](../assets/tutorials/todo-noise/todo-noise-full.png)
 
-## Going Further
+## Conclusion
 
 In this tutorial, you have learned an important pattern that soundworks aims to simplify: the ability of simply creating remote control and monitoring of clients through the shared states. Along the way, you have learned how to create a reusable Web Component using the Lit library.
 
@@ -686,6 +684,8 @@ While the application purposely simplified important aspects of the application 
 - Improve the master chain, e.g. use decibels for the master volume to make the slider behavior more natural, add low pass and high pass filters.
 - Refactor the synthsizers with classes to create reusable components.
 - etc.
+
+In the next tutorial, we will discover ??
 
 
 
