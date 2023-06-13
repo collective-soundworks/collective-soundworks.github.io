@@ -1,0 +1,1 @@
+import{_ as i,o as e,c as l,V as t}from"./chunks/framework.7cbf217e.js";const g=JSON.parse('{"title":"soundworks.dev","description":"","frontmatter":{},"headers":[],"relativePath":"README.md","filePath":"README.md"}'),a={name:"README.md"},o=t("",22),s=[o];function r(n,u,d,c,p,h){return e(),l("div",null,s)}const k=i(a,[["render",r]]);export{g as __pageData,k as default};
