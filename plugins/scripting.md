@@ -1,4 +1,5 @@
 # soundworks | plugin scripting
+<p><sc-icon icon="github" href="https://github.com/collective-soundworks/soundworks-plugin-scripting/tree/v4"></sc-icon></p>
 
 [![npm version](https://badge.fury.io/js/@soundworks%2Fplugin-scripting.svg)](https://badge.fury.io/js/@soundworks%2Fplugin-scripting)
 

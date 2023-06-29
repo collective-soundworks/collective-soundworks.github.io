@@ -1,13 +1,191 @@
 {
-  "hash": "12f32eea",
-  "browserHash": "c3ecca70",
+  "hash": "a3f4ee0f",
+  "browserHash": "d413e986",
   "optimized": {
     "vue": {
       "src": "../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "09fdc5cb",
+      "fileHash": "bf8ce0be",
+      "needsInterop": false
+    },
+    "@ircam/sc-components/index.js": {
+      "src": "../../../node_modules/@ircam/sc-components/index.js",
+      "file": "@ircam_sc-components_index__js.js",
+      "fileHash": "95cf7e80",
+      "needsInterop": false
+    },
+    "lit": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/lit/index.js",
+      "file": "lit.js",
+      "fileHash": "36a11df1",
+      "needsInterop": false
+    },
+    "@ircam/sc-gettime": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/@ircam/sc-gettime/src/browser.js",
+      "file": "@ircam_sc-gettime.js",
+      "fileHash": "3509b5a8",
+      "needsInterop": false
+    },
+    "lit/directives/unsafe-html.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/lit/directives/unsafe-html.js",
+      "file": "lit_directives_unsafe-html__js.js",
+      "fileHash": "96b0acef",
+      "needsInterop": false
+    },
+    "highlight.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/highlight.js/es/index.js",
+      "file": "highlight__js.js",
+      "fileHash": "cfb39f44",
+      "needsInterop": false
+    },
+    "lit/directives/if-defined.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/lit/directives/if-defined.js",
+      "file": "lit_directives_if-defined__js.js",
+      "fileHash": "5e814fa2",
+      "needsInterop": false
+    },
+    "lit/directives/repeat.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/lit/directives/repeat.js",
+      "file": "lit_directives_repeat__js.js",
+      "fileHash": "b99567c2",
+      "needsInterop": false
+    },
+    "codemirror": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/codemirror/lib/codemirror.js",
+      "file": "codemirror.js",
+      "fileHash": "c68b8ab8",
+      "needsInterop": true
+    },
+    "codemirror/mode/javascript/javascript.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/codemirror/mode/javascript/javascript.js",
+      "file": "codemirror_mode_javascript_javascript__js.js",
+      "fileHash": "b70fca29",
+      "needsInterop": true
+    },
+    "codemirror/keymap/sublime.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/codemirror/keymap/sublime.js",
+      "file": "codemirror_keymap_sublime__js.js",
+      "fileHash": "bc02c36a",
+      "needsInterop": true
+    },
+    "codemirror/addon/search/search.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/codemirror/addon/search/search.js",
+      "file": "codemirror_addon_search_search__js.js",
+      "fileHash": "9d228903",
+      "needsInterop": true
+    },
+    "codemirror/addon/search/searchcursor.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/codemirror/addon/search/searchcursor.js",
+      "file": "codemirror_addon_search_searchcursor__js.js",
+      "fileHash": "47f3b25a",
+      "needsInterop": true
+    },
+    "codemirror/addon/search/jump-to-line.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/codemirror/addon/search/jump-to-line.js",
+      "file": "codemirror_addon_search_jump-to-line__js.js",
+      "fileHash": "e5e69fe6",
+      "needsInterop": true
+    },
+    "codemirror/addon/dialog/dialog.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/codemirror/addon/dialog/dialog.js",
+      "file": "codemirror_addon_dialog_dialog__js.js",
+      "fileHash": "78673823",
+      "needsInterop": true
+    },
+    "codemirror/addon/comment/comment.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/codemirror/addon/comment/comment.js",
+      "file": "codemirror_addon_comment_comment__js.js",
+      "fileHash": "96d9e82a",
+      "needsInterop": true
+    },
+    "lit/directives/range.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/lit/directives/range.js",
+      "file": "lit_directives_range__js.js",
+      "fileHash": "74e29a93",
+      "needsInterop": false
+    },
+    "lit/directives/map.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/lit/directives/map.js",
+      "file": "lit_directives_map__js.js",
+      "fileHash": "5b9f9a11",
+      "needsInterop": false
+    },
+    "lit/directives/class-map.js": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/lit/directives/class-map.js",
+      "file": "lit_directives_class-map__js.js",
+      "fileHash": "fe74e26c",
+      "needsInterop": false
+    },
+    "number-precision": {
+      "src": "../../../../../ircam-ismm/sc-components/node_modules/number-precision/build/index.es.js",
+      "file": "number-precision.js",
+      "fileHash": "ad839026",
       "needsInterop": false
     }
   },
-  "chunks": {}
+  "chunks": {
+    "chunk-WJWTNJAW": {
+      "file": "chunk-WJWTNJAW.js"
+    },
+    "chunk-MH4P3RBK": {
+      "file": "chunk-MH4P3RBK.js"
+    },
+    "chunk-XTENQXFC": {
+      "file": "chunk-XTENQXFC.js"
+    },
+    "chunk-X3OKHQV6": {
+      "file": "chunk-X3OKHQV6.js"
+    },
+    "chunk-DQLCJI4I": {
+      "file": "chunk-DQLCJI4I.js"
+    },
+    "chunk-B4IMDGLU": {
+      "file": "chunk-B4IMDGLU.js"
+    },
+    "chunk-XJ5LIWAR": {
+      "file": "chunk-XJ5LIWAR.js"
+    },
+    "chunk-GWKODHOS": {
+      "file": "chunk-GWKODHOS.js"
+    },
+    "chunk-AYD7LSFM": {
+      "file": "chunk-AYD7LSFM.js"
+    },
+    "chunk-3WKWFYTV": {
+      "file": "chunk-3WKWFYTV.js"
+    },
+    "chunk-WAXPZXAD": {
+      "file": "chunk-WAXPZXAD.js"
+    },
+    "chunk-MJZMVDHZ": {
+      "file": "chunk-MJZMVDHZ.js"
+    },
+    "chunk-UECXVOBK": {
+      "file": "chunk-UECXVOBK.js"
+    },
+    "chunk-5C4C77BX": {
+      "file": "chunk-5C4C77BX.js"
+    },
+    "chunk-MLUNDPRD": {
+      "file": "chunk-MLUNDPRD.js"
+    },
+    "chunk-MNYQPZST": {
+      "file": "chunk-MNYQPZST.js"
+    },
+    "chunk-HY4YQS7H": {
+      "file": "chunk-HY4YQS7H.js"
+    },
+    "chunk-PE6LRBOZ": {
+      "file": "chunk-PE6LRBOZ.js"
+    },
+    "chunk-WXEQLOVX": {
+      "file": "chunk-WXEQLOVX.js"
+    },
+    "chunk-PDMTOR63": {
+      "file": "chunk-PDMTOR63.js"
+    },
+    "chunk-GKWPUQBP": {
+      "file": "chunk-GKWPUQBP.js"
+    }
+  }
 }

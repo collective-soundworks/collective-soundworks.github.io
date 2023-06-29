@@ -1,4 +1,5 @@
 # soundworks | plugin platform init
+<p><sc-icon icon="github" href="https://github.com/collective-soundworks/soundworks-plugin-platform-init"></sc-icon></p>
 
 [![npm version](https://badge.fury.io/js/@soundworks%2Fplugin-platform-init.svg)](https://badge.fury.io/js/@soundworks%2Fplugin-platform)
 

@@ -1,4 +1,5 @@
 # soundworks | plugin filesystem
+<p><sc-icon icon="github" href="https://github.com/collective-soundworks/soundworks-plugin-filesystem/tree/v4"></sc-icon></p>
 
 [![npm version](https://badge.fury.io/js/@soundworks%2Fplugin-filesystem.svg)](https://badge.fury.io/js/@soundworks%2Fplugin-filesystem)
 

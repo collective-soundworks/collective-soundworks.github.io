@@ -21,6 +21,7 @@
     "vue": "^3.2.45"
   },
   "dependencies": {
+    "@ircam/sc-components": "^3.0.0-alpha.4",
     "node-fetch": "^3.3.1"
   }
 }
