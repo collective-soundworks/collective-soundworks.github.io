@@ -2,8 +2,11 @@
   "name": "collective-soundworks.github.io-vitepress",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
+    "preversion": "npm run download:plugins-doc && git commit -am 'doc: update plugins'"
+    "download:plugins-doc": "node ./.bin/download-plugins-readme.js",
+    "predev": "npm run download:plugins-doc",
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview"
@@ -16,5 +19,8 @@
     "vitepress": "^1.0.0-beta.1",
     "vitepress-plugin-search": "^1.0.4-alpha.17",
     "vue": "^3.2.45"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.1"
   }
 }

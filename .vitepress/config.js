@@ -1,3 +1,5 @@
+import sidebarPlugins from './sidebar-plugins.js';
+
 export default {
   title: 'soundworks',
   description: 'Creative coding framework for distributed applications based on Web technologies',
@@ -23,6 +25,10 @@ export default {
 
     sidebar: [
       {
+        text: 'API Reference',
+        link: '/api',
+      },
+      {
         text: 'Tutorials',
         items: [
           { text: 'Getting Started', link: '/tutorials/getting-started' },
@@ -38,6 +44,7 @@ export default {
           // { text: 'Customizing Init Screens', link: '/tutorials/customizing-init-screens' },
         ],
       },
+      sidebarPlugins,
       {
         text: 'Ecosystem',
         items: [
