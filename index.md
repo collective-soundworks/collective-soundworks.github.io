@@ -5,8 +5,6 @@ footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam S
 
 <h1>soundworks</h1>
 
-<sc-slider></sc-slider>
-
 <div class="intro">
   <img src="./assets/home/soundworks.png" /> 
   <div>

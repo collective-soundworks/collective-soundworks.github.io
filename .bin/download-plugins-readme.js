@@ -24,23 +24,26 @@ for (let pluginName of sortedKeys) {
   const res = await fetch(url);
   const readme = await res.text();
 
-  // insert link to github repo
-  const lines = readme.split('\n');
-  let githubLink = `https://github.com/collective-soundworks/${plugin.name}`;
-  if (plugin.branch !== 'main') {
-    githubLink += `/tree/${plugin.branch}`;
-  }
+  // insert link to github repo, to be fixed
+  // build error:
+  // ReferenceError: document is not defined
 
-  const githubIcon = `<p><sc-icon icon="github" href="${githubLink}"></sc-icon></p>`;
-  lines.splice(1, 0, githubIcon);
-  const processedReadme = lines.join('\n');
+  // const lines = readme.split('\n');
+  // let githubLink = `https://github.com/collective-soundworks/${plugin.name}`;
+  // if (plugin.branch !== 'main') {
+  //   githubLink += `/tree/${plugin.branch}`;
+  // }
+
+  // const githubIcon = `<p><sc-icon icon="github" href="${githubLink}"></sc-icon></p>`;
+  // lines.splice(1, 0, githubIcon);
+  // const processedReadme = lines.join('\n');
 
   const filename = plugin.name
     .replace('soundworks-plugin-', '');
 
   const pathname = path.join('plugins', `${filename}.md`);
 
-  fs.writeFileSync(pathname, processedReadme);
+  fs.writeFileSync(pathname, readme);
 
   menuEntries.push({
     text: pluginName,

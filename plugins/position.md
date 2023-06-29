@@ -1,5 +1,4 @@
 # soundworks | plugin position
-<p><sc-icon icon="github" href="https://github.com/collective-soundworks/soundworks-plugin-position/tree/v4"></sc-icon></p>
 
 [![npm version](https://badge.fury.io/js/@soundworks%2Fplugin-position.svg)](https://badge.fury.io/js/@soundworks%2Fplugin-position)
 

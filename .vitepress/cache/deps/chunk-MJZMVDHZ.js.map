@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../ircam-ismm/sc-components/node_modules/@ircam/sc-gettime/src/browser.js"],
-  "sourcesContent": ["// see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now\n// see: https://developer.mozilla.org/en-US/docs/Web/API/Performance/now\nconst usePerf = (globalThis.performance && globalThis.performance.now);\nconst start = usePerf ? performance.now() : Date.now();\n\nif (!globalThis.crossOriginIsolated) {\n  // console.info('> self.crossOriginIsolated', globalThis.crossOriginIsolated || false);\n  console.warn(`[@ircam/sc-gettime] Your page is not Cross Origin Isolated. The accuracy of the clock may be reduced by the User-Agent to prevent finger-printing\n(see: https://web.dev/coop-coep/ for more informations)`);\n}\n\nexport function getTime() {\n  if (usePerf) {\n    const now = performance.now();\n    const delta = now - start;\n    return delta * 1e-3;\n  } else {\n    const now = Date.now();\n    const delta = now - start;\n    return delta * 1e-3;\n  }\n}\n"],
-  "mappings": ";AAEA,IAAM,UAAW,WAAW,eAAe,WAAW,YAAY;AAClE,IAAM,QAAQ,UAAU,YAAY,IAAI,IAAI,KAAK,IAAI;AAErD,IAAI,CAAC,WAAW,qBAAqB;AAEnC,UAAQ,KAAK;AAAA,wDACyC;AACxD;AAEO,SAAS,UAAU;AACxB,MAAI,SAAS;AACX,UAAM,MAAM,YAAY,IAAI;AAC5B,UAAM,QAAQ,MAAM;AACpB,WAAO,QAAQ;AAAA,EACjB,OAAO;AACL,UAAM,MAAM,KAAK,IAAI;AACrB,UAAM,QAAQ,MAAM;AACpB,WAAO,QAAQ;AAAA,EACjB;AACF;",
-  "names": []
-}
