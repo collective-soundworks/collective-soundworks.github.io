@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "preversion": "npm run download:plugins-doc && git commit -am 'doc: update plugins'"
+    "preversion": "npm run download:plugins-doc && git commit -am 'doc: update plugins'",
     "download:plugins-doc": "node ./.bin/download-plugins-readme.js",
     "predev": "npm run download:plugins-doc",
     "dev": "vitepress dev",
