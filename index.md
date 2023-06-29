@@ -10,7 +10,12 @@ footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam S
   <div>
     <p>
       <i>Open-source creative coding framework for distributed applications based on Web technologies.</i>
+      <br />
+      <a ref="https://badge.fury.io/js/@soundworks%2Fcore">
+        <img style="width: auto; height: 20px; margin-top: 20px;" src="https://badge.fury.io/js/@soundworks%2Fcore.svg" />
+      </a>
     </p>
+    <p></p>
     <p>
       Primarily focused on music, <code>soundworks</code> aims at supporting rapid development of real-time distributed applications using JavaScript. It provides abstractions to hide the complexity of the network and to foster very rapid-prototyping and trial-and-error workflows that are typical in artistic practices. 
     </p>
