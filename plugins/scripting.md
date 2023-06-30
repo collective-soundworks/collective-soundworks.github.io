@@ -58,7 +58,7 @@ import pluginScripting from '@soundworks/plugin-scripting/client.js';
 
 const client = new Client(config);
 // register the plugin
-client.pluginManager.register('scripting', pluginScriptingClient);
+client.pluginManager.register('scripting', pluginScripting);
 await client.start();
 // use the plugin once the client is started
 const scripting = await client.pluginManager.get('scripting');

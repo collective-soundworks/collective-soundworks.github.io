@@ -37,10 +37,10 @@ npm install @soundworks/plugin-filesystem --save
 ```js
 // index.js
 import { Server } from '@soundworks/core/server';
-import pluginFilesystemFactory from '@soundworks/plugin-filesystem/server';
+import pluginFilesystem from '@soundworks/plugin-filesystem/server';
 
 const server = new Server();
-server.pluginManager.register('filesystem', pluginFilesystemFactory, {
+server.pluginManager.register('filesystem', pluginFilesystem, {
   // path to the watched directory, can be relative to process.cwd()
   // or absolute, in all cases file paths in the tree will be normalized
   // to be relative to `process.cwd()`
