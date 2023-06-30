@@ -30,7 +30,7 @@ The core of **soundworks**  framework mainly provides the following fonctionnali
 
 The **soundworks** `Client` and `Server` abstrations, which are the main entry points of soundworks, are responsible to do all the nitty-gritty of creating a distributed application: running an http server, setting up WebSockets, properly sharing configuration objets, handling initialization process, etc.
 
-> see the [Getting Started](/tutorials/getting-started) tutorial
+> see the [Getting Started](/tutorials/getting-strted) tutorial
 
 ### Distributed shared states
 
