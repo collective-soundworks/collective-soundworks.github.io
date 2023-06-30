@@ -20,7 +20,8 @@ footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam S
       Primarily focused on music, <b>soundworks</b> aims at supporting rapid development of real-time distributed applications using JavaScript. It provides abstractions to hide the complexity of the network and to foster very rapid-prototyping and trial-and-error workflows that are typical in artistic practices. 
     </p>
     <p>
-      <a href="/tutorials/getting-started" class="action-button">Get Started →</a>
+      <a href="/introduction" class="action-button infos">More Infos</a>
+      <a href="/tutorials/getting-started" class="action-button start">Get Started →</a>
     </p>
   </div>
 </div>

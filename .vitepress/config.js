@@ -29,6 +29,10 @@ export default {
         link: '/api',
       },
       {
+        text: 'Introduction',
+        link: '/introduction',
+      },
+      {
         text: 'Tutorials',
         items: [
           { text: 'Getting Started', link: '/tutorials/getting-started' },

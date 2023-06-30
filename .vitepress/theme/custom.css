@@ -7,8 +7,9 @@
   */
 
   --sw-yellow: #f0db4f;
+  --sw-yellow-dark: #b8ab4f;
+
   --sw-brown: #282922;
-  /* #4b4d40; */
   --sw-brown-light: #6e705d;
   /* very crude, to review */
 
@@ -84,17 +85,34 @@ body {
   font-size: 1.2rem;
   color: #ffffff;
   background-color: var(--sw-brown);
-  padding: 0.8rem 1.6rem;
+  padding: 0.6rem 0rem;
+  border: 1px solid #4b4d40;
   border-radius: 4px;
   transition: background-color 0.1s ease;
   box-sizing: border-box;
-  border: 1px solid #4b4d40;
   display: inline-block;
   margin: 0 auto;
+  width: 180px;
+  text-align: center;
 }
+
 .VPHome .action-button:hover {
   background-color: #565949;
   color: #ffffff;
+}
+
+.VPHome .action-button.infos {
+  margin-right: 12px;
+}
+
+.VPHome .action-button.start {
+  background-color: var(--sw-yellow-dark);
+
+}
+
+.VPHome .action-button.start:hover {
+/*  background-color: var(--sw-yellow);*/
+  background-color: #d9ca5c;
 }
 
 .VPHome ul {
