@@ -16,12 +16,9 @@
   "devDependencies": {
     "flexsearch": "^0.7.31",
     "markdown-it": "^13.0.1",
+    "node-fetch": "^3.3.1",
     "vitepress": "^1.0.0-beta.1",
     "vitepress-plugin-search": "^1.0.4-alpha.17",
     "vue": "^3.2.45"
-  },
-  "dependencies": {
-    "@ircam/sc-components": "^3.0.0-alpha.4",
-    "node-fetch": "^3.3.1"
   }
 }

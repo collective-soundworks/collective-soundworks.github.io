@@ -17,6 +17,10 @@ export default {
   {
     "text": "Scripting",
     "link": "/plugins/scripting"
+  },
+  {
+    "text": "Sync",
+    "link": "/plugins/sync"
   }
 ],
 };
