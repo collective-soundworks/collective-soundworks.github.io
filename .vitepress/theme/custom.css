@@ -245,8 +245,8 @@ body {
 .VPHome .credits {
   margin-top: 60px;
   border-top: 1px solid var(--vp-c-divider-light);
-  height: 4rem;
-  line-height: 4rem;
+  height: 3.5rem;
+  line-height: 3.5rem;
   font-size: 0.8rem;
   position: relative;
 }
@@ -259,6 +259,8 @@ body {
   position: absolute;
   right: 0;
   top: 0;
+  background-color: #ffffff;
+  padding-left: 20px;
 }
 
 .VPHome .credits .tutelles a {
@@ -351,6 +353,9 @@ body {
     position: relative;
     margin-left: 0px;
     margin-top: 12px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
   }
 }
 
