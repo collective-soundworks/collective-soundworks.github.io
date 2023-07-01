@@ -14,7 +14,7 @@ export default {
     logo: '/logo-nav.png',
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/collective-soundworks/soundworks' },
+      { icon: 'github', link: 'https://github.com/collective-soundworks/' },
     ],
 
     nav: [
@@ -52,7 +52,6 @@ export default {
       {
         text: 'Ecosystem',
         items: [
-          // { text: 'Soundworks Ecosystem', link: '/ecosystem/soundworks' },
           // { text: 'Related Libraries and Tools', link: '/tutorials/related-libraries' },
           // { text: 'Generic Applications', link: '/tutorials/generic applications' },
         ],
