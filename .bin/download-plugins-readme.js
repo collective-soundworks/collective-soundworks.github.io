@@ -9,6 +9,7 @@ const plugins = {
   'Filesystem': { name: 'soundworks-plugin-filesystem', branch: 'v4' },
   'Scripting': { name: 'soundworks-plugin-scripting', branch: 'v4' },
   'Sync': { name: 'soundworks-plugin-sync', branch: 'v4' },
+  'Logger': { name: 'soundworks-plugin-logger', branch: 'v4' },
 };
 
 // // github urls are in the form

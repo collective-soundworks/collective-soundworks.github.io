@@ -7,6 +7,10 @@ export default {
     "link": "/plugins/filesystem"
   },
   {
+    "text": "Logger",
+    "link": "/plugins/logger"
+  },
+  {
     "text": "Platform Init",
     "link": "/plugins/platform-init"
   },

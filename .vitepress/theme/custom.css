@@ -7,7 +7,7 @@
   */
 
   --sw-yellow: #f0db4f;
-  --sw-yellow-dark: #b8ab4f;
+  --sw-yellow-dark: #d9ca5c;
 
   --sw-brown: #282922;
   --sw-brown-light: #6e705d;
@@ -111,8 +111,7 @@ body {
 }
 
 .VPHome .action-button.start:hover {
-/*  background-color: var(--sw-yellow);*/
-  background-color: #d9ca5c;
+  background-color: #efe38c;
 }
 
 .VPHome ul {
