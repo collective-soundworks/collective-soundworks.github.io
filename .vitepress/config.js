@@ -4,6 +4,8 @@ export default {
   title: 'soundworks',
   description: 'Creative coding framework for distributed applications based on Web technologies',
 
+  srcExclude: ['README.md', 'TODOS.md'],
+
   // https://vitepress.vuejs.org/config/app-configs#markdown
   markdown: {
     theme: 'monokai',
