@@ -48,6 +48,13 @@ export default {
           // { text: 'Customizing Init Screens', link: '/tutorials/customizing-init-screens' },
         ],
       },
+      {
+        text: 'Receipes',
+        items: [
+          // { text: 'Related Libraries and Tools', link: '/tutorials/related-libraries' },
+          // { text: 'Generic Applications', link: '/tutorials/generic applications' },
+        ],
+      },
       sidebarPlugins,
       {
         text: 'Ecosystem',
