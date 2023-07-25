@@ -21,18 +21,13 @@ export default {
 
     nav: [
       { text: 'Guide', link: '/tutorials/getting-started' },
-      { text: 'API Reference', link: 'https://soundworks.dev/soundworks' },
+      { text: 'soundworks API', link: 'https://soundworks.dev/soundworks' },
       { text: 'Credits', link: '/credits' },
     ],
 
     sidebar: [
       {
-        text: 'API Reference',
-        link: '/api',
-      },
-      {
-        text: 'Introduction',
-        link: '/introduction',
+        text: 'Introduction', link: '/introduction',
       },
       {
         text: 'Tutorials',
@@ -51,17 +46,23 @@ export default {
         ],
       },
       {
+        text: 'Documentation',
+        items: [
+          { text: 'soundworks API', link: 'https://soundworks.dev/soundworks', },
+          ...sidebarPlugins,
+        ],
+      },
+      {
         text: 'Receipes',
         items: [
           // { text: 'Related Libraries and Tools', link: '/tutorials/related-libraries' },
           // { text: 'Generic Applications', link: '/tutorials/generic applications' },
         ],
       },
-      sidebarPlugins,
       {
         text: 'Ecosystem',
         items: [
-          // { text: 'Related Libraries and Tools', link: '/tutorials/related-libraries' },
+          { text: '@ircam/sc-components', link: 'https://ircam-ismm.github.io/sc-components' },
           // { text: 'Generic Applications', link: '/tutorials/generic applications' },
         ],
       },
