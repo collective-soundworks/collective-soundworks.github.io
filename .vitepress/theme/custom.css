@@ -92,8 +92,9 @@ body {
   box-sizing: border-box;
   display: inline-block;
   margin: 0 auto;
-  width: 180px;
+  width: 160px;
   text-align: center;
+/*  margin-top: 4px;*/
 }
 
 .VPHome .action-button:hover {
@@ -319,8 +320,10 @@ body {
   }
 }
 
-/* 1 column layout */
-@media (max-width: 960px) {
+/* 1 column layout @1300px because side-bar is still there */
+/* the side bar disappear at 960 so everything is nice and clean */
+@media (max-width: 1300px) {
+/* @media (max-width: 960px) { */
   .VPHome {
     max-width: 790px;
   }

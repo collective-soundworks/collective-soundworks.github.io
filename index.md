@@ -1,7 +1,8 @@
 ---
-layout: home
-footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam STMS-LAB 
+layout: page
 ---
+
+<div class="VPHome"><!-- use homepage styles -->
 
 <h1>soundworks</h1>
 
@@ -95,6 +96,8 @@ footer: BSD-3-Clause License | {Sound Music Movement} Interaction Team - Ircam S
     <a href="https://www.culture.gouv.fr/" class="culture"></a>
   </div>
 </footer>
+
+</div><!-- use homepage styles -->
 
 
 

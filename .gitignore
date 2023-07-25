@@ -6,3 +6,4 @@ build
 resources
 
 .vitepress/dist
+.vitepress/cache
