@@ -18,7 +18,7 @@ Despite the "sound" in **soundworks**, the framework doesn't do any choice for y
 
 Such an approach has strong implications on the design and maintenance of the code base, as it must evolve in such way to keep questionning the theory and practices it embodies (in order to not be _"reduced to the simple demonstration of a phenomenon"_  - to quote Rheinberger again).
 
-To mitigate this need of change and mutation with the contradictory need of stability required by software development (and probably any kind of craftsmanship), we opted for a quite modular architecture and to follow as seriously as possible the [semver](https://semver.org/) approach. We hope this choice will minimize the maintenance burden of existing application (in any case, let's be honest, software development requires maintenance and will probably always do).
+To mitigate this need of change and mutation with the contradictory need of stability required by software development, we opted for a modular architecture and to follow the [semver](https://semver.org/) approach. We hope this choice will minimize the maintenance burden of existing application while allowing the framework to evolve according to novel research questions.
 
 Finally, both for maintenance and philosophical reasons, one of the goal of **soundworks** is to follow Web Standarts as close as possible. As such, the code base is developped in pure _JavaScript_ and will only integrate language features that have reach [Stage 3](https://tc39.es/process-document/). For example, while we hope to propose some "type" files derived from the _JSDoc_ for _TypeScript_ users in a near future (and the fact that it works or not is not in our hands), this won't be implemented into the code base until the [type annotation](https://github.com/tc39/proposal-type-annotations) proposal has evolved.
 
@@ -30,13 +30,13 @@ The core of **soundworks**  framework mainly provides the following fonctionnali
 
 The **soundworks** `Client` and `Server` abstrations, which are the main entry points of soundworks, are responsible to do all the nitty-gritty of creating a distributed application: running an http server, setting up WebSockets, properly sharing configuration objets, handling initialization process, etc.
 
-> see the [Getting Started](/tutorials/getting-started) tutorial
+> See the [Getting Started](/tutorials/getting-started) tutorial
 
 ### Distributed shared states
 
 The `StateManager` component provides tools to help you create synchronized states among your distributed devices. The component is specifically designed to help implement remote control and monitoring which is a key feature for rapid prototyping real-time distributed applications where you want to control many devices from a single point.
 
-> see the [State Manager](/tutorials/state-manager) tutorial
+> See the [State Manager](/tutorials/state-manager) tutorial
 
 ![distributed shared states](/assets/introduction/distributed-state-management.png)
 
@@ -44,6 +44,6 @@ The `StateManager` component provides tools to help you create synchronized stat
 
 **soundworks** also implements a plugin system to add new and more specific functionnalities to the core framework. For example, we provide plugins for [synchronizing clocks](/plugins/sync), working with the [filesystem](/plugins/filesystem) or to dynamically [script](/plugins/scripting) parts of application at runtime. All plugins live in their own repository and are versionned at their own pace to simplify future evolutions.
 
-> see the [Plugin Platform Init](/tutorials/plugin-platform-init) tutorial
+> See the [Plugin Platform Init](/tutorials/plugin-platform-init) tutorial
 
 
