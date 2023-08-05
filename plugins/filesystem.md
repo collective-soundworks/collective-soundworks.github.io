@@ -117,10 +117,10 @@ Client-side representation of the soundworks' filesystem plugin.
     * [.onUpdate(callback, [executeListener])](#PluginFilesystemClient+onUpdate) ⇒ <code>function</code>
     * [.getTreeAsUrlMap(filterExt, [keepExtension])](#PluginFilesystemClient+getTreeAsUrlMap) ⇒ <code>Object</code>
     * [.findInTree(path)](#PluginFilesystemClient+findInTree) ⇒ <code>Object</code>
-    * [.writeFile(filename, data)](#PluginFilesystemClient+writeFile) ⇒ <code>Promise</code>
+    * [.writeFile(pathname, data)](#PluginFilesystemClient+writeFile) ⇒ <code>Promise</code>
     * [.mkdir(pathname)](#PluginFilesystemClient+mkdir) ⇒ <code>Promise</code>
     * [.rename(oldPath, newPath)](#PluginFilesystemClient+rename) ⇒ <code>Promise</code>
-    * [.rm(oldPath, newPath)](#PluginFilesystemClient+rm) ⇒ <code>Promise</code>
+    * [.rm(pathname)](#PluginFilesystemClient+rm) ⇒ <code>Promise</code>
 
 <a name="PluginFilesystemClient+getTree"></a>
 
@@ -169,14 +169,14 @@ Return a node from the tree matching the given path.
 
 <a name="PluginFilesystemClient+writeFile"></a>
 
-#### pluginFilesystemClient.writeFile(filename, data) ⇒ <code>Promise</code>
+#### pluginFilesystemClient.writeFile(pathname, data) ⇒ <code>Promise</code>
 Write a file
 
 **Kind**: instance method of [<code>PluginFilesystemClient</code>](#PluginFilesystemClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| filename | <code>String</code> | Name of the file. |
+| pathname | <code>String</code> | Pathname. |
 | data | <code>String</code> \| <code>Blob</code> | Content of the file. |
 
 <a name="PluginFilesystemClient+mkdir"></a>
@@ -204,15 +204,14 @@ Rename a file or directory
 
 <a name="PluginFilesystemClient+rm"></a>
 
-#### pluginFilesystemClient.rm(oldPath, newPath) ⇒ <code>Promise</code>
+#### pluginFilesystemClient.rm(pathname) ⇒ <code>Promise</code>
 Delete a file or directory
 
 **Kind**: instance method of [<code>PluginFilesystemClient</code>](#PluginFilesystemClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| oldPath | <code>String</code> | Current pathname. |
-| newPath | <code>String</code> | New pathname. |
+| pathname | <code>String</code> | Pathname. |
 
 <a name="PluginFilesystemServer"></a>
 
@@ -227,10 +226,10 @@ Server-side representation of the soundworks' filesystem plugin.
     * [.getTree()](#PluginFilesystemServer+getTree) ⇒ <code>Object</code>
     * [.onUpdate(callback, [executeListener])](#PluginFilesystemServer+onUpdate) ⇒ <code>function</code>
     * [.findInTree(path)](#PluginFilesystemServer+findInTree) ⇒ <code>Object</code>
-    * [.writeFile(filename, data)](#PluginFilesystemServer+writeFile) ⇒ <code>Promise</code>
+    * [.writeFile(pathname, data)](#PluginFilesystemServer+writeFile) ⇒ <code>Promise</code>
     * [.mkdir(pathname)](#PluginFilesystemServer+mkdir) ⇒ <code>Promise</code>
     * [.rename(oldPath, newPath)](#PluginFilesystemServer+rename) ⇒ <code>Promise</code>
-    * [.rm(oldPath, newPath)](#PluginFilesystemServer+rm) ⇒ <code>Promise</code>
+    * [.rm(pathname)](#PluginFilesystemServer+rm) ⇒ <code>Promise</code>
 
 <a name="new_PluginFilesystemServer_new"></a>
 
@@ -303,14 +302,14 @@ Return a node from the tree matching the given path.
 
 <a name="PluginFilesystemServer+writeFile"></a>
 
-#### pluginFilesystemServer.writeFile(filename, data) ⇒ <code>Promise</code>
+#### pluginFilesystemServer.writeFile(pathname, data) ⇒ <code>Promise</code>
 Write a file
 
 **Kind**: instance method of [<code>PluginFilesystemServer</code>](#PluginFilesystemServer)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| filename | <code>String</code> | Name of the file. |
+| pathname | <code>String</code> | Pathname. |
 | data | <code>String</code> \| <code>Blob</code> | Content of the file. |
 
 <a name="PluginFilesystemServer+mkdir"></a>
@@ -338,15 +337,14 @@ Rename a file or directory
 
 <a name="PluginFilesystemServer+rm"></a>
 
-#### pluginFilesystemServer.rm(oldPath, newPath) ⇒ <code>Promise</code>
+#### pluginFilesystemServer.rm(pathname) ⇒ <code>Promise</code>
 Delete a file or directory
 
 **Kind**: instance method of [<code>PluginFilesystemServer</code>](#PluginFilesystemServer)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| oldPath | <code>String</code> | Current pathname. |
-| newPath | <code>String</code> | New pathname. |
+| pathname | <code>String</code> | Pathname. |
 
 
 <!-- apistop -->
