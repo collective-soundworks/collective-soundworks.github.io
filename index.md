@@ -22,7 +22,7 @@ layout: page
     </p>
     <p>
       <a href="/introduction" class="action-button infos">More Infos</a>
-      <a href="/tutorials/getting-started" class="action-button start">Get Started →</a>
+      <a href="/tutorials/getting-started" class="action-button infos">Get Started →</a>
     </p>
   </div>
 </div>
