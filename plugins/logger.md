@@ -96,7 +96,7 @@ console.log(writer.pathname);
 ### Prefix in log files
 
 By default all log files (client-side and server-side) are prefixed following a format: `yyyy.mm.dd_hh.mm.ss_id_${basename}`. This behavior can be turned of
-by seeting the `uesPrefix` option to false when creating a writer.
+by seeting the `usePrefix` option to false when creating a writer.
 
 With `usePrefix = true` (default):
 
@@ -109,7 +109,7 @@ console.log(writer.pathname);
 With `usePrefix = false`:
 
 ```js
-const writer = await logger.createWriter('my-log.txt');
+const writer = await logger.createWriter('my-log.txt', { usePrefix: false });
 console.log(writer.pathname);
 > 'logs/my-log.txt';
 ``` 
@@ -300,9 +300,55 @@ Created and retrived by the client-side `logger.createWriter(name, bufferSize)` 
 **Kind**: global class  
 
 * [WriterClient](#WriterClient)
+    * [.name](#WriterClient+name)
+    * [.pathname](#WriterClient+pathname)
+    * [.write(data)](#WriterClient+write)
+    * [.flush()](#WriterClient+flush)
+    * [.close()](#WriterClient+close) ⇒ <code>Promise</code>
     * [.onPacketSend(callback)](#WriterClient+onPacketSend) ⇒
     * [.onClose(callback)](#WriterClient+onClose) ⇒
 
+<a name="WriterClient+name"></a>
+
+#### writerClient.name
+Name of the Writer.
+
+**Kind**: instance property of [<code>WriterClient</code>](#WriterClient)  
+**Read only**: true  
+<a name="WriterClient+pathname"></a>
+
+#### writerClient.pathname
+Pathname of the Writer.
+
+**Kind**: instance property of [<code>WriterClient</code>](#WriterClient)  
+**Read only**: true  
+<a name="WriterClient+write"></a>
+
+#### writerClient.write(data)
+Format and write data.
+- Successive write calls are added to a new line
+- Data can be of any type, it will be stringified before write.
+- TypedArrays are converted to Array before being stringified.
+
+**Kind**: instance method of [<code>WriterClient</code>](#WriterClient)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>Any</code> | Data to be written |
+
+<a name="WriterClient+flush"></a>
+
+#### writerClient.flush()
+Flush the buffer, only applies if `bufferSize` option is set.
+
+**Kind**: instance method of [<code>WriterClient</code>](#WriterClient)  
+<a name="WriterClient+close"></a>
+
+#### writerClient.close() ⇒ <code>Promise</code>
+Close the writer.
+
+**Kind**: instance method of [<code>WriterClient</code>](#WriterClient)  
+**Returns**: <code>Promise</code> - Promise that resolves when the stream is closed  
 <a name="WriterClient+onPacketSend"></a>
 
 #### writerClient.onPacketSend(callback) ⇒
@@ -377,7 +423,7 @@ Format and write data.
 <a name="WriterServer+close"></a>
 
 #### writerServer.close() ⇒ <code>Promise</code>
-Close the stream,
+Close the writer and the underlying stream.
 
 **Kind**: instance method of [<code>WriterServer</code>](#WriterServer)  
 **Returns**: <code>Promise</code> - Promise that resolves when the stream is closed  
