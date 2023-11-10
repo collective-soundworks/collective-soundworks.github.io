@@ -13,11 +13,9 @@
   --sw-brown-light: #6e705d;
   /* very crude, to review */
 
-  --vp-c-brand: var(--sw-brown-light);
-  --vp-c-brand-light: var(--sw-brown-light);
-  --vp-c-brand-lighter: var(--sw-brown-light);
-  --vp-c-brand-dark: var(--sw-brown-light);
-  --vp-c-brand-darker: var(--sw-brown);
+  --vp-c-brand-1: var(--sw-brown-light);
+  --vp-c-brand-2: var(--sw-brown-light);
+  --vp-c-brand-3: var(--sw-brown-light);
 
   /* code bg color */
   --vp-code-block-bg: var(--sw-brown);
