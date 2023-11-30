@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - '*'
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -21,6 +22,7 @@ jobs:
       - name: Build
         run: npm run build
 
+      # requires read / write permissions cf. Settings > Action > workflow permissions
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

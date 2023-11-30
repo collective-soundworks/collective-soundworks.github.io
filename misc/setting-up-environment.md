@@ -27,7 +27,7 @@ v12.16.1
 
 5. Done!
 
-::: tip Tip
+::: tip
 To deal with several versions of Node.js in a easy way, you can install the `n` package globally on your machine, cf. [https://www.npmjs.com/package/n](https://www.npmjs.com/package/n).
 
 ```
