@@ -32,7 +32,7 @@
     * switch between music parts
   + paragraph on locking contexts to specific roles
   + paragraph on creating contexts between init and start
-- [ ] advanced state manager
+- [ ] advanced state manager, working with collections
 - [ ] using plugins (2)
   * @soundworks/plugin-sync example
 - [ ] synchronized audio scheduling, building a distributed step sequencer

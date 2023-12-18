@@ -8,3 +8,5 @@ tutorials-dev
 
 .vitepress/dist
 .vitepress/cache
+
+NOTES.md
