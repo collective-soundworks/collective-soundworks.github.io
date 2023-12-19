@@ -50,16 +50,16 @@ Form the point of view of the distributed state management system, the server is
 
 ## Scaffolding the application
 
+::: info
+This section requires basic knowledge of the `soundworks` wizard, so please refer to the [getting started tutorial](/tutorials/getting-started) if you didn't check it yet.
+:::
+
 First thing first, let's generate a new empty application with the `@soundworks/create` wizard. 
 
 ```sh
 cd /path/to/working/directory
 npx @soundworks/create@latest state-manager
 ```
-
-::: info
-You can refer to the [getting-started](/tutorials/getting-started) tutorial to learn more about the `@soundworks/create` wizard.
-:::
 
 When the wizard will ask you for the configuration of the default client:
 - Name it `player`
