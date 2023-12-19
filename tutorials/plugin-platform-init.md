@@ -263,7 +263,7 @@ If you are confortable with another language and are willing to contribute a loc
 
 In this tutorial, you have learned the basics of _soundworks_ plugins usage, and more precisely how to use the _platform-init_ plugin. While this plugin is not _per se_ very complex, it can save you a lot of (quite boring) development time by simplifying the initialization of certains browser features. Along the way, you also discovered some of the functionalities provided by the `launcher` component that is automatically included in all _soundworks_ applications created using the wizard.
 
-In the next tutorial, we will wrap up what we have learned so far by creating a small working application where several clients can connect and be used as distributed speakers by a central controller.
+In the next tutorial, we will wrap up what we have learned so far by creating a small working application where several clients can be used as distributed speakers by a central controller.
 
 
 
