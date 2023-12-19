@@ -1,6 +1,6 @@
 # The _Todo Noise_ Application
 
-In this tutorial we will build a simple application, which shows the most common type of distributed interaction: i.e. remote monitoring and control, you will need to implement your own application.
+In this tutorial we will build a simple application, which illustrates the most common type of distributed interaction you will need to implement in your own applications: i.e. remote monitoring and control.
 
 The tutorial requires basic knowledge of the `soundworks` [state manager](./state-manager.html) and of the [platform-init plugin](./plugin-platform-init.html), so please refer to the relevant tutorials if you didn't check them yet.
 

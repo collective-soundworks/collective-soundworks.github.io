@@ -2,16 +2,16 @@
 
 In this tutorial, we will dig into the distributed state management system proposed by _soundworks_. After a short introduction on the underlying concepts, we will see how to use shared states, and how this pattern can help you to implement remote control and monitoring in your applications. Along the way, we will see how the shared states simplify the development of distributed applications by abstracting the network communications and messages routing.
 
-Along the way, we will discover a related library called `@ircam/sc-components` to simply create usable (and hopefully elegant) graphical user interfaces.
+Along the way, we will discover a related library, [@ircam/sc-components](https://ircam-ismm.github.io/sc-components/), to simply create usable (and hopefully elegant) graphical user interfaces.
 
 ### Relevant API documentation
 
-- [`client.StateManager`](https://soundworks.dev/soundworks/client.StateManager)
-- [`client.SharedState`](https://soundworks.dev/soundworks/client.SharedState)
-- [`client.SharedStateCollection`](https://soundworks.dev/soundworks/client.SharedStateCollection.html)
-- [`server.StateManager`](https://soundworks.dev/soundworks/server.StateManager)
-- [`server.SharedState`](https://soundworks.dev/soundworks/server.SharedState)
-- [`@ircam/sc-components`](https://ircam-ismm.github.io/sc-components/)
+- [client.StateManager](https://soundworks.dev/soundworks/client.StateManager)
+- [client.SharedState](https://soundworks.dev/soundworks/client.SharedState)
+- [client.SharedStateCollection](https://soundworks.dev/soundworks/client.SharedStateCollection.html)
+- [server.StateManager](https://soundworks.dev/soundworks/server.StateManager)
+- [server.SharedState](https://soundworks.dev/soundworks/server.SharedState)
+- [@ircam/sc-components](https://ircam-ismm.github.io/sc-components/)
 
 ## Introduction
 
@@ -241,7 +241,7 @@ Here, you can see side-by-side the `stateManager.create` and `stateManager.attac
 Now that our shared states are setup, let's continue on our client-side code to display the current values of the different shared states and update the screen when their values change. 
 
 ::: info
-In these series, all HTMl rendering will be achieved by using the [`lit`](https://lit.dev/) library proposed by _Google_ and the [`@ircam/sc-components`](https://ircam-ismm.github.io/sc-components/) library. Both libraries are installed by default when you create a new application using the soundworks wizard.
+In these series, all HTMl rendering will be achieved by using the [Lit](https://lit.dev/) library proposed by _Google_ and the [@ircam/sc-components](https://ircam-ismm.github.io/sc-components/) library. Both libraries are installed by default when you create a new application using the soundworks wizard.
 :::
 
 Let's first modify the `renderApp` provided by the "player" boilerplate code to display the values of our two states:
@@ -322,7 +322,7 @@ Note that the `/controller` part of the URL is automatically created by soundwor
 
 ### Binding the `global` state
 
-Let's start with creating the controls for the `global` shared state. Open the `src/clients/controller/index.js` file and add the following code to import some high-level components provided by the [`@ircam/sc-components`](https://ircam-ismm.github.io/sc-components/) library:
+Let's start with creating the controls for the `global` shared state. Open the `src/clients/controller/index.js` file and add the following code to import some high-level components provided by the [@ircam/sc-components](https://ircam-ismm.github.io/sc-components/) library:
 
 ```js {7-10}
 // src/clients/controller/index.js
