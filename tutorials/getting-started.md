@@ -9,8 +9,6 @@ The tutorial requires basic knowledge of _JavaScript_, _Node.js_ and of the comm
 - [Node.js 16+](https://nodejs.org/en/)
 - A modern browser (e.g. Chrome, Firefox)
 
-<!-- [[toc]] -->
-
 ## Step 1 - Setting things up
 
 The best and most simple way to create a new _soundworks_ application is to use our dedicated command line tools: 
