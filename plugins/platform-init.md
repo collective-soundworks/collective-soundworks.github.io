@@ -37,11 +37,11 @@ npm install @soundworks/plugin-platform-init --save
 ```js
 // src/server/index.js
 import { Server } from '@soundworks/core/server.js';
-import platformInitPlugin from '@soundworks/plugin-platform-init/server.js';
+import pluginPlatformInit from '@soundworks/plugin-platform-init/server.js';
 
 const server = new Server(config);
 // 
-server.pluginManager.register('platform-init', platformInitPlugin);
+server.pluginManager.register('platform-init', pluginPlatformInit);
 ```
 
 ### Client
@@ -49,14 +49,12 @@ server.pluginManager.register('platform-init', platformInitPlugin);
 ```js
 // src/clients/**/index.js
 import { Client } from '@soundworks/core/client.js';
-import platformInitPlugin from '@soundworks/plugin-platform-init/client.js';
-
-const audioContext = new AudioContext();
+import pluginPlatformInit from '@soundworks/plugin-platform-init/client.js';
 
 const client = new Client(config);
-// pass the audio context to the plugin will automatically generate a landing page 
-// for resuming the audio context
-client.pluginManager.register('platform-init', platformInitPlugin, { audioContext });
+const audioContext = new AudioContext();
+// pass the audio context to the plugin
+client.pluginManager.register('platform-init', pluginPlatformInit, { audioContext });
 
 await client.start();
 
@@ -74,12 +72,12 @@ npm install --save @ircam/devicemotion
 ```js
 // src/clients/**/index.js
 import { Client } from '@soundworks/core/client.js';
-import platformInitPlugin from '@soundworks/plugin-platform-init/client.js';
+import pluginPlatformInit from '@soundworks/plugin-platform-init/client.js';
 import devicemotion from '@ircam/devicemotion';
 
 const client = new Client(config);
 
-client.pluginManager.register('platform-init', platformInitPlugin, { 
+client.pluginManager.register('platform-init', pluginPlatformInit, { 
   microphone: true,
   camera: true,
   devicemotion,
@@ -103,7 +101,7 @@ You can also add any arbitraty logic by passing a function to the `onCheck` and
 let onCheckCalled = false;
 let onActivateCalled = false;
 
-client.pluginManager.register('platform-init', platformInitPlugin, {
+client.pluginManager.register('platform-init', pluginPlatformInit, {
   onCheck: (plugin) => {
     onCheckCalled = true;
     return Promise.resolve();
@@ -167,7 +165,7 @@ Available options:
 
 **Example**  
 ```js
-client.pluginManager.register('platform-init', platformInitPlugin, { audioContext });
+client.pluginManager.register('platform-init', pluginPlatformInit, { audioContext });
 ```
 <a name="PluginPlatformInitClient+onUserGesture"></a>
 
