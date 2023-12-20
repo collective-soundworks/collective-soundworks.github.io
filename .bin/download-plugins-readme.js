@@ -16,14 +16,22 @@ const plugins = {
 // // https://raw.githubusercontent.com/collective-soundworks/soundworks-plugin-position/v4/README.md
 
 const sortedKeys = Object.keys(plugins).sort();
-
 const menuEntries = [];
 
 for (let pluginName of sortedKeys) {
   const plugin = plugins[pluginName];
   const url = `https://raw.githubusercontent.com/collective-soundworks/${plugin.name}/${plugin.branch}/README.md`;
 
-  const res = await fetch(url);
+  let res;
+  // just return if we don't have internet
+  try {
+    res = await fetch(url);
+  } catch(err) {
+    console.log(err.message);
+    console.log('> Aborting README downloads');
+    process.exit(0);
+  }
+
   const readme = await res.text();
 
   // insert link to github repo, to be fixed

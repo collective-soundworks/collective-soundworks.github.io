@@ -36,6 +36,7 @@ export default {
           { text: 'Using the State Manager', link: '/tutorials/state-manager' },
           { text: 'Using Plugins 1 - <i>platform-init</i>', link: '/tutorials/plugin-platform-init' },
           { text: 'The <i>Todo Noise</i> Application', link: '/tutorials/todo-noise' },
+          { text: 'Using Plugins 2 - <i>sync</i>', link: '/tutorials/plugin-sync' },
           // { text: 'Using Contexts', link: '/tutorials/context' },
           // { text: 'The "Todo Noise" App', link: '/tutorials/todo-noise' },
           // { text: 'Using Plugins 2 - Sync', link: '/tutorials/plugin-sync' },

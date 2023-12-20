@@ -51,7 +51,7 @@ Form the point of view of the distributed state management system, the server is
 ## Scaffolding the application
 
 ::: info
-This section requires basic knowledge of the `soundworks` wizard, so please refer to the [getting started tutorial](/tutorials/getting-started) if you didn't check it yet.
+This section requires basic knowledge of the _soundworks_ wizard, so please refer to the [getting started tutorial](/tutorials/getting-started) if you didn't check it yet.
 :::
 
 First thing first, let's generate a new empty application with the `@soundworks/create` wizard. 
