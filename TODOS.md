@@ -44,7 +44,7 @@
 - [ ] creating a connected lamp with a RPi :)
 - [ ] create an embedded distributed system with dotpi
 - [ ] anatomy of the default template app
-- [ ] working with MIDI and OSC (some plugin could be welcome)
+- [ ] working with OSC
 
 ### receipes
 

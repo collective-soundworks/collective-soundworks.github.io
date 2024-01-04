@@ -2,7 +2,7 @@
 
 In this tutorial, we will learn how to setup a project and develop a simple _soundworks_ application where any connected user will be able to trigger a flash on the screen of all connected clients.
 
-The tutorial requires basic knowledge of _JavaScript_, _Node.js_ and of the command-line. If you are just starting with _JavaScript_ development, please first set up a working environment following the instructions [here](/misc/setting-up-environment.html) and come back when done.
+The tutorial requires basic knowledge of _JavaScript_, _Node.js_ and of the command-line. If you are just starting with _JavaScript_ development, please first set up a working environment following the instructions [here](https://ircam-ismm.github.io/webaudio-tutorials/first-steps/setting-up-environment.html) and come back when done.
 
 ### Prerequisites
 

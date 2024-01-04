@@ -68,7 +68,7 @@ export default {
       {
         text: 'Misc',
         items: [
-          { text: 'Setting up an Environment', link: '/misc/setting-up-environment' },
+          { text: 'WebSockets 101', link: '/misc/web-sockets-101' },
         ],
       },
     ],
