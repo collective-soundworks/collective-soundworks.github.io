@@ -26,6 +26,7 @@
 - [x] mixing it all, the "todo-noise" application
 - [x] using plugins (2)
   * @soundworks/plugin-sync example
+- [ ] working with node clients
 - [ ] synchronized audio scheduling, building a distributed step sequencer
 - [ ] using contexts
   + what are contexts?
@@ -39,7 +40,6 @@
 - [ ] using plugins (3)
   * @soundworks/plugin-scripting example
 - [ ] distributed graphic scripting 
-- [ ] working with node clients
 - [ ] soundworks-max - sharing state with Max/MSP
 - [ ] creating a connected lamp with a RPi :)
 - [ ] create an embedded distributed system with dotpi

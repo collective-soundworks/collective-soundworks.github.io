@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 
 const plugins = {
   'Platform Init': { name: 'soundworks-plugin-platform-init', branch: 'main' },
+  'Checkin': { name: 'soundworks-plugin-checkin', branch: 'v2' },
   'Position': { name: 'soundworks-plugin-position', branch: 'v4' },
   'Filesystem': { name: 'soundworks-plugin-filesystem', branch: 'v4' },
   'Scripting': { name: 'soundworks-plugin-scripting', branch: 'v4' },

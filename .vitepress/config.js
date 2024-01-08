@@ -36,11 +36,11 @@ export default {
           { text: 'Using the State Manager', link: '/tutorials/state-manager' },
           { text: 'Using Plugins 1 - <i>platform-init</i>', link: '/tutorials/plugin-platform-init' },
           { text: 'The <i>Todo Noise</i> Application', link: '/tutorials/todo-noise' },
+          { text: 'Working with Node Clients', link: '/tutorials/node-clients' },
           { text: 'Using Plugins 2 - <i>sync</i>', link: '/tutorials/plugin-sync' },
-          { text: 'Synchronized Scheduling', link: '/tutorials/synchronized-audio-scheduling' },
+          // { text: 'Synchronized Scheduling', link: '/tutorials/synchronized-scheduling' },
           // { text: 'Using Contexts', link: '/tutorials/context' },
           // { text: 'Using Plugins 3 - Scripting', link: '/tutorials/plugin-scripting' },
-          // { text: 'Working with Node Clients', link: '/tutorials/node-clients' },
 
         ],
       },

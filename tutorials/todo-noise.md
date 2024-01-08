@@ -707,7 +707,7 @@ If you now open a controller ([http://127.0.0.1:8000/controller](http://127.0.0.
 
 In this tutorial, you have learned an important pattern that soundworks aims to simplify: the ability of simply create remote control and monitoring of clients through shared states. Along the way, you have learned how to create a reusable Web Component using the [Lit](https://lit.dev/) library.
 
-While the application purposely simplified important aspects of the application to focus on these points, a number of features could improved with simple modification to the structure. For example:
+While the application purposely simplified important aspects of the application to focus on these key points, a number of features could improved with simple modification to the structure. For example:
 
 - Improve the start / stop synth so that no click occurs when it is stopped.
 - Create more complex synthesizers with more more and more complex audio chains.
