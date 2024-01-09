@@ -26,8 +26,9 @@
 - [x] mixing it all, the "todo-noise" application
 - [x] using plugins (2)
   * @soundworks/plugin-sync example
-- [ ] working with node clients
+- [x] working with node clients
 - [ ] synchronized audio scheduling, building a distributed step sequencer
+
 - [ ] using contexts
   + what are contexts?
   + :::note - relation to Experience
@@ -36,15 +37,12 @@
     * switch between music parts
   + paragraph on locking contexts to specific roles
   + paragraph on creating contexts between init and start
-- [ ] advanced state manager, working with collections
 - [ ] using plugins (3)
   * @soundworks/plugin-scripting example
-- [ ] distributed graphic scripting 
+- [ ] live graphics scripting
 - [ ] soundworks-max - sharing state with Max/MSP
 - [ ] creating a connected lamp with a RPi :)
-- [ ] create an embedded distributed system with dotpi
 - [ ] anatomy of the default template app
-- [ ] working with OSC
 
 ### receipes
 
@@ -54,6 +52,8 @@
   + customize the text / language
   + eject @soundworks/helpers
   - [ ] understand and configure the @soundworks/build system
+- [ ] create an embedded distributed system with dotpi
+- [ ] working with OSC
 
 ### ecosystem
 
@@ -74,6 +74,7 @@
 
 ### misc
 
+- [x] websockets 101
 - [x] setting up a development environment
 - [ ] some general principles about networks
 - [ ] creating a local network and deploying a soundworks application

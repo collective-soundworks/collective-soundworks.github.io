@@ -46,4 +46,10 @@ The `StateManager` component provides tools to help you create synchronized stat
 
 > See the [Plugin Platform Init](/tutorials/plugin-platform-init) tutorial
 
+## About the tutorials
 
+These tutorials are focused on _soundworks_ functionnality which are quite abstract according to the low-level platform APIs such as WebSockets. If you need some refresher on this point you can have a look [here](./misc/websockets-101).
+
+Also, the tutorials assume that you have some level of familiarity with the usage of the Web Audio API, if you need a refresher on that point, you can have a look [there](https://ircam-ismm.github.io/webaudio-tutorials).
+
+Else, you can just jump to the [Getting Started](./tutorials/getting-started) tutorial.

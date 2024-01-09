@@ -68,7 +68,7 @@ export default {
       {
         text: 'Misc',
         items: [
-          { text: 'WebSockets 101', link: '/misc/web-sockets-101' },
+          { text: 'WebSockets 101', link: '/misc/websockets-101' },
         ],
       },
     ],
