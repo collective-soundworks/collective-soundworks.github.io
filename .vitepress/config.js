@@ -38,7 +38,7 @@ export default {
           { text: 'The <i>Todo Noise</i> Application', link: '/tutorials/todo-noise' },
           { text: 'Working with Node Clients', link: '/tutorials/node-clients' },
           { text: 'Using Plugins 2 - <i>sync</i>', link: '/tutorials/plugin-sync' },
-          // { text: 'Synchronized Scheduling', link: '/tutorials/synchronized-scheduling' },
+          { text: 'Distributed Step Sequencer', link: '/tutorials/step-sequencer' },
           // { text: 'Using Contexts', link: '/tutorials/context' },
           // { text: 'Using Plugins 3 - Scripting', link: '/tutorials/plugin-scripting' },
 
@@ -54,7 +54,7 @@ export default {
       // {
       //   text: 'Receipes',
       //   items: [
-      //     { text: 'Customizing Init Screens', link: '/tutorials/customizing-init-screens' },
+      //     { text: 'Customizing Init Screens', link: '/receipes/customizing-init-screens' },
       //   ],
       // },
       {
