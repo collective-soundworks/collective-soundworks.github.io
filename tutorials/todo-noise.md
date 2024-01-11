@@ -583,7 +583,6 @@ mute.connect(master);
 let synthToggle = null; // [!code ++]
  // [!code ++]
 player.onUpdate(updates => { // [!code ++]
-  console.log(updates, synthToggle); // [!code ++]
   for (let key in updates) { // [!code ++]
     const value = updates[key]; // [!code ++]
  // [!code ++]

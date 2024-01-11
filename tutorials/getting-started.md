@@ -290,9 +290,9 @@ If you click on any of these 8 emulated clients, all of them will blink. Indeed 
 ## Conclusion
 
 Congrats, you just wrote your first _soundworks_ application. Along the way you learned quite a few things: 
-- 1. How to setup a _soundworks_ application using the `@soundworks/create` wizard, 
-- 2. How to use some of the tools that are at your end to simplify development
-- 3. Discovered the shared states provided by _soundworks_, and how they allow you to simplify development and to hide network complexity.
+1. How to setup a _soundworks_ application using the `@soundworks/create` wizard, 
+2. How to use some of the tools that are at your end to simplify development
+3. Discovered the shared states provided by _soundworks_, and how they allow you to simplify development and to hide network complexity.
 
 On the next tutorial, we will explore more possibilities proposed by the _soundworks_' distributed state management system.
 

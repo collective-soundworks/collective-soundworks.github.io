@@ -362,6 +362,8 @@ If you now open two controllers side by side, e.g. [http://127.0.0.1:8000?emulat
 
 Now that all our controls are set up, let's go back to our thing clients to implement the audio engine and logic.
 
+### Loading some audio files
+
 First let's add a few audio files into our project, that our step sequencer will be able to use for audio rendering. For simplicity, let's put them in the `public` directory.
 
 ::: info
@@ -399,6 +401,8 @@ console.log(audioBuffers); // [!code ++]
 
 You should see logged into the console the loaded audio buffers.
 
+### Creating the synchronized scheduler
+
 Then, let's create a scheduler, running in the synchronized time, i.e. scheduling events in the synchronized timeline, but able to provide us the corresponding time in the `audioContext` time reference:
 
 ```js
@@ -423,6 +427,13 @@ const audioFiles = [
 ];
 ```
 
+### Implementing the audio engine
+
 Then implement a simple audio engine that will play a track from the score and an associated buffer according to a given index:
 
+### Binding all components with the shared state
+
 Finally, let's attach to the `global` state and create our step sequencer engine which will react to updates of the `global` state:
+
+
+## Conclusion
