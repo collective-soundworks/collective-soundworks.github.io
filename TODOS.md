@@ -47,6 +47,7 @@
 ### receipes
 
 - [ ] stateManager.updateHook (return values, etc.)
+- [ ] using @ircam/devicemotion - cf. tutorial from PAC courses
 - [ ] customize the @soundworks/helpers
   + customize the css globals variables
   + customize the text / language

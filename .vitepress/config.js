@@ -62,7 +62,8 @@ export default {
         items: [
           { text: '@ircam/sc-components', link: 'https://ircam-ismm.github.io/sc-components' },
           // { text: '@ircam/sc-scheduling', link: 'https://ircam-ismm.github.io/sc-scheduling' },
-          { text: '@ircam/sc-utils', link: 'https://ircam-ismm.github.io/sc-utils' },
+          { text: '@ircam/sc-utils', link: 'https://github.com/ircam-ismm/sc-utils' },
+          { text: '@ircam/devicemotion', link: 'https://github.com/ircam-ismm/devicemotion' },
         ],
       },
       {
