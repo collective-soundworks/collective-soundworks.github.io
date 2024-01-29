@@ -1,6 +1,6 @@
 # Working with Node Clients
 
-In this tutorial, we will explore how to use _soundworks_ to create clients that run within a _Node.js_ process, opening new possibilities of creating application ouside Web Browsers.
+In this tutorial, we will explore how to use _soundworks_ to create clients that run within a _Node.js_ process, opening new possibilities of creating application outside Web Browsers.
 
 Indeed, this functionality allows to create applications that can work in screenless embedded hardware, such as the Raspberry Pi, allowing to access some fonctionnalities, such as controlling a motor or a LED, which are hard to achieve in sandboxed environment that are Web browsers.
 
@@ -130,7 +130,7 @@ npm install --save node-web-audio-api
 ```
 
 ::: info
-The [`node-web-audio-api`](https://github.com/ircam-ismm/node-web-audio-api) package is re-implementation of the Web Audio API specification to be used within Node.js written in the `Rust` language. The package is relatively recent and does not expose yet all the features, such as `AudioWorklet`, you would expect in Web browsers. However, it already offers an interesting of compatibility and descent performances which makes it usable in a (hopefully) quite large spectrum of projects.
+The [`node-web-audio-api`](https://github.com/ircam-ismm/node-web-audio-api) package is re-implementation of the Web Audio API specification to be used within Node.js written in the `Rust` language. The package is relatively recent and does not expose yet all the features, such as `AudioWorklet`, you would expect in Web browsers. However, it already offers interesting compatibility and descent performances which makes it usable in a (hopefully) quite large spectrum of projects.
 
 For those who might be interested in using the library directly a `Rust` project, see [web-audio-api-rs](https://github.com/orottier/web-audio-api-rs)
 :::
@@ -209,6 +209,9 @@ import { AudioContext, GainNode, OscillatorNode } from 'node-web-audio-api'; // 
 const thing = await client.stateManager.create('thing', {
   id: client.id,
 });
+// register audioContext
+const audioContext = new AudioContext(); // [!code ++]
+
 // react to updates triggered from controller
 thing.onUpdate(updates => {
   if ('triggerSound' in updates) {
@@ -253,7 +256,7 @@ to launch four clients in parallel.
 
 Another important point to consider is that the node clients needs some configuration to be able to connect to the server. Indeed, when we launch a client in a browser we, as human, tell the browser where to reach the server when we write the URL in the address bar of the Web browser. 
 
-However, node clients don't have any address bar, hence if you node client doesn't run into your computer but in a remote device, it will need a bit of configuration to know the IP address of the server. To that end, you can launch the following command to create a environment config file that node clients will be able to consume:
+However, node clients don't have any address bar, hence if your node client doesn't run into your computer but in a remote device, it will need a bit of configuration to know the IP address of the server. To that end, you can launch the following command to create a environment config file that node clients will be able to consume:
 
 ```sh
 npx soundworks --create-env
