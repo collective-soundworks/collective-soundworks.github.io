@@ -247,7 +247,7 @@ In these series, all HTMl rendering will be achieved by using the [Lit](https://
 Let's first modify the `renderApp` provided by the "player" boilerplate code to display the values of our two states:
 
 ```js
-// src/clients/player.js
+// src/clients/player/index.js
 await client.start();
 
 const global = await client.stateManager.attach('global');

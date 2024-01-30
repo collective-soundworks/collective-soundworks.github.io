@@ -122,7 +122,7 @@ server.useDefaultApplicationTemplate();
 server.stateManager.registerSchema('global', globalSchema); // [!code ++]
 ```
 
-And define some default values for our tracks. Note that we will consider that our step sequencer has 5 different tracks with 8 steps each, and that we will create a branch initialize our score in debug mode (with some values filled) according to a `debug` flag to ease the development:
+And define some default values for our tracks. Note that we will consider that our step sequencer has 5 different tracks with 8 steps each, and that we will create a branch to initialize our score in debug mode (with some values filled) according to a `debug` flag to ease the development:
 
 ```js
 await server.start();
@@ -216,7 +216,7 @@ const client = new Client(config);
 const audioContext = new AudioContext(); // [!code ++]
  // [!code ++]
 client.pluginManager.register('checkin', pluginCheckin); // [!code ++]
-client.pluginManager.register('sync', syncPlugin, { // [!code ++]
+client.pluginManager.register('sync', pluginSync, { // [!code ++]
   getTimeFunction: () => audioContext.currentTime, // [!code ++]
 }); // [!code ++]
 ```

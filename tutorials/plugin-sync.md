@@ -21,7 +21,7 @@ An important thing to understand when working with system composed of multiple d
 
 Indeed, each device have different physical clocks, each of them having a different time origin and furthermore a different speed. Most of the time, i.e. when we use our computers in our daily life, this is something we don't perceive as users, but only because our computers are constently synchronizing themselves with distant reference clocks through the network, using the Network Time Protocol (NTP).
 
-We could consider at this that the problem is solved, i.e. let's use NTP! But unfortunately the problem is a bit more complicated in our context. 
+We could consider at this point that the problem is solved, i.e. let's use NTP! But unfortunately the problem is a bit more complicated in our context. 
 
 First, we cannot always assume that our devices will be connected to the Internet and thus able to connect to a NTP server. Indeed, in many situations, you will have to and/or want to create you own local network, and this, for several reasons: e.g. the venue where your artwork is presented has a poor network installation, you want to have some control over what happen on the network to make sure the bandwidth is properly used, etc.
 
@@ -145,6 +145,7 @@ const sync = await client.pluginManager.get('sync'); // [!code ++]
 function renderApp() {
   render(html`
     <div class="simple-layout">
+      <p>Hello ${client.config.app.name}!</p> // [!code --]
       <p>localTime: ${sync.getLocalTime()}</p> // [!code ++]
       <p>syncTime: ${sync.getSyncTime()}</p> // [!code ++]
 
@@ -159,15 +160,15 @@ function renderApp() {
 renderApp();
 ```
 
-If you now open, several browser windows side by side, you should how the synchronization process allows to estimate a common reference clock (i.e. `syncTime`) alongside a local clock (i.e. `localTime`):
+If you now open, several browser windows side by side, you should see how the synchronization process allows to estimate a common reference clock (i.e. `syncTime`) alongside a local clock (i.e. `localTime`):
 
 ![sync-clients](../assets/tutorials/plugin-sync/sync-clients.png)
 
 ## Synchronizing the audio context
 
-So far so good, but what we are interested in is too synchronize the clock of an `AudioContext` to synchronize our synthesis, but so far we don't have yet created any `AudioContext`, so what can we do with this synchronization process? Indeed, by default, the _sync_ plugin just use a default clock which is either [`Date.now`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/now) or [`performance.now`](https://developer.mozilla.org/docs/Web/API/Performance/now) depending on the context.
+So far so good, but what we are interested in is to synchronize the clock of an `AudioContext` to synchronize our synthesis, but so far we don't have created yet any `AudioContext`, so what can we do with this synchronization process? Indeed, by default, the _sync_ plugin just uses a default clock which is either [`Date.now`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/now) or [`performance.now`](https://developer.mozilla.org/docs/Web/API/Performance/now) depending on the context.
 
-However, it is indeed possible to it another clock, such as [`AudioContext.currentTime`](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime) against which the synchronization process should be done. So, let's thus use implement that.
+However, it is indeed possible to do it with another clock, such as [`AudioContext.currentTime`](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime) against (?) which the synchronization process should be done. So, let's thus use implement that.
 
 First, let's then install the `@soundworks/plugin-platform-init` plugin which will allow us to resume the `AudioContext` and thus have a working clock. Indeed, if we used an `AudioContext` in default `suspended` state, the current time would always be zero, then the synchronization would fail...
 
@@ -189,22 +190,22 @@ And the following on the client side, to resume our `AudioContext` when the user
 
 ```js
 // src/clients/player/index.js
-import pluginPlatformInit from '@soundworks/plugin-platform-init/client.js';
+import pluginPlatformInit from '@soundworks/plugin-platform-init/client.js'; // [!code ++]
 import pluginSync from '@soundworks/plugin-sync/client.js';
 
 // ...
 
 const config = window.SOUNDWORKS_CONFIG;
 // create an new audio context instance
-const audioContext = new AudioContext();
+const audioContext = new AudioContext(); // [!code ++]
 
 // ...
 
 const client = new Client(config);
 // register plugins
-client.pluginManager.register('platform-init', pluginPlatformInit, {
-  audioContext
-});
+client.pluginManager.register('platform-init', pluginPlatformInit, { // [!code ++]
+  audioContext // [!code ++]
+}); // [!code ++]
 client.pluginManager.register('sync', pluginSync);
 ```
  
