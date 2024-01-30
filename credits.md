@@ -20,7 +20,7 @@ Initial and futher developments has been supported by the following research pro
 
 The design & development of `soundworks` has also been conducted within many collaborations with composers, artists, designers and researchers.
 
-A number of musical pieces and artworks created using `soundworks` can be found on the Ircam - Sound Music Movement Interaction team youtube channel [https://www.youtube.com/ircam-ismm](https://www.youtube.com/ircam-ismm).
+A number of musical pieces and artworks created using `soundworks` can be found on the Ircam - Sound Music Movement Interaction team YouTube channel [https://www.youtube.com/ircam-ismm](https://www.youtube.com/ircam-ismm).
 
 Some generic applications are also accessible online at [https://apps.ismm.ircam.fr](https://apps.ismm.ircam.fr).
 
