@@ -145,7 +145,7 @@ await client.start();
 const global = await client.stateManager.attach('global'); // [!code ++]
 ```
 
-Then, modify the `renderApp` function provided by the template to log the current values of the global shared state, and:
+Then, modify the `renderApp` function provided by the template to log the current values of the global shared state:
 
 ```js {5-16}
 // src/client/player/index
@@ -265,7 +265,7 @@ Now, if you open a `player` ([`http://127.0.0.1:8000`](http://127.0.0.1:8000)) a
 
 As defined in our user story, we want the _player_ clients to have some controls on their own interface. But importantly we also want to be able to take control over any _player_ remotely to simplify and fasten our development and creation process.
 
-Indeed, one you start working with multiple physical devices (smartphones, tablets, etc.), being able to control each of them from a single central point can save you a lot of testing time. Time that will be better used to make your artwork and experience more interesting. 
+Indeed, once you start working with multiple physical devices (smartphones, tablets, etc.), being able to control each of them from a single central point can save you a lot of testing time. Time that will be better used to make your artwork and experience more interesting. 
 
 ### Registering the schema and creating the states
 
@@ -298,7 +298,7 @@ export default { // [!code ++]
 }; // [!code ++]
 ```
 
-Then, just as will the `global` schema, import it and register the schema in the server's stateManager:
+Then, just as with the `global` schema, import it and register the schema in the server's stateManager:
 
 ```js
 // src/server/index.js
@@ -338,7 +338,7 @@ Then, let's create the `player` shared state control interface. To that end, we 
 Let's then create a new file called `sw-player.js` in the `src/clients/components` directory, with the following code:
 
 ```js
-// src/players/components/sw-player.js
+// src/clients/components/sw-player.js
 import { LitElement, html, css } from 'lit';
 
 // import needed GUI components
@@ -418,13 +418,13 @@ import '../components/sw-player.js'; // [!code ++]
 function renderApp() {
   render(html`
     <div class="simple-layout">
-      <sw-player .player=${player}></sw-player>
+      <sw-player .player=${player}></sw-player> // [!code ++]
 
       <h2>Global</h2>
       <p>Master: ${global.get('master')}</p>
       <p>Mute: ${global.get('mute')}</p>
 
-      <sw-credits .infos="${client.config.app}"></sw-credits> // [!code ++]
+      <sw-credits .infos="${client.config.app}"></sw-credits> 
     </div>
   `, $container);
 }
@@ -500,6 +500,7 @@ client.pluginManager.register('platform-init', pluginPlatformInit, {  // [!code 
 Then let's start by creating our "master bus" audio chain, which will be controlled by the `global` state: a [`GainNode`](https://developer.mozilla.org/en-US/docs/Web/API/GainNode) for the `master` volume parameter, and another one for the `mute` parameter:
 
 ```js
+// src/clients/player/index.js
 // create the master bus chain // [!code ++]
 // [mute <GainNode>] -> [master <GainNode>] -> [destination] // [!code ++]
 const master = audioContext.createGain(); // [!code ++]
@@ -511,7 +512,7 @@ mute.gain.value = global.get('mute') ? 0 : 1; // [!code ++]
 mute.connect(master); // [!code ++]
 
 // update the view each time the global state is changed
-global.onUpdate(() => $layout.requestUpdate());
+global.onUpdate(() => renderApp(), true); 
 ```
 
 Now, let's modify our `global.onUpdate` callback, so that all updates are applied on the audio nodes:
