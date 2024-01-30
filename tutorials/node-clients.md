@@ -2,7 +2,7 @@
 
 In this tutorial, we will explore how to use _soundworks_ to create clients that run within a _Node.js_ process, opening new possibilities of creating application outside Web Browsers.
 
-Indeed, this functionality allows to create applications that can work in screenless embedded hardware, such as the Raspberry Pi, allowing to access some fonctionnalities, such as controlling a motor or a LED, which are hard to achieve in sandboxed environment that are Web browsers.
+Indeed, this functionality allows to create applications that can work in screen less embedded hardware, such as the Raspberry Pi, allowing to access some functionalities, such as controlling a motor or a LED, which are hard to achieve in sandboxed environment that are Web browsers.
 
 To illustrate this possibility and discover some of the tools you have at hand to help you, we will build a very simple application where a browser controller client can trigger a sound synthesized by another client running in a Node.js process.
 
@@ -33,7 +33,7 @@ npm run dev
 
 ## Implementing the control logic
 
-Before implementing our _Node.js_ cient, let's use the features we have learned so far so that our controller can trigger a sound on any of our future _Node.js_ clients.
+Before implementing our _Node.js_ client, let's use the features we have learned so far so that our controller can trigger a sound on any of our future _Node.js_ clients.
 
 Let's start with defining the state, we will call `thing` that will be created by our _Node.js_ clients when they connect to the application. Create a file named `thing.js` in `src/server/schemas` and declare the following schema definition:
 
@@ -164,7 +164,7 @@ And tada! Your node client should now be connected to the server:
 
 ![node-client](../assets/tutorials/node-clients/node-client.png)
 
-Now that eveything is setup and ready, let's write the code needed so our node client react to the instructions from the controller and play some sound.
+Now that everything is setup and ready, let's write the code needed so our node client react to the instructions from the controller and play some sound.
 
 First, let's thus create our "thing" state and initialize its `id` field with the idea of the _soundworks_ client. Open the `src/clients/thing/index.js` file and add the following snippet:
 
@@ -242,7 +242,7 @@ As you can see, the code you wrote to create this client is exactly the same as 
 
 ### Emulating multiple clients
 
-In previous tutorial, we often used the `?emulate=6` query parameter in our url to emulate several clients in only one browser window, which is very practical when developing a distributed application.
+In previous tutorial, we often used the `?emulate=6` query parameter in our URL to emulate several clients in only one browser window, which is very practical when developing a distributed application.
 
 In a similar manner, this is also possible to run several node clients in the same terminal, for example run:
 

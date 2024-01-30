@@ -18,13 +18,13 @@ Along the way, we will discover how to create our own reusable [Web Components](
 
 The application purposely privileges the point of view of a user in a working situation (e.g. developer, designer, composer or performer) rather than the point of view of the end user (e.g. participant, audience). Indeed, while the later is most of the time very specific to the application or artwork, the former generally requires some properties and features that are relatively common. To illustrate this two roles, the application is composed of two different types of clients: the _player_ and the _controller_.
 
-The _player_ can be envisioned as the client dedicated to the end users. The application can accept any number of players and each player has access to the following fonctionalities:
+The _player_ can be envisioned as the client dedicated to the end users. The application can accept any number of players and each player has access to the following functionalities:
 - It can trigger a sound.
 - It can start and stop a synthesizer.
 - It can update a parameter (i.e. the frequency of the synths).
 
-The _controller_ is dedicated to the user in working situation, be it during the creation or the performance of the artwork. The application can accept any number of controllers and each of them has access to the following fonctionalities:
-- It controls global parameters of the application (i.e. mute, master volume). These global parameters must be synchronized amongst all the clients of the application (i.e. _player_ and _controller_).
+The _controller_ is dedicated to the user in working situation, be it during the creation or the performance of the artwork. The application can accept any number of controllers and each of them has access to the following functionalities:
+- It controls global parameters of the application (i.e. mute, master volume). These global parameters must be synchronized among all the clients of the application (i.e. _player_ and _controller_).
 - It can take full control over any _player_, i.e. the change the volume, trigger a sound and change the state of the synthesizer as if he was the client itself.
 
 This minimal set of functionalities should provide a good overview of several important and recurring patterns at stake in real-time distributed audio applications.
@@ -60,7 +60,7 @@ The devtool wizard will ask you for the same questions as when you just created 
 ![create-controller](../assets/tutorials/todo-noise/create-controller.png)
 
 :::tip
-Selecting a client as _default_ means the client will be accessible at the root of the domain, which is for example more simple if you need to share an url with the public. In the other case the name of the client will be used as the route to access it. 
+Selecting a client as _default_ means the client will be accessible at the root of the domain, which is for example more simple if you need to share an URL with the public. In the other case the name of the client will be used as the route to access it. 
 
 For example, in our application:
 - the _player_ client would be accessible at `http://my-domain.com`  
@@ -69,7 +69,7 @@ For example, in our application:
 
 Once done, you can exit the command-line devtool by typing `Ctrl+C` or by selecting the `→ exit` entry option.
 
-Now that our project is scaffolded, let's create the schemas describing the states for each _player_ as well as the global state.
+Now that our project is scaffold, let's create the schemas describing the states for each _player_ as well as the global state.
 
 ## Creating and using the shared `global` state
 
@@ -95,9 +95,9 @@ export default { // [!code ++]
 }; // [!code ++]
 ```
 
-The global state derived from this schema will keep track of the master volume applied to all connected _player_ clients (i.e. a gain between 0 and 1), and wether they are muted or not.
+The global state derived from this schema will keep track of the master volume applied to all connected _player_ clients (i.e. a gain between 0 and 1), and whether they are muted or not.
 
-Once done, let's instaciate the shared `global` state on the server and attach all clients (i.e. _players_ and _controllers_ to it).
+Once done, let's instantiate the shared `global` state on the server and attach all clients (i.e. _players_ and _controllers_ to it).
 
 ### Create the shared instance
 
@@ -177,7 +177,7 @@ global.onUpdate(() => renderApp(), true); // [!code ++]
 renderApp(); // [!code --]
 ```
 
-Note that the `true` passed as second parameter of the `onUpdate` method means that the given callback will be executed immediately at registration. This allows us to remove the last `renderApp()` line as we know the `renderApp` function will be excuted at startup of the application.
+Note that the `true` passed as second parameter of the `onUpdate` method means that the given callback will be executed immediately at registration. This allows us to remove the last `renderApp()` line as we know the `renderApp` function will be executed at startup of the application.
 
 If you open a player client at [`http://127.0.0.1:8000`](http://127.0.0.1:8000) you should now see the following:
 
@@ -314,7 +314,7 @@ server.stateManager.registerSchema('player', playerSchema); // [!code ++]
 The parameters of the `player` shared states will allow us to implement two different types of synthesizer with very common behavior: one that is triggered by an event (e.g. playing back a simple sound file, see `synthTrigger`) and a second one that can be started and stopped (e.g. playing a sound file in a loop, see `synthToggle`). To keep the audio code simple and focus on the architecture and the logic of the application, we will create very simple synthesizers based on oscillators and use the same `frequency` value for the two synths.
 
 :::tip
-Note the `immediate` attribute for the `synthToggle` and `synthTrigger` which is one of the different options that can be applied to tweak the shared states behavior. In this case `immediate` means that the value is propagated locally before being propagated on the network to keep the latency and responsiveness of the interface to the minimum. See the different [schema type definitions](https://soundworks.dev/soundworks/server.StateManager.html#~schema) for more informations on the different options.
+Note the `immediate` attribute for the `synthToggle` and `synthTrigger` which is one of the different options that can be applied to tweak the shared states behavior. In this case `immediate` means that the value is propagated locally before being propagated on the network to keep the latency and responsiveness of the interface to the minimum. See the different [schema type definitions](https://soundworks.dev/soundworks/server.StateManager.html#~schema) for more information on the different options.
 :::
 
 So let's first create a new `player` state on each `player` client. To that end, add the following snippet in `src/clients/player/index.js`:
@@ -436,11 +436,11 @@ After refreshing the page, your player should now look like the following:
 
 ## Creating the synthesizers
 
-Eveything is now ready to react to both the `player` and `global` states changes to play some sounds on our _player_ clients.
+Everything is now ready to react to both the `player` and `global` states changes to play some sounds on our _player_ clients.
 
 ### Resume the context with the `platform-init` plugin
 
-First thing first, let's instanciate a new `AudioContext`:
+First thing first, let's instantiate a new `AudioContext`:
 
 ```js
 // src/clients/player/index.js
@@ -542,10 +542,10 @@ global.onUpdate(updates => {  // [!code ++]
 ```
 
 :::tip
-The [`AudioParam::setTargetAtTime`](https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setTargetAtTime) method is a very usefull automation method to control audio parameters in real-time without click and pops.
+The [`AudioParam::setTargetAtTime`](https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setTargetAtTime) method is a very useful automation method to control audio parameters in real-time without click and pops.
 :::
 
-To test that eveything works as expected, let's add a simple oscillator at the beginning of our master chain:
+To test that everything works as expected, let's add a simple oscillator at the beginning of our master chain:
 
 ```js
 const mute = audioContext.createGain();
@@ -636,13 +636,13 @@ player.onUpdate(updates => { // [!code ++]
 }, true); // [!code ++]
 ```
 
-And that's all! Our players are now fully functionnal, and their master chain can be controlled remotely from the controllers.
+And that's all! Our players are now fully functional, and their master chain can be controlled remotely from the controllers.
 
 Let's now finish the project by enabling full remote control of any player client from a controller.
 
 ## Remotely control players from the controller
 
-Let's go back to our controller and to get a list of all connected players. To that end, the soundworks state manager expose a [`getCollection`](https://soundworks.dev/soundworks/client.StateManager.html#getCollection) method which allows to grab a collection of states that mirror all the states created on the network according to a given schema name. The returned collection is automatically kept synchonized with the states that are created and deleted on the network and offer several methods to work with the list.
+Let's go back to our controller and to get a list of all connected players. To that end, the soundworks state manager expose a [`getCollection`](https://soundworks.dev/soundworks/client.StateManager.html#getCollection) method which allows to grab a collection of states that mirror all the states created on the network according to a given schema name. The returned collection is automatically kept synchronized with the states that are created and deleted on the network and offer several methods to work with the list.
 
 First, we need to import new dependencies, among them the Web Component we created for the player client:
 

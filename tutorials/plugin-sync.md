@@ -11,7 +11,7 @@ After a short introduction on why this can be an issue and of the underlying con
 
 ## Introduction
 
-First of all let's start with a bit of theory to understand the general concepts and theory behing the _sync_ plugin.
+First of all let's start with a bit of theory to understand the general concepts and theory behind the _sync_ plugin.
 
 ### The "Why"
 
@@ -19,19 +19,19 @@ An important thing to understand when working with system composed of multiple d
 
 > _« An important observation is that, as a consequence of dealing with independent nodes, **each one will have its own notion of time**. In other words, we cannot assume that there is something like a global clock. This lack of a common reference of time leads to fundamental questions regarding the synchronization and coordination within a distributed system. »_ Maarten van Steen, and Andrew S. Tanenbaum. “A Brief Introduction to Distributed Systems.” Computing 98, no. 10, October 2016.
 
-Indeed, each device have different physical clocks, each of them having a different time origin and furthermore a different speed. Most of the time, i.e. when we use our computers in our daily life, this is something we don't perceive as users, but only because our computers are constently synchronizing themselves with distant reference clocks through the network, using the Network Time Protocol (NTP).
+Indeed, each device have different physical clocks, each of them having a different time origin and furthermore a different speed. Most of the time, i.e. when we use our computers in our daily life, this is something we don't perceive as users, but only because our computers are constantly synchronizing themselves with distant reference clocks through the network, using the Network Time Protocol (NTP).
 
 We could consider at this point that the problem is solved, i.e. let's use NTP! But unfortunately the problem is a bit more complicated in our context. 
 
 First, we cannot always assume that our devices will be connected to the Internet and thus able to connect to a NTP server. Indeed, in many situations, you will have to and/or want to create you own local network, and this, for several reasons: e.g. the venue where your artwork is presented has a poor network installation, you want to have some control over what happen on the network to make sure the bandwidth is properly used, etc.
 
-Second, when you want to produce sounds in a synchronized way, the clocks that are of interest for you are not the _system clocks_ but the _audio clocks_. Furthermore, we cannot assume that these two clocks, the system and the audio clocks, 1. share the same origin, e.g. the origin of `AudioContext.currentTime` is defined as when the context is created, and 2. that they even advance at the same speed, i.e. this is likely that the system and the soundcard won't share the same physical clock.
+Second, when you want to produce sounds in a synchronized way, the clocks that are of interest for you are not the _system clocks_ but the _audio clocks_. Furthermore, we cannot assume that these two clocks, the system and the audio clocks, 1. share the same origin, e.g. the origin of `AudioContext.currentTime` is defined as when the context is created, and 2. that they even advance at the same speed, i.e. this is likely that the system and the sound card won't share the same physical clock.
 
 For all these reason, it is important in our context to have some way of synchronizing _arbitrary clocks_ without relying on external resources such as a NTP server.
 
 ### The "How"
 
-On a more practical manner, we can thus consider that when trying to synchornize 2 clocks, we face a problem that be can express in the following form:
+On a more practical manner, we can thus consider that when trying to synchronize 2 clocks, we face a problem that be can express in the following form:
 
 - **T<sub>clock1</sub> = a * T<sub>clock2</sub> + b**
 
@@ -39,7 +39,7 @@ Where:
 - _a_ is the speed difference between the two clocks, i.e. their _drift_
 - _b_ is the origin offset, i.e. the delta time between their respective origin
 
-For the sake of keeping things simple, in this tutorial, we will consider the ideal case where 1. the respective speed of the clocks is excatly the same, i.e. `a = 1` and 2. the time of the propagation of a message on the network is constant (disclaimer, none of these assumptions are true in real life...). Hence, the goal will be to estimate _b_ so that we can calculate _T<sub>clock1</sub>_ from _T<sub>clock2</sub>_ and inversely.
+For the sake of keeping things simple, in this tutorial, we will consider the ideal case where 1. the respective speed of the clocks is exactly the same, i.e. `a = 1` and 2. the time of the propagation of a message on the network is constant (disclaimer, none of these assumptions are true in real life...). Hence, the goal will be to estimate _b_ so that we can calculate _T<sub>clock1</sub>_ from _T<sub>clock2</sub>_ and inversely.
 
 To achieve that, we need a clock that we consider as a reference, in our case the more simple is to use a clock provided by the server as all clients are connected to it. Then, as shown in the figure below, the clients will periodically asks the server for its current time, to calculate the offset of their respective clocks:
 
@@ -59,11 +59,11 @@ Hence if we consider that the travel time of the ping / pong messages are the sa
 - t<sub>local</sub> = (t<sub>pong</sub> - t<sub>ping</sub>) / 2
 - offset = t<sub>local</sub> - T<sub>reference</sub>
 
-From this point, it is then possible for all clients of our network, to calculate a local estimation of the server clock. With such information, it is therefore possible for our clients to schedule audio or musical events in the same infered time reference, while scheduling the actual audio synthesis in their own local audio time.
+From this point, it is then possible for all clients of our network, to calculate a local estimation of the server clock. With such information, it is therefore possible for our clients to schedule audio or musical events in the same inferred time reference, while scheduling the actual audio synthesis in their own local audio time.
 
 While this explanation is indeed simplified, we hope it gives you some intuition on the logic behind the synchronization process between different nodes on a network.
 
-Let's now experiement with the `@soundworks/plugin-sync` to see how all these ideas translate into code.
+Let's now experiment with the `@soundworks/plugin-sync` to see how all these ideas translate into code.
 
 ## Scaffolding the application
 
@@ -96,7 +96,7 @@ npm run dev
 
 ### Register the plugin
 
-Now that eveything is ready let's start with installing our plugin both on the server and on the client side.
+Now that everything is ready let's start with installing our plugin both on the server and on the client side.
 
 Open the `src/server/index.js` file and add the following code:
 
@@ -228,6 +228,6 @@ And that's all, we now have a synchronization process estimating the server refe
 
 In this tutorial, you have learned the reasons and general concepts behind clock synchronization in a distributed system, and learned how to use the _sync_ plugin provided by _soundworks_ to achieve such synchronization.
 
-In the next tutorial, we will go further and use this new tool in a more musical way by implemeting a distributed step sequencer.
+In the next tutorial, we will go further and use this new tool in a more musical way by implementing a distributed step sequencer.
 
 

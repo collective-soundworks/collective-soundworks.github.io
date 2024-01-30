@@ -31,7 +31,7 @@ The `StateManager` and the `SharedState` abstractions proposed by _soundworks_ p
 
 ### The "How"
 
-From a more technical point of view, the distributed state management system proposed by _soundworks_ is a circular dataflow pattern (loosely inspired by the [_flux_](https://facebook.github.io/flux/docs/in-depth-overview) pattern proposed by _Facebook_) adapted to the particular needs of real-time distributed applications. 
+From a more technical point of view, the distributed state management system proposed by _soundworks_ is a circular data flow pattern (loosely inspired by the [_flux_](https://facebook.github.io/flux/docs/in-depth-overview) pattern proposed by _Facebook_) adapted to the particular needs of real-time distributed applications. 
 
 To that end, the flow data is structured according to a circular path that is always synchronized with the server.
 
@@ -87,7 +87,7 @@ The syntax for declaring schemas is described [here](https://soundworks.dev/soun
 
 In this application we will declare two different schemas:
 
-- A schema called `global` which we will use to store informations accessible by all nodes of the network. This shared state will be unique across the whole application, i.e. it will be created by the server and all `player` clients will "attach" to it.
+- A schema called `global` which we will use to store information accessible by all nodes of the network. This shared state will be unique across the whole application, i.e. it will be created by the server and all `player` clients will "attach" to it.
 - A schema called `player`, which we will use to describe the state of a single client of the application. All clients with the `player` role will create their own `SharedState` instance from this scheme.
 
 Let's then create the file `src/server/schemas/global.js`, and push the following code into it:
@@ -211,7 +211,7 @@ const global = await client.stateManager.attach('global');
 console.log(global.getValues());
 ```
 
-Note that, instead of the method `stateManager.create` used on the server side, we use its conterpart `stateManager.attach` on the client side .
+Note that, instead of the method `stateManager.create` used on the server side, we use its counterpart `stateManager.attach` on the client side .
 
 If you open the URL [http://127.0.0.0:8000](http://127.0.0.0:8000) in your browser of choice and open the JavaScript console, you should see the current values of the `global` state displayed in the console just as for the server:
 
@@ -285,7 +285,7 @@ However, what we miss now is a way to change the values of the states. While we 
 
 ## Remote control and monitoring
 
-In this section we will implement a second type od client, we will call `controller`, dedicated to control and monitor the general state of the application. 
+In this section we will implement a second type of client, we will call `controller`, dedicated to control and monitor the general state of the application. 
 
 ### Scaffolding the _controller_ client
 
@@ -302,13 +302,13 @@ Just as when you created the application at the beginning of the tutorial, the s
 2. Select the `browser` target
 3. But this time select the `controller` template
 
-Additionnally, the wizard will ask you if you want to use this client as the default one (meaning it will be accessible at the root of your website), choose `no` and confirm.
+Additionally, the wizard will ask you if you want to use this client as the default one (meaning it will be accessible at the root of your website), choose `no` and confirm.
 
 ![create-controller-wizard](../assets/tutorials/state-manager/create-controller-wizard.png)
 
 In your editor you can see that new directory `src/clients/controller` has been created by the wizard. This is where we will implement the logic for our "controller" client. 
 
-Now that eveything are set up, we can go back to the implementation of our `controller` client. Let's then first restart our development server:
+Now that everything are set up, we can go back to the implementation of our `controller` client. Let's then first restart our development server:
 
 ```
 npm run dev
@@ -535,13 +535,13 @@ However, there is still an issue with our interface: if we emulate several playe
 
 ![badly-defined-players](../assets/tutorials/state-manager/badly-defined-players.png)
 
-Let's review our code a bit to takle this issue.
+Let's review our code a bit to tackle this issue.
 
 ### Using the client id to enhance the control interface
 
 To fix this problem, let's just use the id that is automatically given by _soundworks_ to each client when it connects to share it within the `player` state.
 
-So first, let's add a new parameter called `id` of type `inteeger` to our `player` schema to store this value:
+So first, let's add a new parameter called `id` of type `integer` to our `player` schema to store this value:
 
 ```js {3-6}
 // src/server/schemas/player.js
@@ -607,17 +607,17 @@ ${players.map(player => {
 })}
 ```
 
-Now, if you open a controller ([http://127.0.0.1:8000/controller](http://127.0.0.1:8000/controller)) and several players ([http://127.0.0.1:8000/?emulate=3](http://127.0.0.1:8000/?emulate=3)) side by side, you should have a  more usefull interface:
+Now, if you open a controller ([http://127.0.0.1:8000/controller](http://127.0.0.1:8000/controller)) and several players ([http://127.0.0.1:8000/?emulate=3](http://127.0.0.1:8000/?emulate=3)) side by side, you should have a  more useful interface:
 
 ![controller-player-final](../assets/tutorials/state-manager/controller-player-final.png)
 
 ## Conclusion
 
-In this tutorial, you learned how to use the _soundworks_ distributed state management system which we think is one of its most powerfull and versatile feature.
+In this tutorial, you learned how to use the _soundworks_ distributed state management system which we think is one of its most powerful and versatile feature.
 
 You have seen how to create global states that are common to all clients of the application, how to use them to describe the state of each client and how use them to implement remote control and monitoring interfaces using state collections. Along the way, you have seen how to use the _soundworks_ wizard within your application (i.e. `npx soundworks`).
 
-In the next tutorial, we will see how to extend the possibilities of _soundworks_ with plugins. For this first dive into plugins we will use the `@soundworks/plugin-platform-init` plugin that is meant to simplify some redondant and cumbersome tasks such as resuming the audio context, etc.
+In the next tutorial, we will see how to extend the possibilities of _soundworks_ with plugins. For this first dive into plugins we will use the `@soundworks/plugin-platform-init` plugin that is meant to simplify some redundant and cumbersome tasks such as resuming the audio context, etc.
 
 
 

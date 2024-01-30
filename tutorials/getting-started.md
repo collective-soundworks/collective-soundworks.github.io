@@ -71,7 +71,7 @@ Open you favorite browser (which shall probably not be Safari), go to [http://12
 
 ![fancy-black-screen](../assets/tutorials/getting-started/fancy-black-screen.png)
 
-Congrats! You just configured and ran your first soundworks application. Now, let's have a closer look to the codebase.
+Congrats! You just configured and ran your first soundworks application. Now, let's have a closer look to the code base.
 
 ## Step 2 - Exploring the file structure of the application
 
@@ -96,7 +96,7 @@ getting-started
 ```
 
 There are a few thing to note about all these files:
-- The `node_modules` and `.build` directories should **_never_** be edited manually. They are repspectively used by the Node Package Manager (i.e. `npm`) to install dependencies of your application, and by the _soundworks_ build tools to make some transformation on your source files.
+- The `node_modules` and `.build` directories should **_never_** be edited manually. They are respectively used by the Node Package Manager (i.e. `npm`) to install dependencies of your application, and by the _soundworks_ build tools to make some transformation on your source files.
 - The `src` directory, at contrary, contains all the source files of your application, this is where you will work most of the time.
 - The `public` directory is the directory that is exposed to the network by the server. This is the place where you should put your static assets such as images or sound files, so that clients connected to your application can download and use them. 
 
@@ -108,7 +108,7 @@ It is **_very_** important to understand and to keep in mind that exposing a dir
 This is an important thing to keep in mind whenever you deal with servers and networks, it's not specific to _soundworks_ applications.
 :::
 
-Now that we have overviewed the file structure of a _soundworks_ application, let's write some code!
+Now that we have an overview of the file structure of a _soundworks_ application, let's write some code!
 
 ## Step 3 - Create a global shared state
 
@@ -119,7 +119,7 @@ npm run dev
 ```
 
 :::tip
-The `dev` command (quite wisely) starts the server in development mode. This means the application will be bundled and the server restarted each time a source file is saved (which is expected to be confortable and time saving when developping an application).
+The `dev` command (quite wisely) starts the server in development mode. This means the application will be bundled and the server restarted each time a source file is saved (which is expected to be comfortable and time saving when developing an application).
 :::
 
 Open the `src/server/index.js` file and add the following lines at the end of the file:
@@ -192,7 +192,7 @@ render(html`
 If you reload the page (`Cmd + Shift + R`), you should now see the text "click here" displayed of the top left of your screen.
 
 ::: tip
-The HTML rendering is done here using the [lit](https://lit.dev/) library developped by _Google_. 
+The HTML rendering is done here using the [lit](https://lit.dev/) library developed by _Google_. 
 
 While we promote usage of this library in the default application template, _soundworks_ does not require usage of this library and could potentially be used with any other library or framework.
 :::
@@ -279,7 +279,7 @@ global.onUpdate(updates => {
 });
 ```
 
-Now, whenever the `trigger` parameter of the `global` shared state is set to `true`, we change the background color of the screen to `'white'` and put it back to `'black'` after 50ms.
+Now, whenever the `trigger` parameter of the `global` shared state is set to `true`, we change the background color of the screen to `'white'` and put it back to `'black'` after 50 ms.
 
 To see the shared state in action, and understand more precisely why we keep calling it a "_shared state_", let's emulate several parallel browser clients in our browser window. To that end, open [http://127.0.0.1:8000?emulate=8](http://127.0.0.1:8000?emulate=8) (note the `?emulate=8` at the end of the URL). 
 

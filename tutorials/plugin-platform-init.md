@@ -13,7 +13,7 @@ The tutorial requires basic knowledge of the `soundworks` wizard, so please refe
 
 ## Scaffolding the application and installing the plugin
 
-First thing first, let's generate a new empty application with the `@soundworks/create` wizard. When the wizard will ask you for the name of the default client, enter the following informations:
+First thing first, let's generate a new empty application with the `@soundworks/create` wizard. When the wizard will ask you for the name of the default client, enter the following information:
 - Name it `player` 
 - Select the `browser` target 
 - Select the `default` template
@@ -51,7 +51,7 @@ Note that the wizard asks you if you want to install plugins when creating the a
 :::
 
 ::: info
-Note that this specific functionnality of the wizard is just a mere alias of `npm install`, it is equivalent to doing:
+Note that this specific functionality of the wizard is just a mere alias of `npm install`, it is equivalent to doing:
 
 ```sh
 npm install --save @soundworks/plugin-platform-init
@@ -139,13 +139,13 @@ client.pluginManager.register('platform-init', pluginPlatformInit);
 
 As for the server-side, we passed 2 arguments to the [`client.PluginManager#register`](https://soundworks.dev/soundworks/client.PluginManager#register) method: the plugin user-defined `id` and the plugin factory function. An important point here is that the `id` we used is the same on both server-side and client-side. This allows _soundworks_ to automatically match and associate the two components.
 
-At this point, if you start the server (i.e. `npm run dev`) and go to [http://127.0.0.1:8000](http://127.0.0.1:8000), you should see the default splashscreen provided by the plugin. This screen requires a user gesture (i.e. a "click" event) and is automatically shown by the `launcher` because the _platform-init_ plugin has been registered into _soundworks_:
+At this point, if you start the server (i.e. `npm run dev`) and go to [http://127.0.0.1:8000](http://127.0.0.1:8000), you should see the default splash screen provided by the plugin. This screen requires a user gesture (i.e. a "click" event) and is automatically shown by the `launcher` because the _platform-init_ plugin has been registered into _soundworks_:
 
 ![homepage](../assets/tutorials/plugin-platform-init/homepage.png)
 
 ## Resuming an `AudioContext`
 
-So far, so good but what we did until now is mainly to add a slashscreen asking for a click, that does nothing particular... Or, as stated in the beginning of the tutorial, the whole aim of the `platform-init` plugin is to simplify the initialization of features that require a user-gesture in order to be properly launched. Let's examplify that by resuming an `AudioContext` So let's do that.
+So far, so good but what we did until now is mainly to add a slash screen asking for a click, that does nothing particular... Or, as stated in the beginning of the tutorial, the whole aim of the `platform-init` plugin is to simplify the initialization of features that require a user-gesture in order to be properly launched. Let's exemplify that by resuming an `AudioContext` So let's do that.
 
 ::: info
 An user gesture is required by the browsers to access or initialize certain features such as the Web Audio API, the microphone or the camera. This is a way to protect end-users against intrusive ads and/or for obvious privacy reasons.
@@ -211,7 +211,7 @@ Note that if you emulate multiple clients in the same window (i.e. [http://127.0
 
 ## Notes on the `@soundworks/helpers` default views
 
-The spashscreen, as well as other default inititialization views that we have not seen yet, are automatically created and handled the `launcher` object included in the default application template:
+The splash screen, as well as other default initialization views that we have not seen yet, are automatically created and handled the `launcher` object included in the default application template:
 
 ```js 
 // src/clients/player.index.js
@@ -240,7 +240,7 @@ Let's then open the `config/application.json` file which should look like this:
 
 This file has been generated for you by the _soundworks_ wizard, and the `clients` entry is automatically updated each time you create a new client using the wizard.
 
-However, the first 2 lines can be safely updated and are used by the `launcher` to create the splashscreen. Let's just change the `name` and `author` entries to see it in action:
+However, the first 2 lines can be safely updated and are used by the `launcher` to create the splash screen. Let's just change the `name` and `author` entries to see it in action:
 
 ```
 name: 'plugin-platform-init', // [!code --]
@@ -254,27 +254,16 @@ And tada! If you now go to [http://127.0.0.1:8000](http://127.0.0.1:8000) you sh
 ![homepage-custom](../assets/tutorials/plugin-platform-init/homepage-custom.png)
 
 ::: info
-By default, the init views try to adapt to the locale of the browser and falls back to english if the localized texts do not exist. However, as we only provide english and french versions of the texts at time of writing the tutorial, it's likely that you have seen the english version.
+By default, the init views try to adapt to the locale of the browser and falls back to English if the localized texts do not exist. However, as we only provide English and french versions of the texts at time of writing the tutorial, it's likely that you have seen the English version.
 
-If you are confortable with another language and are willing to contribute a localized version of [this file](https://github.com/collective-soundworks/soundworks-helpers/blob/main/browser-client/i18n/en.js), please open an issue or a pull request in the [`@soundworks/helpers`](https://github.com/collective-soundworks/soundworks-helpers/) repository!
+If you are comfortable with another language and are willing to contribute a localized version of [this file](https://github.com/collective-soundworks/soundworks-helpers/blob/main/browser-client/i18n/en.js), please open an issue or a pull request in the [`@soundworks/helpers`](https://github.com/collective-soundworks/soundworks-helpers/) repository!
 :::
 
 ## Conclusion
 
-In this tutorial, you have learned the basics of _soundworks_ plugins usage, and more precisely how to use the _platform-init_ plugin. While this plugin is not _per se_ very complex, it can save you a lot of (quite boring) development time by simplifying the initialization of certains browser features. Along the way, you also discovered some of the functionalities provided by the `launcher` component that is automatically included in all _soundworks_ applications created using the wizard.
+In this tutorial, you have learned the basics of _soundworks_ plugins usage, and more precisely how to use the _platform-init_ plugin. While this plugin is not _per se_ very complex, it can save you a lot of (quite boring) development time by simplifying the initialization of certain browser features. Along the way, you also discovered some of the functionalities provided by the `launcher` component that is automatically included in all _soundworks_ applications created using the wizard.
 
 In the next tutorial, we will wrap up what we have learned so far by creating a small working application where several clients can be used as distributed speakers by a central controller.
-
-
-
-
-
-
-
-
-
-
-
 
 
 

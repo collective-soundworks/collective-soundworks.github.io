@@ -70,7 +70,7 @@ To easily get the current directory in "Terminal" you can use the `pwd` command
 
 ## Defining the global state
 
-Now that eveything is set up, let's continue with defining the different parameters that describe our application and declare them in a global state.
+Now that everything is set up, let's continue with defining the different parameters that describe our application and declare them in a global state.
 
 Indeed, we will need several parameter to control our step sequencer:
 - A variable which will define if our step sequencer is running or not ("start / stop").
@@ -78,9 +78,9 @@ Indeed, we will need several parameter to control our step sequencer:
 - A BPM value for our step sequencer.
 - A score.
 
-To keep things simple, we won't allow to change the BPM while the step sequencer is running. Indeed, having such functionality would imply to also synchronize our BPM change amongst every clients, which would lead to over complicate this tutorial.
+To keep things simple, we won't allow to change the BPM while the step sequencer is running. Indeed, having such functionality would imply to also synchronize our BPM change among every clients, which would lead to over complicate this tutorial.
 
-Let's thus create a file named `global.js` in the `src/server/schemas` directory and translate these informations into a schema definition:
+Let's thus create a file named `global.js` in the `src/server/schemas` directory and translate these information into a schema definition:
 
 ```js
 // src/server/schemas/global.js
