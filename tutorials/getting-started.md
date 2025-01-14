@@ -26,7 +26,7 @@ npx @soundworks/create@latest
 If you run the command for the first time (which is quite likely), the `npx` command will tell you that it needs to install the `@soundworks/create` package, just press `Enter` to accept and continue.
 :::
 
-The wizard will startup and ask you for the name of the directory in which you want create the application: just write `getting-started` and press `Enter`. The wizard will automatically create the directory, copy a bunch of files and install the required dependencies as illustrated in the screenshot below.
+The wizard will startup and ask you for the name of the directory in which you want to create the application: just write `getting-started` and press `Enter`. The wizard will automatically create the directory, copy a bunch of files and install the required dependencies as illustrated in the screenshot below.
 
 ::: info
 Note that the screenshots in this guide may differ slightly from what you actually see in your console, as the CLI tool might have evolved a bit since the screenshots have been made.
@@ -38,7 +38,7 @@ Once the installation is done, the `@soundworks/create` wizard will propose you 
 
 ![init-install-deps](../assets/tutorials/getting-started/wizard-init-install-deps.png)
 
-After that step, the wizard will propose you to create a client of your application. Let's call it `player` and press `Enter` as show below.
+After that step, the wizard will propose you to create a client of your application. Let's call it `player` and press `Enter` as shown below.
 
 ![create-player-1](../assets/tutorials/getting-started/wizard-create-player-1.png)
 
@@ -238,7 +238,7 @@ global.onUpdate(updates => {
 });
 ````
 
-In this snippet, we use the `onUpdate` method of the `global` shared state that allows us to register a function to be executed when something is update on the state. For now, the callback function will just log the updates in the console, but we will come back there later on to do something more fancy.
+In this snippet, we use the `onUpdate` method of the `global` shared state that allows us to register a function to be executed when something is updated on the state. For now, the callback function will just log the updates in the console, but we will come back there later on to do something more fancy.
 
 At this point, we have all the logic we need to react to a change in the `global` shared state, but nothing to actually trigger a change. So, let's now add the following code to update the value of the `trigger` parameter when the user clicks on the screen:
 
