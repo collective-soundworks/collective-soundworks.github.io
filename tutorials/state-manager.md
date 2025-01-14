@@ -135,7 +135,7 @@ From these two definitions, we can already foresee the structure of the audio gr
 - The `OscillatorNode` will be controlled by the states created from the `player` schema, each client being able to have different oscillator _frequency_ values.
 - At contrary, the `GainNode`s (_mute_ and _volume_) will be controlled globally for all clients by the common state created from `global` schema.
 
-To keep things focused on the distributed state management system, we won't actually create the audio graph in this tutorial, but this could be an interesting exercise to do on your own!.
+To keep things focused on the distributed state management system, we won't actually create the audio graph in this tutorial, but this could be an interesting exercise to do on your own!
 
 :::info
 Note that the `src/server/schemas` directory included in the application template is empty and not mandatory, i.e. schema declarations could potentially live anywhere in your code. It is just proposed as a good practice to keep things organized.
@@ -213,7 +213,7 @@ console.log(global.getValues());
 
 Note that, instead of the method `stateManager.create` used on the server side, we use its counterpart `stateManager.attach` on the client side .
 
-If you open the URL [http://127.0.0.0:8000](http://127.0.0.0:8000) in your browser of choice and open the JavaScript console, you should see the current values of the `global` state displayed in the console just as for the server:
+If you open the URL [http://127.0.0.1:8000](http://127.0.0.0:8000) in your browser of choice and open the JavaScript console, you should see the current values of the `global` state displayed in the console just as for the server:
 
 ![global-client-log](../assets/tutorials/state-manager/global-client-log.png)
 
@@ -241,7 +241,7 @@ Here, you can see side-by-side the `stateManager.create` and `stateManager.attac
 Now that our shared states are setup, let's continue on our client-side code to display the current values of the different shared states and update the screen when their values change. 
 
 ::: info
-In these series, all HTMl rendering will be achieved by using the [Lit](https://lit.dev/) library proposed by _Google_ and the [@ircam/sc-components](https://ircam-ismm.github.io/sc-components/) library. Both libraries are installed by default when you create a new application using the soundworks wizard.
+In these series, all HTML rendering will be achieved by using the [Lit](https://lit.dev/) library proposed by _Google_ and the [@ircam/sc-components](https://ircam-ismm.github.io/sc-components/) library. Both libraries are installed by default when you create a new application using the soundworks wizard.
 :::
 
 Let's first modify the `renderApp` provided by the "player" boilerplate code to display the values of our two states:
@@ -308,7 +308,7 @@ Additionally, the wizard will ask you if you want to use this client as the defa
 
 In your editor you can see that new directory `src/clients/controller` has been created by the wizard. This is where we will implement the logic for our "controller" client. 
 
-Now that everything are set up, we can go back to the implementation of our `controller` client. Let's then first restart our development server:
+Now that everything is set up, we can go back to the implementation of our `controller` client. Let's then first restart our development server:
 
 ```
 npm run dev
@@ -447,7 +447,7 @@ Now, if you open [http://127.0.0.1:8000/controller?emulate=2](http://127.0.0.1:8
 
 ![controller-2](../assets/tutorials/state-manager/controller-2.png)
 
-Now that our "controller" is ready, let's go back to our `player` clients to implement the same logic to update of the screen when the shared states are updated. So let's re-open the `src/clients/player/index.js` file and add the following lines of code:
+Now that our "controller" is ready, let's go back to our `player` clients to implement the same logic to update the screen when the shared states are updated. So let's re-open the `src/clients/player/index.js` file and add the following lines of code:
 
 ```js
 // src/clients/player/index.js
@@ -531,7 +531,7 @@ Now if you open two browser windows and launch a controller [http://127.0.0.1:80
 
 ![controller-and-clients-2](../assets/tutorials/state-manager/controller-and-clients-2.png)
 
-However, there is still an issue with our interface: if we emulate several player clients, e.g. [http://127.0.0.1:8000/?emulate=6](http://127.0.0.1:8000/?emulate=6), we can see that we have no way to know which control correspond to which player:
+However, there is still an issue with our interface: if we emulate several player clients, e.g. [http://127.0.0.1:8000/?emulate=6](http://127.0.0.1:8000/?emulate=6), we can see that we have no way to know which control corresponds to which player:
 
 ![badly-defined-players](../assets/tutorials/state-manager/badly-defined-players.png)
 
