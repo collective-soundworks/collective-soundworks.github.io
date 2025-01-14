@@ -1,6 +1,6 @@
 # WebSockets 101
 
-WebSocket is a communication protocol that provides full-duplex communication channels over a single TCP connection. In other, WebSocket enable bi-directionnal communication between a client and a server, meaning that both the client and the server can send data to the other, which is not possible with traditionnal HTTP protocol.
+WebSocket is a communication protocol that provides full-duplex communication channels over a single TCP connection. In other words, WebSockets enable bi-directionnal communication between a client and a server, meaning that both the client and the server can send data to the other, which is not possible with traditionnal HTTP protocol.
 
 They are particularly useful for creating applications requiring instant updates, such as chats, multiplayer games, or in our case distributed music systems.
 
@@ -17,7 +17,7 @@ cd /path/to/working/directory
 npx @ircam/create@latest websockets-101
 ```
 
-In this project, we wont use the simple server which the command line tool propose (i.e. `npx serve`), but we will rather create our own server which will be able to handle websocket connections.
+In this project, we won't use the simple server which the command line tool propose (i.e. `npx serve`), but we will rather create our own server which will be able to handle websocket connections.
 
 Let's then install some dependencies to simplifies the process:
 
@@ -42,7 +42,7 @@ After the last command, you should see a new file called `package.json` that hav
 
 ## Implementing the server
 
-Now eveything is ready to implement our simple server, So. let's create a new file called `server.js` and let's start with importing all the dependencies we will need:
+Now eveything is ready to implement our simple server. So, let's create a new file called `server.js` and let's start with importing all the dependencies we will need:
 
 ```js
 // server.js
@@ -100,7 +100,7 @@ wss.on('connection', socket => { // [!code ++]
 
 For now, we just log any created socket so we can easily see in the console if eveything works as expected.
 
-Let's just restart our server so that our changes. In the `Terminal`, press `Ctrl+C` to close the server then restart it with:
+Let's just restart our server so that our changes are taken into account. In the `Terminal`, press `Ctrl+C` to close the server then restart it with:
 
 ```sh
 node serve
@@ -136,12 +136,12 @@ If you reload the page, you should see the "socket connected" message displayed 
 
 ## Propagating Events
 
-Now, that our communication channel is setup, let's modify sligthly the behavior of our demo app, so that we a user click on the bang components the sound is triggered on every connected client and not just itself.
+Now that our communication channel is setup, let's modify sligthly the behavior of our demo app, so that when a user clicks on the bang components the sound is triggered on every connected client and not just itself.
 
 Our data flow will thus be of the following form:
 
-1. When the client click on the `sc-bang` component, a message (e.g. "trigger-input") is sent to the server
-2. When the server receives a "trigger-output" message, it sends another message (e.g. "trigger-output") to every connected socket
+1. When the client clicks on the `sc-bang` component, a message (e.g. "trigger-input") is sent to the server
+2. When the server receives a "trigger-input" message, it sends another message (e.g. "trigger-output") to every connected socket
 3. When a client receives a "trigger-output" message, it plays the sound file
 
 ![data-flow](../assets/misc/websockets-101/data-flow.png)
@@ -221,7 +221,7 @@ This tutorial just showed you how simple it is to use WebSocket to create a dist
 
 Indeed, the API is rather low-level, e.g. implies to send messages as raw strings, to route them all manually. In this application, the messages where deliberately simple, but what if we want to send some variables (e.g. some frequency values) or more complex data structure?
 
-Another issue is that the application is completely stateless, meaning there is no history of what happened in the past which can be an issue in more comple situations: for example, you want your clients to playback a sound file all together, but one of them just connected after the event was send, what should we do in such case?
+Another issue is that the application is completely stateless, meaning there is no history of what happened in the past which can be an issue in more complex situations: for example, you want your clients to playback a sound file all together, but one of them just connected after the event was send, what should we do in such case?
 
 _soundworks_ is designed to hopefully help handle such more complex cases in simple manner.
 
