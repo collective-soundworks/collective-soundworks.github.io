@@ -145,7 +145,7 @@ At this point, if you start the server (i.e. `npm run dev`) and go to [http://12
 
 ## Resuming an `AudioContext`
 
-So far, so good but what we did until now is mainly to add a slash screen asking for a click, that does nothing particular... Or, as stated in the beginning of the tutorial, the whole aim of the `platform-init` plugin is to simplify the initialization of features that require a user-gesture in order to be properly launched. Let's exemplify that by resuming an `AudioContext` So let's do that.
+So far, so good but what we did until now is mainly to add a splash screen asking for a click, that does nothing particular... Or, as stated in the beginning of the tutorial, the whole aim of the `platform-init` plugin is to simplify the initialization of features that require a user-gesture in order to be properly launched. Let's exemplify that by resuming an `AudioContext` So let's do that.
 
 ::: info
 An user gesture is required by the browsers to access or initialize certain features such as the Web Audio API, the microphone or the camera. This is a way to protect end-users against intrusive ads and/or for obvious privacy reasons.
@@ -201,7 +201,7 @@ src.start(now);
 src.stop(now + 4);
 ```
 
-Reload the page (`Cmd+R`) and click, you should now ear an incredibly nice sound coming from your speakers!
+Reload the page (`Cmd+R`) and click, you should now hear an incredibly nice sound coming from your speakers!
 
 :::tip
 Note that if you emulate multiple clients in the same window (i.e. [http://127.0.0.1:8000/?emulate=4](http://127.0.0.1:8000/?emulate=4)), you should see how the soundworks launcher also helps you to start all the clients at once without requiring you to click on each of them:
@@ -211,16 +211,16 @@ Note that if you emulate multiple clients in the same window (i.e. [http://127.0
 
 ## Notes on the `@soundworks/helpers` default views
 
-The splash screen, as well as other default initialization views that we have not seen yet, are automatically created and handled the `launcher` object included in the default application template:
+The splash screen, as well as other default initialization views that we have not seen yet, are automatically created and handled by the `launcher` object included in the default application template:
 
 ```js 
 // src/clients/player.index.js
 launcher.register(client, { initScreensContainer: $container });
 ```
 
-The launcher offer numerous way to adapt these views to your specific needs: e.g. to change the default styles, to adapt the language, or even to use completely different user defined views. 
+The launcher offers numerous way to adapt these views to your specific needs: e.g. to change the default styles, to adapt the language, or even to use completely different user defined views. 
 
-While won't cover these advanced use-case here, as they will be the subject of a dedicated tutorial, let's just see here the minimal changes we can make to customize the init view.
+While we won't cover these advanced use-case here, as they will be the subject of a dedicated tutorial, let's just see here the minimal changes we can make to customize the init view.
 
 Let's then open the `config/application.json` file which should look like this:
 
