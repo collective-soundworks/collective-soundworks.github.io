@@ -17,7 +17,7 @@ cd /path/to/working/directory
 npx @ircam/create@latest websockets-101
 ```
 
-In this project, we wont use the simple server which the command line tool propose (i.e. `npx serve`), but we will rather create our own server which will be able to handle handle websocket connections.
+In this project, we wont use the simple server which the command line tool propose (i.e. `npx serve`), but we will rather create our own server which will be able to handle websocket connections.
 
 Let's then install some dependencies to simplifies the process:
 
