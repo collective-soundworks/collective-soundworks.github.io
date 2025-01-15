@@ -16,7 +16,7 @@ Along the way, we will discover how to create our own reusable [Web Components](
 
 ## User Story
 
-The application purposely privileges the point of view of a user in a working situation (e.g. developer, designer, composer or performer) rather than the point of view of the end user (e.g. participant, audience). Indeed, while the later is most of the time very specific to the application or artwork, the former generally requires some properties and features that are relatively common. To illustrate this two roles, the application is composed of two different types of clients: the _player_ and the _controller_.
+The application purposely privileges the point of view of a user in a working situation (e.g. developer, designer, composer or performer) rather than the point of view of the end user (e.g. participant, audience). Indeed, while the later is most of the time very specific to the application or artwork, the former generally requires some properties and features that are relatively common. To illustrate these two roles, the application is composed of two different types of clients: the _player_ and the _controller_.
 
 The _player_ can be envisioned as the client dedicated to the end users. The application can accept any number of players and each player has access to the following functionalities:
 - It can trigger a sound.
@@ -25,7 +25,7 @@ The _player_ can be envisioned as the client dedicated to the end users. The app
 
 The _controller_ is dedicated to the user in working situation, be it during the creation or the performance of the artwork. The application can accept any number of controllers and each of them has access to the following functionalities:
 - It controls global parameters of the application (i.e. mute, master volume). These global parameters must be synchronized among all the clients of the application (i.e. _player_ and _controller_).
-- It can take full control over any _player_, i.e. the change the volume, trigger a sound and change the state of the synthesizer as if he was the client itself.
+- It can take full control over any _player_, i.e. the change the volume, trigger a sound and change the state of the synthesizer as if it was the client itself.
 
 This minimal set of functionalities should provide a good overview of several important and recurring patterns at stake in real-time distributed audio applications.
 
@@ -69,7 +69,7 @@ For example, in our application:
 
 Once done, you can exit the command-line devtool by typing `Ctrl+C` or by selecting the `→ exit` entry option.
 
-Now that our project is scaffold, let's create the schemas describing the states for each _player_ as well as the global state.
+Now that our project is scaffolded, let's create the schemas describing the states for each _player_ as well as the global state.
 
 ## Creating and using the shared `global` state
 
@@ -205,7 +205,7 @@ global.onUpdate(() => renderApp(), true); // [!code ++]
 renderApp(); // [!code --]
 ```
 
-To create the interface, we will again some use components provided by the [@ircam/sc-compoents](https://ircam-ismm.github.io/sc-components/) library, which is installed by default by the _soundworks_ wizard. Let's then first import the components we need (i.e. text, slider and toggle) into our controller's `index.js` file:
+To create the interface, we will again use some components provided by the [@ircam/sc-compoents](https://ircam-ismm.github.io/sc-components/) library, which is installed by default by the _soundworks_ wizard. Let's then first import the components we need (i.e. text, slider and toggle) into our controller's `index.js` file:
 
 ```js 
 // src/client/controller/index.js
@@ -217,7 +217,7 @@ import '@ircam/sc-components/sc-slider.js'; // [!code ++]
 import '@ircam/sc-components/sc-toggle.js'; // [!code ++]
 ```
 
-Finally, let's modify the `renderApp` function to control our global shared state, add the control component to the layout to control the `global` shared state:
+Finally, let's modify the `renderApp` function by adding the control component to the layout to control the `global` shared state:
 
 ```js
 // src/client/controller/index.js
@@ -269,7 +269,7 @@ Indeed, once you start working with multiple physical devices (smartphones, tabl
 
 ### Registering the schema and creating the states
 
-To that end, we will to define and register another schema, from which we will create a new state state for each connected _players_. Let's then create a new `src/server/schemas/player.js` file with the following snippet:
+To that end, we will define and register another schema, from which we will create a new state state for each connected _players_. Let's then create a new `src/server/schemas/player.js` file with the following snippet:
 
 ```js
 // src/server/schemas/player.js
@@ -329,7 +329,7 @@ const player = await client.stateManager.create('player', { // [!code ++]
 }); // [!code ++]
 ```
 
-The second argument passed the `stateManager.create` method allows to define initialization values of the state. Here, we simply pass the `client.id` generated by `soundworks` to the state so we can easily track which `player` shared state is bound to which client.
+The second argument passed to the `stateManager.create` method allows to define initialization values of the state. Here, we simply pass the `client.id` generated by `soundworks` to the state so we can easily track which `player` shared state is bound to which client.
 
 ### Creating the graphical user interface
 
@@ -457,7 +457,7 @@ async function main($container) {
 You can see that the `AudioContext` is created outside our `main` function, this allows to share the same context when we emulate several clients on the same page.
 ::: 
 
-As seen in in the [platform-init plugin](./plugin-platform-init.html) tutorial, the audio context needs a user gesture to be resume and be allowed to produce sound by the browser, so let's just import and configure it properly (just remind that we have already asked the wizard to install it at the beginning of the tutorial).
+As seen in the [platform-init plugin](./plugin-platform-init.html) tutorial, the audio context needs a user gesture to be resumed and be allowed to produce sound by the browser, so let's just import and configure it properly (remember that we have already asked the wizard to install it at the beginning of the tutorial).
 
 Let's start with the server side:
 
@@ -543,7 +543,7 @@ global.onUpdate(updates => {  // [!code ++]
 ```
 
 :::tip
-The [`AudioParam::setTargetAtTime`](https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setTargetAtTime) method is a very useful automation method to control audio parameters in real-time without click and pops.
+The [`AudioParam:setTargetAtTime`](https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setTargetAtTime) method is a very useful automation method to control audio parameters in real-time without click and pops.
 :::
 
 To test that everything works as expected, let's add a simple oscillator at the beginning of our master chain:
@@ -558,7 +558,7 @@ osc.connect(mute); // [!code ++]
 osc.start(); // [!code ++]
 ```
 
-If you open one or several _players_, [http://127.0.0.1:8000](http://127.0.0.1:8000), and a _controller_, [http://127.0.0.1:8000/controller](http://127.0.0.1:8000/controler), side by side, you should ear that you can control the general volume of the _player_ client as well as mute them all at once!
+If you open one or several _players_, [http://127.0.0.1:8000](http://127.0.0.1:8000), and a _controller_, [http://127.0.0.1:8000/controller](http://127.0.0.1:8000/controler), side by side, you should hear that you can control the general volume of the _player_ client as well as mute them all at once!
 
 Don't forget to remove this test snippet before going to the next step...
 
@@ -570,7 +570,7 @@ osc.start(); // [!code --]
 
 ### Implement the two synths
 
-Now that all the structure is ready is ready, we can finally implement our two synths. 
+Now that all the structure is ready, we can finally implement our two synths. 
 
 To keep things simple and focus on the general architecture we will only create simple synths based on oscillators, however the exact same principles could be used for more complex synthesizers with numerous parameters.
 
@@ -667,7 +667,7 @@ const global = await client.stateManager.attach('global');
 const players = await client.stateManager.getCollection('player'); // [!code ++]
 ```
 
-Finally we just need to add a to our interface a mirror interface for each of our connected _players_, and to refresh the interface if any player connects, disconnects or is updated:
+Finally we just need to add to our interface a mirror interface for each of our connected _players_, and to refresh the interface if any player connects, disconnects or is updated:
 
 ```js {2-30,35-43}
 // src/clients/controller/index.js
@@ -705,12 +705,12 @@ If you now open a controller ([http://127.0.0.1:8000/controller](http://127.0.0.
 
 ## Conclusion
 
-In this tutorial, you have learned an important pattern that soundworks aims to simplify: the ability of simply create remote control and monitoring of clients through shared states. Along the way, you have learned how to create a reusable Web Component using the [Lit](https://lit.dev/) library.
+In this tutorial, you have learned an important pattern that soundworks aims to simplify: the ability to simply create remote control and monitoring of clients through shared states. Along the way, you have learned how to create a reusable Web Component using the [Lit](https://lit.dev/) library.
 
-While the application purposely simplified important aspects of the application to focus on these key points, a number of features could improved with simple modification to the structure. For example:
+While the tutorial purposely simplified important aspects of the application to focus on these key points, a number of features could be improved with simple modifications to the structure. For example:
 
 - Improve the start / stop synth so that no click occurs when it is stopped.
-- Create more complex synthesizers with more more and more complex audio chains.
+- Create more complex synthesizers with more parameters and more complex audio chains.
 - Improve the master chain, e.g. use decibels for the master volume to make the slider behavior more natural, add low pass and high pass filters.
 - Refactor the synthesizers with classes to create reusable audio components.
 - etc.
