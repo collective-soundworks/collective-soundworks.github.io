@@ -4,7 +4,7 @@
 
 [`soundworks`](https://soundworks.dev) plugin for locating people in an area. 
 
-When registered the soundworks launcher will automatically provide an interface so that people can give give their approximate position on a map or area.
+When registered the soundworks launcher will automatically provide an interface so that people can give their approximate position on a map or area.
 
 ## Table of Contents
 
@@ -104,7 +104,7 @@ The constructor should never be called manually. The plugin will be
 instantiated by soundworks when registered in the `pluginManager`
 
 Available options:
-- `randomize` {Boolean} - Autoamtically give a random position to the client.
+- `randomize` {Boolean} - Automatically give a random position to the client.
   Useful for testing
 
 **Example**  
