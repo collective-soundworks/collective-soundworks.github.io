@@ -218,9 +218,9 @@ The splash screen, as well as other default initialization views that we have no
 launcher.register(client, { initScreensContainer: $container });
 ```
 
-The launcher offers numerous way to adapt these views to your specific needs: e.g. to change the default styles, to adapt the language, or even to use completely different user defined views. 
+The launcher offers numerous ways to adapt these views to your specific needs: e.g. to change the default styles, to adapt the language, or even to use completely different user defined views. 
 
-While we won't cover these advanced use-case here, as they will be the subject of a dedicated tutorial, let's just see here the minimal changes we can make to customize the init view.
+While we won't cover these advanced use-cases here, as they will be the subject of a dedicated tutorial, let's just see here the minimal changes we can make to customize the init view.
 
 Let's then open the `config/application.json` file which should look like this:
 
@@ -254,9 +254,9 @@ And tada! If you now go to [http://127.0.0.1:8000](http://127.0.0.1:8000) you sh
 ![homepage-custom](../assets/tutorials/plugin-platform-init/homepage-custom.png)
 
 ::: info
-By default, the init views try to adapt to the locale of the browser and falls back to English if the localized texts do not exist. However, as we only provide English and french versions of the texts at time of writing the tutorial, it's likely that you have seen the English version.
+By default, the init views try to adapt to the locale of the browser and falls back to English if the localized texts do not exist. However, as we only provide English and French versions of the texts at time of writing the tutorial, it's likely that you have seen the English version.
 
-If you are comfortable with another language and are willing to contribute a localized version of [this file](https://github.com/collective-soundworks/soundworks-helpers/blob/main/browser-client/i18n/en.js), please open an issue or a pull request in the [`@soundworks/helpers`](https://github.com/collective-soundworks/soundworks-helpers/) repository!
+If you are comfortable with another language and are willing to contribute to a localized version of [this file](https://github.com/collective-soundworks/soundworks-helpers/blob/main/browser-client/i18n/en.js), please open an issue or a pull request in the [`@soundworks/helpers`](https://github.com/collective-soundworks/soundworks-helpers/) repository!
 :::
 
 ## Conclusion
