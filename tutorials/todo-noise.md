@@ -354,19 +354,19 @@ class SwPlayer extends LitElement {
     this.player = null;
     // stores the `unsubscribe` callback returned by the `state.onUpdate` methos
     // https://soundworks.dev/soundworks/client.SharedState.html#onUpdate
-    this._unobserve = null;
+    this.unobserve = null;
   }
 
   connectedCallback() {
     super.connectedCallback();
     // update the component when a state change occurs
-    this._unobserve = this.player.onUpdate(() => this.requestUpdate());
+    this.unobserve = this.player.onUpdate(() => this.requestUpdate());
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     // stop reacting to state change when the element is removed from the DOM
-    this._unobserve();
+    this.unobserve();
   }
 
   render() {
