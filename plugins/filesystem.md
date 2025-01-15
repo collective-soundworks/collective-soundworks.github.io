@@ -116,8 +116,9 @@ Client-side representation of the soundworks' filesystem plugin.
     * [.getTree()](#PluginFilesystemClient+getTree) ⇒ <code>Object</code>
     * [.onUpdate(callback, [executeListener])](#PluginFilesystemClient+onUpdate) ⇒ <code>function</code>
     * [.getTreeAsUrlMap(filterExt, [keepExtension])](#PluginFilesystemClient+getTreeAsUrlMap) ⇒ <code>Object</code>
-    * [.findInTree(path)](#PluginFilesystemClient+findInTree) ⇒ <code>Object</code>
-    * [.writeFile(pathname, data)](#PluginFilesystemClient+writeFile) ⇒ <code>Promise</code>
+    * [.findInTree(pathOrUrl)](#PluginFilesystemClient+findInTree) ⇒ <code>Object</code>
+    * [.readFile(pathname)](#PluginFilesystemClient+readFile) ⇒ <code>Promise.&lt;Blob&gt;</code>
+    * [.writeFile(pathname, [data])](#PluginFilesystemClient+writeFile) ⇒ <code>Promise</code>
     * [.mkdir(pathname)](#PluginFilesystemClient+mkdir) ⇒ <code>Promise</code>
     * [.rename(oldPath, newPath)](#PluginFilesystemClient+rename) ⇒ <code>Promise</code>
     * [.rm(pathname)](#PluginFilesystemClient+rm) ⇒ <code>Promise</code>
@@ -158,26 +159,37 @@ Return the tree as flat map of `<filename, url>`
 
 <a name="PluginFilesystemClient+findInTree"></a>
 
-#### pluginFilesystemClient.findInTree(path) ⇒ <code>Object</code>
+#### pluginFilesystemClient.findInTree(pathOrUrl) ⇒ <code>Object</code>
 Return a node from the tree matching the given path.
 
 **Kind**: instance method of [<code>PluginFilesystemClient</code>](#PluginFilesystemClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>String</code> | Path of the node to be retrieved. |
+| pathOrUrl | <code>String</code> | Path of the node to be retrieved, relative to  `options.dirname` or URL of the node. |
 
-<a name="PluginFilesystemClient+writeFile"></a>
+<a name="PluginFilesystemClient+readFile"></a>
 
-#### pluginFilesystemClient.writeFile(pathname, data) ⇒ <code>Promise</code>
-Write a file
+#### pluginFilesystemClient.readFile(pathname) ⇒ <code>Promise.&lt;Blob&gt;</code>
+Read a file
 
 **Kind**: instance method of [<code>PluginFilesystemClient</code>](#PluginFilesystemClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| pathname | <code>String</code> | Pathname. |
-| data | <code>String</code> \| <code>Blob</code> | Content of the file. |
+| pathname | <code>String</code> | Pathname, relative to `options.dirname`. |
+
+<a name="PluginFilesystemClient+writeFile"></a>
+
+#### pluginFilesystemClient.writeFile(pathname, [data]) ⇒ <code>Promise</code>
+Write a file
+
+**Kind**: instance method of [<code>PluginFilesystemClient</code>](#PluginFilesystemClient)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| pathname | <code>String</code> |  | Pathname, relative to `options.dirname`. |
+| [data] | <code>String</code> \| <code>File</code> \| <code>Blob</code> | <code>&#x27;&#x27;</code> | Content of the file. |
 
 <a name="PluginFilesystemClient+mkdir"></a>
 
@@ -188,7 +200,7 @@ Create a directory
 
 | Param | Type | Description |
 | --- | --- | --- |
-| pathname | <code>String</code> | Path of the directory. |
+| pathname | <code>String</code> | Path of the directory, relative to `options.dirname`. |
 
 <a name="PluginFilesystemClient+rename"></a>
 
@@ -199,8 +211,8 @@ Rename a file or directory
 
 | Param | Type | Description |
 | --- | --- | --- |
-| oldPath | <code>String</code> | Current pathname. |
-| newPath | <code>String</code> | New pathname. |
+| oldPath | <code>String</code> | Current pathname, relative to `options.dirname`. |
+| newPath | <code>String</code> | New pathname, relative to `options.dirname`. |
 
 <a name="PluginFilesystemClient+rm"></a>
 
@@ -211,7 +223,7 @@ Delete a file or directory
 
 | Param | Type | Description |
 | --- | --- | --- |
-| pathname | <code>String</code> | Pathname. |
+| pathname | <code>String</code> | Pathname, relative to `options.dirname`. |
 
 <a name="PluginFilesystemServer"></a>
 
@@ -225,7 +237,8 @@ Server-side representation of the soundworks' filesystem plugin.
     * [.switch(options)](#PluginFilesystemServer+switch)
     * [.getTree()](#PluginFilesystemServer+getTree) ⇒ <code>Object</code>
     * [.onUpdate(callback, [executeListener])](#PluginFilesystemServer+onUpdate) ⇒ <code>function</code>
-    * [.findInTree(path)](#PluginFilesystemServer+findInTree) ⇒ <code>Object</code>
+    * [.findInTree(pathname)](#PluginFilesystemServer+findInTree) ⇒ <code>Object</code>
+    * [.readFile(pathname)](#PluginFilesystemServer+readFile) ⇒ <code>Promise.&lt;Blob&gt;</code>
     * [.writeFile(pathname, data)](#PluginFilesystemServer+writeFile) ⇒ <code>Promise</code>
     * [.mkdir(pathname)](#PluginFilesystemServer+mkdir) ⇒ <code>Promise</code>
     * [.rename(oldPath, newPath)](#PluginFilesystemServer+rename) ⇒ <code>Promise</code>
@@ -291,14 +304,25 @@ and the list of `events` describing the modifications made on the tree.
 
 <a name="PluginFilesystemServer+findInTree"></a>
 
-#### pluginFilesystemServer.findInTree(path) ⇒ <code>Object</code>
+#### pluginFilesystemServer.findInTree(pathname) ⇒ <code>Object</code>
 Return a node from the tree matching the given path.
 
 **Kind**: instance method of [<code>PluginFilesystemServer</code>](#PluginFilesystemServer)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>String</code> | path of the node to be retrieved |
+| pathname | <code>String</code> | Pathname, relative to `options.dirname`. |
+
+<a name="PluginFilesystemServer+readFile"></a>
+
+#### pluginFilesystemServer.readFile(pathname) ⇒ <code>Promise.&lt;Blob&gt;</code>
+Read a file.
+
+**Kind**: instance method of [<code>PluginFilesystemServer</code>](#PluginFilesystemServer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pathname | <code>String</code> | Pathname, relative to `options.dirname`. |
 
 <a name="PluginFilesystemServer+writeFile"></a>
 
@@ -309,7 +333,7 @@ Write a file
 
 | Param | Type | Description |
 | --- | --- | --- |
-| pathname | <code>String</code> | Pathname. |
+| pathname | <code>String</code> | Pathname, relative to `options.dirname`. |
 | data | <code>String</code> \| <code>Blob</code> | Content of the file. |
 
 <a name="PluginFilesystemServer+mkdir"></a>
@@ -321,7 +345,7 @@ Create a directory
 
 | Param | Type | Description |
 | --- | --- | --- |
-| pathname | <code>String</code> | Path of the directory. |
+| pathname | <code>String</code> | Path of the directory, relative to `options.dirname`. |
 
 <a name="PluginFilesystemServer+rename"></a>
 
@@ -332,8 +356,8 @@ Rename a file or directory
 
 | Param | Type | Description |
 | --- | --- | --- |
-| oldPath | <code>String</code> | Current pathname. |
-| newPath | <code>String</code> | New pathname. |
+| oldPath | <code>String</code> | Current pathname, relative to `options.dirname`. |
+| newPath | <code>String</code> | New pathname, relative to `options.dirname`. |
 
 <a name="PluginFilesystemServer+rm"></a>
 
@@ -344,7 +368,7 @@ Delete a file or directory
 
 | Param | Type | Description |
 | --- | --- | --- |
-| pathname | <code>String</code> | Pathname. |
+| pathname | <code>String</code> | Pathname, relative to `options.dirname`. |
 
 
 <!-- apistop -->
