@@ -375,7 +375,7 @@ function renderApp() {
           <div style="padding-bottom: 4px;"> // [!code ++]
             <sc-text readonly value="mute"></sc-text> // [!code ++]
             <sc-toggle // [!code ++]
-              ?active=${global.get('mute')}" // [!code ++]
+              ?active=${global.get('mute')} // [!code ++]
             ></sc-toggle> // [!code ++]
           </div> // [!code ++]
         </div> // [!code ++]
