@@ -19,7 +19,7 @@ An important thing to understand when working with system composed of multiple d
 
 > _« An important observation is that, as a consequence of dealing with independent nodes, **each one will have its own notion of time**. In other words, we cannot assume that there is something like a global clock. This lack of a common reference of time leads to fundamental questions regarding the synchronization and coordination within a distributed system. »_ Maarten van Steen, and Andrew S. Tanenbaum. “A Brief Introduction to Distributed Systems.” Computing 98, no. 10, October 2016.
 
-Indeed, each device have different physical clocks, each of them having a different time origin and furthermore a different speed. Most of the time, i.e. when we use our computers in our daily life, this is something we don't perceive as users, but only because our computers are constantly synchronizing themselves with distant reference clocks through the network, using the Network Time Protocol (NTP).
+Indeed, each device has different physical clocks, each of them having a different time origin and furthermore a different speed. Most of the time, i.e. when we use our computers in our daily life, this is something we don't perceive as users, but only because our computers are constantly synchronizing themselves with distant reference clocks through the network, using the Network Time Protocol (NTP).
 
 We could consider at this point that the problem is solved, i.e. let's use NTP! But unfortunately the problem is a bit more complicated in our context. 
 
@@ -31,7 +31,7 @@ For all these reason, it is important in our context to have some way of synchro
 
 ### The "How"
 
-On a more practical manner, we can thus consider that when trying to synchronize 2 clocks, we face a problem that be can express in the following form:
+On a more practical manner, we can thus consider that when trying to synchronize 2 clocks, we face a problem that can be expressed in the following form:
 
 - **T<sub>clock1</sub> = a * T<sub>clock2</sub> + b**
 
@@ -41,14 +41,14 @@ Where:
 
 For the sake of keeping things simple, in this tutorial, we will consider the ideal case where 1. the respective speed of the clocks is exactly the same, i.e. `a = 1` and 2. the time of the propagation of a message on the network is constant (disclaimer, none of these assumptions are true in real life...). Hence, the goal will be to estimate _b_ so that we can calculate _T<sub>clock1</sub>_ from _T<sub>clock2</sub>_ and inversely.
 
-To achieve that, we need a clock that we consider as a reference, in our case the more simple is to use a clock provided by the server as all clients are connected to it. Then, as shown in the figure below, the clients will periodically asks the server for its current time, to calculate the offset of their respective clocks:
+To achieve that, we need a clock that we consider as a reference, in our case the most simple is to use a clock provided by the server as all clients are connected to it. Then, as shown in the figure below, the clients will periodically ask the server for its current time, to calculate the offset of their respective clocks:
 
 ![sync-process](../assets/tutorials/plugin-sync/sync-process.png)
 
 
 More precisely at each iteration:
-1. The client takes it current time (_t<sub>ping</sub>_), 
-2. The client sends a message to server which takes its time tag at message reception (_T<sub>ping</sub>_)
+1. The client takes its current time (_t<sub>ping</sub>_), 
+2. The client sends a message to the server which takes its time tag at message reception (_T<sub>ping</sub>_)
 3. Then, the server sends back a time tagged message to the client (_T<sub>pong</sub>_)
 4. The client takes its local time (_t<sub>pong</sub>_) at reception of the message from the server.
 
@@ -59,7 +59,7 @@ Hence if we consider that the travel time of the ping / pong messages are the sa
 - t<sub>local</sub> = (t<sub>pong</sub> - t<sub>ping</sub>) / 2
 - offset = t<sub>local</sub> - T<sub>reference</sub>
 
-From this point, it is then possible for all clients of our network, to calculate a local estimation of the server clock. With such information, it is therefore possible for our clients to schedule audio or musical events in the same inferred time reference, while scheduling the actual audio synthesis in their own local audio time.
+From this point, it is then possible for all clients of our network to calculate a local estimation of the server clock. With such information, it is therefore possible for our clients to schedule audio or musical events in the same inferred time reference, while scheduling the actual audio synthesis in their own local audio time.
 
 While this explanation is indeed simplified, we hope it gives you some intuition on the logic behind the synchronization process between different nodes on a network.
 
@@ -134,7 +134,7 @@ client.pluginManager.register('sync', pluginSync); // [!code ++]
 If you launch a client, i.e. [http://127.0.0.1:8000](http://127.0.0.1:8000), you should now see at startup of the client, a screen telling you that the synchronizing process is on going:
 
 ![sync-screen](../assets/tutorials/plugin-sync/sync-screen.png)
-Finally, let's add a bit code code to display the current reference time as estimated by the client, alongside it's local time:
+Finally, let's add a bit of code to display the current reference time as estimated by the client, alongside its local time:
 
 ```js
 // src/clients/player/index.js
@@ -160,17 +160,17 @@ function renderApp() {
 renderApp();
 ```
 
-If you now open, several browser windows side by side, you should see how the synchronization process allows to estimate a common reference clock (i.e. `syncTime`) alongside a local clock (i.e. `localTime`):
+If you now open several browser windows side by side, you should see how the synchronization process allows to estimate a common reference clock (i.e. `syncTime`) alongside a local clock (i.e. `localTime`):
 
 ![sync-clients](../assets/tutorials/plugin-sync/sync-clients.png)
 
 ## Synchronizing the audio context
 
-So far so good, but what we are interested in is to synchronize the clock of an `AudioContext` to synchronize our synthesis, but so far we don't have created yet any `AudioContext`, so what can we do with this synchronization process? Indeed, by default, the _sync_ plugin just uses a default clock which is either [`Date.now`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/now) or [`performance.now`](https://developer.mozilla.org/docs/Web/API/Performance/now) depending on the context.
+So far so good, but what we are interested in is to synchronize the clock of an `AudioContext` to synchronize our synthesis, but so far we haven't created yet any `AudioContext`, so what can we do with this synchronization process? Indeed, by default, the _sync_ plugin just uses a default clock which is either [`Date.now`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/now) or [`performance.now`](https://developer.mozilla.org/docs/Web/API/Performance/now) depending on the context.
 
-However, it is indeed possible to do it with another clock, such as [`AudioContext.currentTime`](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime) against (?) which the synchronization process should be done. So, let's thus use implement that.
+However, it is indeed possible to do it with another clock, such as [`AudioContext.currentTime`](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime) along which the synchronization process should be done. So, let's thus use implement that.
 
-First, let's then install the `@soundworks/plugin-platform-init` plugin which will allow us to resume the `AudioContext` and thus have a working clock. Indeed, if we used an `AudioContext` in default `suspended` state, the current time would always be zero, then the synchronization would fail...
+First, let's install the `@soundworks/plugin-platform-init` plugin which will allow us to resume the `AudioContext` and thus have a working clock. Indeed, if we used an `AudioContext` in default `suspended` state, the current time would always be zero, then the synchronization would fail...
 
 Let's add the following code in the `src/server/index.js` file:
 
