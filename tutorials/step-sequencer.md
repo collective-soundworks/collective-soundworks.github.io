@@ -72,7 +72,7 @@ To easily get the current directory in "Terminal" you can use the `pwd` command
 
 Now that everything is set up, let's continue with defining the different parameters that describe our application and declare them in a global state.
 
-Indeed, we will need several parameter to control our step sequencer:
+Indeed, we will need several parameters to control our step sequencer:
 - A variable which will define if our step sequencer is running or not ("start / stop").
 - A timestamp (in synchronized time) associated to the start / stop event to make sure all our clients start at the same exact time.
 - A BPM value for our step sequencer.
@@ -157,7 +157,7 @@ const global = await server.stateManager.create('global', { // [!code ++]
 
 ## Registering the plugins
 
-Now that our state is set up, let's install and configure our different plugins
+Now that our state is set up, let's install and configure our different plugins.
 
 First let's register the plugins in the server side:
 
@@ -223,7 +223,7 @@ client.pluginManager.register('sync', pluginSync, { // [!code ++]
 
 ## Implementing the controller
 
-Now that everything is set up, it is now time to implement of our controller logic. 
+Now that everything is set up, it is time to implement our controller logic. 
 
 Let's first import a few components, attach to our `global` state and sketch our graphical user interface:
 
@@ -354,7 +354,7 @@ Note how we disabled the BPM number box when the step sequencer is running:
 to make clear to the user that the BPM can be changed only when it is stopped.
 :::
 
-If you now open two controllers side by side, e.g. [http://127.0.0.1:8000?emulate=2](http://127.0.0.1:8000?emulate=2), you should see that the two controllers stay perfectly in synchronized:
+If you now open two controllers side by side, e.g. [http://127.0.0.1:8000?emulate=2](http://127.0.0.1:8000?emulate=2), you should see that the two controllers stay perfectly synchronized:
 
 ![controller-synced](../assets/tutorials/step-sequencer/controller-synced.png)
 
