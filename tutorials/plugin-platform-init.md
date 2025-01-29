@@ -73,7 +73,7 @@ If you open the `package.json` file, you should see the `@soundworks/plugin-plat
 ```
 
 ::: info
-Note that the actual list of dependencies and version numbers might change compared the ones listed above, as new versions of the core library and of the plugins will be released in the future.
+Note that the actual list of dependencies and version numbers might change compared with the ones listed above, as new versions of the core library and of the plugins will be released in the future.
 :::
 
 This file allows you and the _node package manager_ (i.e. `npm`) to keep track of the dependencies of your project. Then, if you need to re-install the application dependencies (i.e. `npm install`) the plugin will be re-installed as well.
