@@ -60,10 +60,12 @@ export default {
       {
         text: 'Ecosystem',
         items: [
-          { text: '@ircam/sc-components', link: 'https://ircam-ismm.github.io/sc-components' },
-          // { text: '@ircam/sc-scheduling', link: 'https://ircam-ismm.github.io/sc-scheduling' },
+          { text: 'node-web-audio-api', link: 'https://github.com/ircam-ismm/node-web-audio-api/' },
+          { text: '@ircam/sc-components', link: 'https://github.com/ircam-ismm/sc-components/' },
           { text: '@ircam/sc-utils', link: 'https://github.com/ircam-ismm/sc-utils' },
+          { text: '@ircam/sc-scheduling', link: 'https://github.com/ircam-ismm/sc-scheduling/' },
           { text: '@ircam/devicemotion', link: 'https://github.com/ircam-ismm/devicemotion' },
+          { text: 'dotpi tools', link: 'https://ircam-ismm.github.io/dotpi/' },
         ],
       },
       {
