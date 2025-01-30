@@ -4,10 +4,10 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "doc:readme": "node ./.bin/download-readme.js",
-    "preversion": "npm run doc:readme && git commit -am 'doc: update plugins' --allow-empty && npm run build",
-    "dev": "npm run doc:readme && vitepress dev",
-    "build": "npm run doc:readme && vitepress build",
+    "doc:readmes": "node ./.bin/fetch-readmes.js",
+    "preversion": "npm run doc:readmes && git commit -am 'doc: update plugins' --allow-empty && npm run build",
+    "dev": "npm run doc:readmes && vitepress dev",
+    "build": "npm run doc:readmes && vitepress build",
     "preview": "vitepress preview"
   },
   "author": "",

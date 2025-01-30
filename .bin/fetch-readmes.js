@@ -6,16 +6,13 @@ import fetch from 'node-fetch';
 const repos = {
   'Helpers': { name: 'soundworks-helpers', branch: 'main' },
   'Platform Init': { name: 'soundworks-plugin-platform-init', branch: 'main' },
-  'Sync': { name: 'soundworks-plugin-sync', branch: 'v4' },
-  'Filesystem': { name: 'soundworks-plugin-filesystem', branch: 'v4' },
-  'Scripting': { name: 'soundworks-plugin-scripting', branch: 'v4' },
-  'Checkin': { name: 'soundworks-plugin-checkin', branch: 'v2' },
-  'Position': { name: 'soundworks-plugin-position', branch: 'v4' },
-  'Logger': { name: 'soundworks-plugin-logger', branch: 'v4' },
+  'Sync': { name: 'soundworks-plugin-sync', branch: 'main' },
+  'Filesystem': { name: 'soundworks-plugin-filesystem', branch: 'main' },
+  'Scripting': { name: 'soundworks-plugin-scripting', branch: 'main' },
+  'Checkin': { name: 'soundworks-plugin-checkin', branch: 'main' },
+  'Position': { name: 'soundworks-plugin-position', branch: 'main' },
+  'Logger': { name: 'soundworks-plugin-logger', branch: 'main' },
 };
-
-// // github urls are in the form
-// // https://raw.githubusercontent.com/collective-soundworks/soundworks-plugin-position/v4/README.md
 
 const sortedKeys = Object.keys(repos);
 const menuEntries = [];
@@ -51,7 +48,6 @@ for (let name of sortedKeys) {
     const filename = repo.name.replace('soundworks-', '');
     const pathname = path.join('tools', `${filename}.md`);
 
-    console.log('mkdir', path.dirname(pathname))
     fs.mkdirSync(path.dirname(pathname), { recursive: true });
     fs.writeFileSync(pathname, readme);
 

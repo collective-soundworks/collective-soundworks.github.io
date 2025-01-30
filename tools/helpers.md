@@ -33,6 +33,9 @@ npm install --save @soundworks/helpers
     *   [register][12]
 *   [nodeLoadConfig][13]
     *   [Parameters][14]
+*   [configureHttpRouter][15]
+    *   [Parameters][16]
+    *   [Examples][17]
 
 ## browserLauncher
 
@@ -41,7 +44,7 @@ Launcher for clients running in browser runtime.
 ### Examples
 
 ```javascript
-import launcher from '@soundworks/helpers/launcher.js'
+import launcher from '@soundworks/helpers/browser.js'
 ```
 
 ### language
@@ -51,22 +54,22 @@ Set the language to be used in the initialization screens.
 By default, picks language from the browser and fallback to english if not
 supported. For now, available languages are 'fr' and 'en'.
 
-Type: [string][15]
+Type: [string][18]
 
 ### execute
 
-Allow to launch multiple clients at once in the same brwoser window by
+Allow to launch multiple clients at once in the same browser window by
 adding `?emulate=numberOfClient` at the end of the url
 e.g. `http://127.0.0.1:8000?emulate=10` to run 10 clients in parallel
 
 #### Parameters
 
-*   `bootstrap` **[Function][16]** Bootstrap function to execute.
-*   `options` **[object][17]** Configuration object. (optional, default `{}`)
+*   `bootstrap` **[Function][19]** Bootstrap function to execute.
+*   `options` **[object][20]** Configuration object. (optional, default `{}`)
 
-    *   `options.numClients` **[number][18]** Number of parallel clients. (optional, default `1`)
-    *   `options.width` **[string][15]** If numClient > 1, width of the container. (optional, default `'20%'`)
-    *   `options.height` **[string][15]** If numClient > 1, height of the container. (optional, default `'500px'`)
+    *   `options.numClients` **[number][21]** Number of parallel clients. (optional, default `1`)
+    *   `options.width` **[string][18]** If numClient > 1, width of the container. (optional, default `'20%'`)
+    *   `options.height` **[string][18]** If numClient > 1, height of the container. (optional, default `'500px'`)
 
 #### Examples
 
@@ -85,9 +88,9 @@ The launcher will do a bunch of stuff for you:
 *   Display default initialization screens. If you want to change the provided
     initialization screens, you can import all the helpers directly in your
     application by doing `npx soundworks --eject-helpers`. You can also
-    customise some global syles variables (background-color, text color etc.)
+    customize some global styles variables (background-color, text color etc.)
     in `src/clients/components/css/app.scss`.
-    You can also change the default language of the intialization screen by
+    You can also change the default language of the initialization screen by
     setting, the `launcher.language` property, e.g.:
     `launcher.language = 'fr'`
 *   By default the launcher automatically reloads the client when the socket
@@ -99,14 +102,14 @@ The launcher will do a bunch of stuff for you:
 
 #### Parameters
 
-*   `client` **[Function][16]** The soundworks client.
-*   `options` **[object][17]** Configuration object. (optional, default `{}`)
+*   `client` **Client** The soundworks client.
+*   `options` **[object][20]** Configuration object. (optional, default `{}`)
 
-    *   `options.initScreensContainer` **[HTMLElement][19]** The HTML container for
+    *   `options.initScreensContainer` **[HTMLElement][22]** The HTML container for
         the initialization screens. (optional, default `null`)
-    *   `options.reloadOnVisibilityChange` **[boolean][20]** Define if the client
+    *   `options.reloadOnVisibilityChange` **[boolean][23]** Define if the client
         should reload on visibility change. (optional, default `true`)
-    *   `options.reloadOnSocketError` **[boolean][20]** Define if the client
+    *   `options.reloadOnSocketError` **[boolean][23]** Define if the client
         should reload on socket error and disconnection. (optional, default `true`)
 
 #### Examples
@@ -122,8 +125,8 @@ language as well as define a new one.
 
 #### Parameters
 
-*   `lang` **[string][15]** Key correspondig to the language (e.g. 'fr', 'en', 'es')
-*   `data` **[object][17]** Key/value pairs defining the text strings to be used.
+*   `lang` **[string][18]** Key corresponding to the language (e.g. 'fr', 'en', 'es')
+*   `data` **[object][20]** Key/value pairs defining the text strings to be used.
 
 ### getLanguageData
 
@@ -131,7 +134,7 @@ Retrieve the data for a given language.
 
 #### Parameters
 
-*   `lang` **[string][15]** Key correspondig to the language (e.g. 'fr', 'en', 'es') (optional, default `null`)
+*   `lang` **[string][18]** Key corresponding to the language (e.g. 'fr', 'en', 'es') (optional, default `null`)
 
 ## browserLoadConfig
 
@@ -146,7 +149,7 @@ Launcher for clients running in Node.js runtime.
 ### Examples
 
 ```javascript
-import launcher from '@soundworks/helpers/launcher.js'
+import launcher from '@soundworks/helpers/node.js'
 ```
 
 ### execute
@@ -157,12 +160,12 @@ e.g. `EMULATE=10 npm run watch-process thing` to run 10 clients side-by-side
 
 #### Parameters
 
-*   `bootstrap` **[function][16]** Bootstrap function to execute.
-*   `options` **[object][17]** Configuration object. (optional, default `{}`)
+*   `bootstrap` **[function][19]** Bootstrap function to execute.
+*   `options` **[object][20]** Configuration object. (optional, default `{}`)
 
-    *   `options.numClients` **[number][18]** Number of parallel clients. (optional, default `1`)
-    *   `options.moduleURL` **[string][15]** Module url of the calling file, used as
-        current worink directory of the subprocesses. (optional, default `null`)
+    *   `options.numClients` **[number][21]** Number of parallel clients. (optional, default `1`)
+    *   `options.moduleURL` **[string][18]** Module url of the calling file, used as
+        current working directory of the subprocesses. (optional, default `null`)
 
 #### Examples
 
@@ -182,15 +185,15 @@ uncaught error occurs in the program.
 
 #### Parameters
 
-*   `client` **[Function][16]** The soundworks client.
-*   `options` **[object][17]** Configuration object. (optional, default `{}`)
+*   `client` **Client** The soundworks client.
+*   `options` **[object][20]** Configuration object. (optional, default `{}`)
 
-    *   `options.restartOnError` **[boolean][20]** Define if the client should
+    *   `options.restartOnError` **[boolean][23]** Define if the client should
         restart on uncaught errors. (optional, default `false`)
-    *   `options.restartOnSocketClose` **[boolean][20]** Define if the client should
+    *   `options.restartOnSocketClose` **[boolean][23]** Define if the client should
         restart on socket disconnection. (optional, default `true`)
-    *   `options.exitParentProcess` **[boolean][20]** If true, exit the parent "launcher"
-        process on both error and socket close, may be usefull in production settings
+    *   `options.exitParentProcess` **[boolean][23]** If true, exit the parent "launcher"
+        process on both error and socket close, may be useful in production settings
         if the application is e.g. managed by a daemon at the system level. (optional, default `false`)
 
 #### Examples
@@ -205,12 +208,44 @@ Load configuration from files located in `/config` directory
 
 ### Parameters
 
-*   `ENV` **[String][15]** Name of the environment corresponding to the
+*   `ENV` **[String][18]** Name of the environment corresponding to the
     `config/env-${name}.{yaml|json}` file. (optional, default `'default'`)
-*   `callerURL` **[String][15]** Module url of the calling file, used to
+*   `callerURL` **[String][18]** Module url of the calling file, used to
     automatically retrieve the `role` of node clients. (optional, default `null`)
 
 Returns **(ClientConfig | ServerConfig)**&#x20;
+
+## configureHttpRouter
+
+According to the clients definitions provided in `config.app.clients`, the
+server will automatically create a dedicated route for each role declaring a
+browser runtime.
+For example, given the config object of the example above that defines two
+different client roles for browser (i.e. `player` and `controller`):
+
+    config.app.clients = {
+      player: { runtime: 'browser', default: true },
+      controller: { runtime: 'browser' },
+    }
+
+The server will listen to the following URLs:
+
+*   `http://127.0.0.1:8000/` for the `player` role, which is defined as the default client.
+*   `http://127.0.0.1:8000/controller` for the `controller` role.
+
+### Parameters
+
+*   `server` **Server** The soundworks server instance
+
+### Examples
+
+```javascript
+import { Server } from '@soundworks/core/server.js';
+import { configureHttpRouter, loadConfig } from '@soundworks/helpers/server.js';
+
+const server = new Server(loadConfig());
+configureHttpRouter(server);
+```
 
 [1]: #browserlauncher
 
@@ -240,17 +275,23 @@ Returns **(ClientConfig | ServerConfig)**&#x20;
 
 [14]: #parameters-6
 
-[15]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[15]: #configurehttprouter
 
-[16]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[16]: #parameters-7
 
-[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[17]: #examples-6
 
-[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[19]: https://developer.mozilla.org/docs/Web/HTML/Element
+[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
-[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[22]: https://developer.mozilla.org/docs/Web/HTML/Element
+
+[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
 <!-- apistop -->
 

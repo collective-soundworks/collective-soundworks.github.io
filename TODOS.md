@@ -2,6 +2,9 @@
 
 - screenshot size: 735px
 
+- [ ] multiple versions, cf. https://vvp.imb11.dev/guide/troubleshooting
+- [ ] replace screenshots with ```ansi
+
 ## Structure
 
 ### homepage
