@@ -21,7 +21,7 @@ export default {
 
     nav: [
       { text: 'Guide', link: '/tutorials/getting-started' },
-      { text: 'soundworks API', link: 'https://soundworks.dev/api' },
+      { text: 'soundworks API', link: 'https://soundworks.dev/soundworks' },
       { text: 'Credits', link: '/credits' },
     ],
 
