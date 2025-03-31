@@ -16,12 +16,12 @@ export default {
     logo: '/logo-nav.png',
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/collective-soundworks/' },
+      { icon: 'github', link: 'https://github.com/collective-soundworks/collective-soundworks.github.io' },
     ],
 
     nav: [
       { text: 'Guide', link: '/tutorials/getting-started' },
-      { text: 'soundworks API', link: 'https://soundworks.dev/soundworks' },
+      { text: 'soundworks API', link: 'https://soundworks.dev/api' },
       { text: 'Credits', link: '/credits' },
     ],
 
