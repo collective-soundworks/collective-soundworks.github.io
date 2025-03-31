@@ -359,7 +359,7 @@ In this snippet, we use the `onUpdate` method of the `global` shared state that 
 
 At this point, we have all the logic we need to react to a change in the `global` shared state, but nothing to actually trigger a change. So, let's now add the following code to update the value of the `trigger` parameter when the user clicks on the screen:
 
-```js {10-12}
+```js
 await client.start();
 
 const global = await client.stateManager.attach('global');
@@ -380,19 +380,20 @@ Reload the page again (`Cmd + Shift + R`), and click anywhere on the screen, you
 
 Finally, let's just review the code inside the `onUpdate` callback function to change the color of the screen, instead of just logging into the console.
 
-```js {6-12}
+```js
 await client.start();
 
 const global = await client.stateManager.attach('global');
 
 global.onUpdate(updates => {
-  if (updates.trigger === true) {
-    $container.style.backgroundColor = 'white';
-
-    setTimeout(() => {
-      $container.style.backgroundColor = 'black';
-    }, 50);
-  }
+  console.log(updates);
+  if (updates.trigger === true) {  // [!code ++]
+    $container.style.backgroundColor = 'white';  // [!code ++]
+  // [!code ++]
+    setTimeout(() => {  // [!code ++]
+      $container.style.backgroundColor = 'black';  // [!code ++]
+    }, 50);  // [!code ++]
+  }  // [!code ++]
 });
 ```
 
