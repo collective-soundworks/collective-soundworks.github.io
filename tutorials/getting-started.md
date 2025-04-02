@@ -43,7 +43,7 @@ Note that the screenshots in this guide may differ slightly from what you actual
 [0m
 [0;32m✔[0m [0;1mWhere should we create your project? (leave blank to use current directory)[0m [0;90m…[0m getting-started[0m
 [0m
-- Scaffolding application in "/Users/matuszewski/tmp/getting-started" directory[0m
+- Scaffolding application in "~/tmp/getting-started" directory[0m
 - Installing dependencies[0m
 ```
 

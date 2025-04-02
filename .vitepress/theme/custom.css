@@ -10,7 +10,7 @@
   --sw-yellow-dark: #d9ca5c;
 
   --sw-brown: #282922;
-  --sw-brown-light: #6e705d;
+  --sw-brown-light: #7f816d;
   /* very crude, to review */
 
   --vp-c-brand-1: var(--sw-brown-light);
@@ -21,6 +21,8 @@
   --vp-code-block-bg: var(--sw-brown);
   /* non-active nav link */
   --vp-c-text-light-2: rgba(120, 120, 120, 0.95);
+  /* inline code color */
+  --vp-code-color: #8d8f7a;
 }
 
 body {
