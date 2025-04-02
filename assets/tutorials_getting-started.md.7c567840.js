@@ -9,7 +9,7 @@ import{_ as a,o as n,c as e,O as l}from"./chunks/framework.b2c12034.js";const o=
 <span class="line"></span>
 <span class="line"><span style="color:#86B42B;">✔</span><span style="color:#F8F8F2;"> </span><span style="color:#F8F8F2;font-weight:bold;">Where should we create your project? (leave blank to use current directory)</span><span style="color:#F8F8F2;"> </span><span style="color:#666666;">…</span><span style="color:#F8F8F2;"> getting-started</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F8F8F2;">- Scaffolding application in &quot;/Users/matuszewski/tmp/getting-started&quot; directory</span></span>
+<span class="line"><span style="color:#F8F8F2;">- Scaffolding application in &quot;~/tmp/getting-started&quot; directory</span></span>
 <span class="line"><span style="color:#F8F8F2;">- Installing dependencies</span></span></code></pre></div><div class="tip custom-block"><p class="custom-block-title">TIP</p><p>If you run the command for the first time, you will prompt to install the <code>@soundworks/create</code> package from the internet, just press <code>Enter</code> to confirm</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki monokai"><code><span class="line"><span style="color:#86B42B;">~/tmp</span><span style="color:#F8F8F2;"> $ npx @soundworks/create@latest</span></span>
 <span class="line"><span style="color:#F8F8F2;">Need to install the following packages:</span></span>
 <span class="line"><span style="color:#F8F8F2;">@soundworks/create@5.0.3</span></span>
