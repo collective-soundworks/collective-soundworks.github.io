@@ -278,7 +278,7 @@ env.connect(audioContext.destination); // [!code ++]
 env.gain.setValueAtTime(0, now); // [!code ++]
 env.gain.linearRampToValueAtTime(0.5, now + 0.01); // [!code ++]
 env.gain.exponentialRampToValueAtTime(0.0001, now + 4); // [!code ++]
-// [!code ++]
+
 const src = audioContext.createOscillator(); // [!code ++]
 src.connect(env); // [!code ++] // [!code ++]
 // randomly pick a frequency on an harmonic spectrum (150, 300, 450, etc...)  // [!code ++]
