@@ -6,8 +6,8 @@ The tutorial requires basic knowledge of the `soundworks` wizard, so please refe
 
 ### Relevant documentation
 
-- [client.PluginManager](https://soundworks.dev/soundworks/ClientPluginManager)
-- [server.PluginManager](https://soundworks.dev/soundworks/ServerPluginManager)
+- [ClientPluginManager](https://soundworks.dev/soundworks/ClientPluginManager)
+- [ServerPluginManager](https://soundworks.dev/soundworks/ServerPluginManager)
 - [@soundworks/plugin-platform-init](/plugins/platform-init.html)
 
 ## Scaffolding the application and installing the plugin
