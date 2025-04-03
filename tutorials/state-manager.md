@@ -4,6 +4,8 @@ In this tutorial, we will dig into the distributed state management system propo
 
 Along the way, we will discover a related library, [@ircam/sc-components](https://ircam-ismm.github.io/sc-components/), to simply create usable (and hopefully elegant) graphical user interfaces.
 
+> The final source code of this tutorial can be found [here](https://github.com/collective-soundworks/tutorials/tree/main/state-manager)
+
 ### Relevant documentation
 
 - [ClientStateManager](https://soundworks.dev/soundworks/ClientStateManager.html)

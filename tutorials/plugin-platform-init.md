@@ -4,6 +4,8 @@ In this first tutorial on _soundworks_ plugins, we will learn why and how to use
 
 The tutorial requires basic knowledge of the `soundworks` wizard, so please refer to the [getting started tutorial](/tutorials/getting-started) if you didn't check it yet.
 
+> The final source code of this tutorial can be found [here](https://github.com/collective-soundworks/tutorials/tree/main/plugin-platform-init)
+
 ### Relevant documentation
 
 - [ClientPluginManager](https://soundworks.dev/soundworks/ClientPluginManager)

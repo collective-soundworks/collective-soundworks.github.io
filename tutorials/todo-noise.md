@@ -1,6 +1,6 @@
 # The _Todo Noise_ Application
 
-In this tutorial we will build a simple application, which illustrates the most common type of distributed interaction you will need to implement in your own applications: i.e. remote monitoring and control.
+In this tutorial we will build a simple distributed audio application, which illustrates the most common type of distributed interaction you will need to implement in your own applications: i.e. remote monitoring and control.
 
 The tutorial requires basic knowledge of the _soundworks_ [state manager](./state-manager.html) and of the [platform-init plugin](./plugin-platform-init.html), so please refer to the relevant tutorials if you didn't check them yet.
 
@@ -8,9 +8,9 @@ Along the way, we will discover how to create our own reusable [Web Components](
 
 ### Relevant documentation
 
-- [client.SharedStateCollection](https://soundworks.dev/soundworks/client.SharedStateCollection.html)
-- [server.SharedStateCollection](https://soundworks.dev/soundworks/server.SharedStateCollection.html)
-- [@soundworks/plugin-platform-init](https://github.com/collective-soundworks/soundworks-plugin-platform-init)
+- [SharedState](https://soundworks.dev/soundworks/SharedState.html)
+- [SharedStateCollection](https://soundworks.dev/soundworks/SharedStateCollection.html)
+- [@soundworks/plugin-platform-init](/plugins/platform-init.html)
 - [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
 - [Lit](https://lit.dev/)
 
@@ -38,11 +38,11 @@ cd /path/to/working/directory
 npx @soundworks/create@latest todo-noise
 ```
 
-You can already select the [`@soundworks/plugin-platform-init`](https://github.com/collective-soundworks/soundworks-plugin-platform-init) plugin to have it installed. 
+You can already select the [`@soundworks/plugin-platform-init`](https://github.com/collective-soundworks/soundworks-plugin-platform-init) plugin to have it installed.
 
 ![install-plugin-platform-init](../assets/tutorials/todo-noise/install-plugin-platform-init.png)
 
-Then, when the wizard asks you for the name of the default client, just call it `player`, and select the `browser` target as well as the `default` template: 
+Then, when the wizard asks you for the name of the default client, just call it `player`, and select the `browser` target as well as the `default` template:
 
 ![create-player](../assets/tutorials/todo-noise/create-player.png)
 
@@ -60,10 +60,10 @@ The devtool wizard will ask you for the same questions as when you just created 
 ![create-controller](../assets/tutorials/todo-noise/create-controller.png)
 
 :::tip
-Selecting a client as _default_ means the client will be accessible at the root of the domain, which is for example more simple if you need to share an URL with the public. In the other case the name of the client will be used as the route to access it. 
+Selecting a client as _default_ means the client will be accessible at the root of the domain, which is for example more simple if you need to share an URL with the public. In the other case the name of the client will be used as the route to access it.
 
 For example, in our application:
-- the _player_ client would be accessible at `http://my-domain.com`  
+- the _player_ client would be accessible at `http://my-domain.com`
 - the _controller_ client would be accessible at `http://my-domain.com/controller`
 :::
 
@@ -73,7 +73,7 @@ Now that our project is scaffolded, let's create the schemas describing the stat
 
 ## Creating and using the shared `global` state
 
-To implement the user story defined above, the application will rely on 2 types of schema: 
+To implement the user story defined above, the application will rely on 2 types of schema:
 - A schema defining global variables of the application (e.g. mute, master volume) which will be unique and shared by every connected clients.
 - A schema that is tied to each connected player, i.e. each _player_ client will create its own shared state instance from this schema.
 
@@ -134,7 +134,7 @@ Let's now start our server using `npm run dev`, you should see the current defau
 
 ### Attaching the `global` state to the _player_ clients
 
-Let's now attach all our _player_ clients to the global shared state. For now, we will only display its current values on the screen and will keep the actual audio code for later. 
+Let's now attach all our _player_ clients to the global shared state. For now, we will only display its current values on the screen and will keep the actual audio code for later.
 
 To attach to the `global` state, write the following snippet in the `src/clients/player/index.js` file:
 
@@ -185,10 +185,10 @@ If you open a player client at [`http://127.0.0.1:8000`](http://127.0.0.1:8000) 
 
 ### Controlling the `global` shared states from the _controller_ clients
 
-Now that everything is setup on the _player_ side, let's implement our _controller_ client to be able to control the `global` state on all connected clients. 
+Now that everything is setup on the _player_ side, let's implement our _controller_ client to be able to control the `global` state on all connected clients.
 
-Similarly to what we did with the _player_ clients, let's open the `src/clients/controller/index.js` and: 
-- attach to the `global` state the same way we did for _players_, 
+Similarly to what we did with the _player_ clients, let's open the `src/clients/controller/index.js` and:
+- attach to the `global` state the same way we did for _players_,
 - make sure the application screen is refreshed when the `global` state is updated
 
 ```js
@@ -207,7 +207,7 @@ renderApp(); // [!code --]
 
 To create the interface, we will again use some components provided by the [@ircam/sc-compoents](https://ircam-ismm.github.io/sc-components/) library, which is installed by default by the _soundworks_ wizard. Let's then first import the components we need (i.e. text, slider and toggle) into our controller's `index.js` file:
 
-```js 
+```js
 // src/client/controller/index.js
 import { html, render } from 'lit';
 import '../components/sw-audit.js';
@@ -265,7 +265,7 @@ Now, if you open a `player` ([`http://127.0.0.1:8000`](http://127.0.0.1:8000)) a
 
 As defined in our user story, we want the _player_ clients to have some controls on their own interface. But importantly we also want to be able to take control over any _player_ remotely to simplify and fasten our development and creation process.
 
-Indeed, once you start working with multiple physical devices (smartphones, tablets, etc.), being able to control each of them from a single central point can save you a lot of testing time. Time that will be better used to make your artwork and experience more interesting. 
+Indeed, once you start working with multiple physical devices (smartphones, tablets, etc.), being able to control each of them from a single central point can save you a lot of testing time. Time that will be better used to make your artwork and experience more interesting.
 
 ### Registering the schema and creating the states
 
@@ -333,7 +333,7 @@ The second argument passed to the `stateManager.create` method allows to define 
 
 ### Creating the graphical user interface
 
-Then, let's create the `player` shared state control interface. To that end, we will create a simple Web Component using the `Lit` library. Creating this abstraction will allow us to simply reuse the component later in the _controller_ interface to remotely take control over any connected _player_. 
+Then, let's create the `player` shared state control interface. To that end, we will create a simple Web Component using the `Lit` library. Creating this abstraction will allow us to simply reuse the component later in the _controller_ interface to remotely take control over any connected _player_.
 
 Let's then create a new file called `sw-player.js` in the `src/clients/components` directory, with the following code:
 
@@ -424,12 +424,12 @@ function renderApp() {
       <p>Master: ${global.get('master')}</p>
       <p>Mute: ${global.get('mute')}</p>
 
-      <sw-credits .infos="${client.config.app}"></sw-credits> 
+      <sw-credits .infos="${client.config.app}"></sw-credits>
     </div>
   `, $container);
 }
 ```
- 
+
 After refreshing the page, your player should now look like the following:
 
 ![player-full](../assets/tutorials/todo-noise/player-full.png)
@@ -455,13 +455,13 @@ async function main($container) {
 
 ::: tip
 You can see that the `AudioContext` is created outside our `main` function, this allows to share the same context when we emulate several clients on the same page.
-::: 
+:::
 
 As seen in the [platform-init plugin](./plugin-platform-init.html) tutorial, the audio context needs a user gesture to be resumed and be allowed to produce sound by the browser, so let's just import and configure it properly (remember that we have already asked the wizard to install it at the beginning of the tutorial).
 
 Let's start with the server side:
 
-```js 
+```js
 // src/server/index.js
 import pluginPlatformInit from '@soundworks/plugin-platform-init/server.js'; // [!code ++]
 
@@ -512,12 +512,12 @@ mute.gain.value = global.get('mute') ? 0 : 1; // [!code ++]
 mute.connect(master); // [!code ++]
 
 // update the view each time the global state is changed
-global.onUpdate(() => renderApp(), true); 
+global.onUpdate(() => renderApp(), true);
 ```
 
 Now, let's modify our `global.onUpdate` callback, so that all updates are applied on the audio nodes:
 
-```js 
+```js
 global.onUpdate(() => renderApp(), true); // [!code --]
 global.onUpdate(updates => {  // [!code ++]
   for (let key in updates) {  // [!code ++]
@@ -570,7 +570,7 @@ osc.start(); // [!code --]
 
 ### Implement the two synths
 
-Now that all the structure is ready, we can finally implement our two synths. 
+Now that all the structure is ready, we can finally implement our two synths.
 
 To keep things simple and focus on the general architecture we will only create simple synths based on oscillators, however the exact same principles could be used for more complex synthesizers with numerous parameters.
 
