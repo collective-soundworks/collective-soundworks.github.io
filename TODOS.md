@@ -1,6 +1,7 @@
 ## Upgrade v5
 
-
+Stopped at:
+http://localhost:5173/tutorials/todo-noise.html#create-the-master-chain
 
 ## Notes
 
@@ -38,7 +39,6 @@
 
 - [ ] using contexts
   + what are contexts?
-  + :::note - relation to Experience
   + using context
     * simple router
     * switch between music parts
