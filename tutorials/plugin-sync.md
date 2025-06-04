@@ -249,9 +249,85 @@ client.pluginManager.register('sync', pluginSync, { // [!code ++]
 
 And that's all, we now have a synchronization process estimating the server reference time using the clock provided by our audio context.
 
-<!-- ## Trigger a synchronized audio event
+## Trigger a synchronized audio event
 
-@todo -->
+Now that everything is set up, let's just trigger some synchronized sound between all our `player` clients. The general idea will be that anytime a user clicks on a button, a sound will be played back in a synchronized manner on all clients 0.5 second after the click.
+
+To that end, let's first create a shared state to propagate the synchronized time at which the sound should be played:
+
+```js
+// src/server.js
+server.stateManager.defineClass('global', { // [!code ++]
+  triggerTime: { // [!code ++]
+    type: 'float', // [!code ++]
+    event: true, // [!code ++]
+  }, // [!code ++]
+}); // [!code ++]
+
+await server.start();
+// create a global state on which all clients will attach // [!code ++]
+const _ = await server.stateManager.create('global'); // [!code ++]
+```
+
+Then in our `player` clients, let's import a button component and attach to this state:
+
+```js
+// src/clients/player.js
+import { html, render } from 'lit';
+import '@ircam/sc-components/sc-button.js'; // [!code ++]
+
+// ...
+
+await client.start();
+const global = await client.stateManager.attach('global'); // [!code ++]
+```
+
+Now let's update our interface so that when the user click the button, the `global` shared state is updated with the current sync time to which we add our offset of 0.5 seconds:
+
+```js
+// src/clients/player.js
+function renderApp() {
+  render(html`
+    <div class="simple-layout">
+      <p>localTime: ${sync.getLocalTime()}</p>
+      <p>syncTime: ${sync.getSyncTime()}</p>
+
+      <sc-button // [!code ++]
+        @input=${e => global.set('triggerTime', sync.getSyncTime() + 0.5)} // [!code ++]
+      >trigger sound</sc-button> // [!code ++]
+
+      <sw-credits .infos="${client.config.app}"></sw-credits>
+    </div>
+  `, $container);
+  // ...
+}
+```
+
+Finally, let's react to the update of the global state to trigger a sound at the given synchronized time.
+The main idea will be to convert the synchronized time into the local audio time to trigger the sound at the right moment.
+
+```js
+// src/clients/player.js
+const global = await client.stateManager.attach('global');
+const sync = await client.pluginManager.get('sync');
+
+global.onUpdate(updates => { // [!code ++]
+  if ('triggerTime' in updates) { // [!code ++]
+    // trigger time is in the synchronized timeline // [!code ++]
+    const syncTime = updates.triggerTime; // [!code ++]
+    // convert this time to the local audio timeline // [!code ++]
+    const audioTime = sync.getLocalTime(syncTime); // [!code ++]
+    // let's now trigger a random frequency at this exact moment // [!code ++]
+    const frequency = 200 + Math.random() * 400; // [!code ++]
+    const osc = new OscillatorNode(audioContext, { frequency }); // [!code ++]
+    osc.connect(audioContext.destination); // [!code ++]
+    osc.start(audioTime); // [!code ++]
+    osc.stop(audioTime + 0.1); // [!code ++]
+  } // [!code ++]
+}); // [!code ++]
+```
+
+And tada! If you now open several clients at once, e.g. [http://127.0.0.1:8000/?emulate=3](http://127.0.0.1:8000/?emulate=3), and click on a button, you should ear the different oscillators playing all together (with a nice dirty click at the end due to the lack of envelop :)).
 
 ## Conclusion
 
