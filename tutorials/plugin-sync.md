@@ -331,7 +331,7 @@ And tada! If you now open several clients at once, e.g. [http://127.0.0.1:8000/?
 
 ## Conclusion
 
-In this tutorial, you have learned the reasons and general concepts behind clock synchronization in a distributed system, and learned how to use the _sync_ plugin provided by _soundworks_ to achieve such synchronization.
+In this tutorial, you have learned the reasons and general concepts behind clock synchronization in a distributed system, and learned how to use the _sync_ plugin provided by _soundworks_ to synchronize audio events.
 
 In the next tutorial, we will go further and use this new tool in a more musical way by implementing a distributed step sequencer.
 

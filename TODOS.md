@@ -1,7 +1,7 @@
 ## Upgrade v5
 
-Stopped at:
-http://localhost:5173/tutorials/todo-noise.html#create-the-master-chain
+- [ ] working with node clients
+- [ ] step sequencer
 
 ## Notes
 
