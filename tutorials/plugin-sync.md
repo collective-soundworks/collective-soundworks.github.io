@@ -1,13 +1,13 @@
 # Using Plugins 2 - The _sync_ Plugin
 
-In this tutorial, we will dig into a very important problem when dealing with distributed system for music creation, i.e. how to synchronize our musical / audio events across the different devices that compose our system.
+In this tutorial, we will dig into a very important problem when dealing with distributed system, and moreover in musical context, i.e. how to synchronize events across the different devices that compose our system.
 
-After a short introduction on why this can be an issue and of the underlying concepts involved in synchronizing devices on a network, we will learn how to use the [`@soundworks/plugin-sync`](https://github.com/collective-soundworks/soundworks-plugin-sync) plugin which is proposed to solve this particular issue.
+After a short introduction about why this can be an issue and of the underlying concepts involved in synchronizing devices on a network, we will learn how to use the [`@soundworks/plugin-sync`](https://github.com/collective-soundworks/soundworks-plugin-sync) plugin which is proposed to solve this particular class of problems.
 
 ### Related documentation
 
 - [@soundworks/plugin-sync](https://github.com/collective-soundworks/soundworks-plugin-sync)
-- [Synchronisation for Distributed Audio Rendering over Heterogeneous Devices, in HTML5](https://hal.science/hal-01304889v1) 
+- [Synchronisation for Distributed Audio Rendering over Heterogeneous Devices, in HTML5](https://hal.science/hal-01304889v1)
 
 ## Introduction
 
@@ -19,13 +19,13 @@ An important thing to understand when working with system composed of multiple d
 
 > _« An important observation is that, as a consequence of dealing with independent nodes, **each one will have its own notion of time**. In other words, we cannot assume that there is something like a global clock. This lack of a common reference of time leads to fundamental questions regarding the synchronization and coordination within a distributed system. »_ Maarten van Steen, and Andrew S. Tanenbaum. “A Brief Introduction to Distributed Systems.” Computing 98, no. 10, October 2016.
 
-Indeed, each device has different physical clocks, each of them having a different time origin and furthermore a different speed. Most of the time, i.e. when we use our computers in our daily life, this is something we don't perceive as users, but only because our computers are constantly synchronizing themselves with distant reference clocks through the network, using the Network Time Protocol (NTP).
+Indeed, each device has different physical clocks, each of them having a different time origin and furthermore a different speed. Most of the time, i.e. when we use our computers in our daily life, this is something we don't perceive as users, but only because our computers are constantly synchronizing themselves with reference clocks through the network thanks to the [Network Time Protocol (NTP)](https://en.wikipedia.org/wiki/Network_Time_Protocol).
 
-We could consider at this point that the problem is solved, i.e. let's use NTP! But unfortunately the problem is a bit more complicated in our context. 
+We could consider at this point that the problem is solved, i.e. let's use NTP! But unfortunately the problem is a bit more complicated in our context.
 
 First, we cannot always assume that our devices will be connected to the Internet and thus able to connect to a NTP server. Indeed, in many situations, you will have to and/or want to create you own local network, and this, for several reasons: e.g. the venue where your artwork is presented has a poor network installation, you want to have some control over what happen on the network to make sure the bandwidth is properly used, etc.
 
-Second, when you want to produce sounds in a synchronized way, the clocks that are of interest for you are not the _system clocks_ but the _audio clocks_. Furthermore, we cannot assume that these two clocks, the system and the audio clocks, 1. share the same origin, e.g. the origin of `AudioContext.currentTime` is defined as when the context is created, and 2. that they even advance at the same speed, i.e. this is likely that the system and the sound card won't share the same physical clock.
+Second, when you want to produce sounds in a synchronized way, the clocks that are of interest for you are not the _system clocks_ but the _audio clocks_. Furthermore, we cannot assume that these two clocks, the system and the audio clocks, 1. share the same origin, e.g. the origin of `AudioContext.currentTime` is defined as when the context is resumed, and 2. that they even advance at the same speed, i.e. this is likely that the system and the sound card don't share the same physical clock.
 
 For all these reason, it is important in our context to have some way of synchronizing _arbitrary clocks_ without relying on external resources such as a NTP server.
 
@@ -45,21 +45,20 @@ To achieve that, we need a clock that we consider as a reference, in our case th
 
 ![sync-process](../assets/tutorials/plugin-sync/sync-process.png)
 
-
 More precisely at each iteration:
-1. The client takes its current time (_t<sub>ping</sub>_), 
+1. The client takes its current time (_t<sub>ping</sub>_),
 2. The client sends a message to the server which takes its time tag at message reception (_T<sub>ping</sub>_)
 3. Then, the server sends back a time tagged message to the client (_T<sub>pong</sub>_)
 4. The client takes its local time (_t<sub>pong</sub>_) at reception of the message from the server.
 
 ![ping-pong](../assets/tutorials/plugin-sync/ping-pong.png)
 
-Hence if we consider that the travel time of the ping / pong messages are the same, we can compute the _offset_ between the 2 clocks as the following:
+Hence if we assume that the travel duration of the _ping_ and _pong_ messages are equal, we can compute the _offset_ between the 2 clocks as the following:
 - T<sub>reference</sub> = (T<sub>pong</sub> - T<sub>ping</sub>) / 2
 - t<sub>local</sub> = (t<sub>pong</sub> - t<sub>ping</sub>) / 2
 - offset = t<sub>local</sub> - T<sub>reference</sub>
 
-From this point, it is then possible for all clients of our network to calculate a local estimation of the server clock. With such information, it is therefore possible for our clients to schedule audio or musical events in the same inferred time reference, while scheduling the actual audio synthesis in their own local audio time.
+From this point, it is then possible for all clients of our network to calculate a local estimation of the server clock. With such information, it therefore become possible for our clients to schedule audio or musical events in the same inferred time reference, while scheduling the actual audio synthesis in their own local audio time.
 
 While this explanation is indeed simplified, we hope it gives you some intuition on the logic behind the synchronization process between different nodes on a network.
 
@@ -76,14 +75,48 @@ npx @soundworks/create@latest plugin-sync
 
 When the wizard will ask you to select the plugins you would like to install, select the `@soundworks/plugin-platform-init` and the `@soundworks/plugin-sync`:
 
-![wizard-plugins](../assets/tutorials/plugin-sync/wizard-plugins.png)
+```ansi
+[0;36m# Install plugins[0m[0m
+[0;36m?[0m [0;1mSelect the plugins you would like to install/uninstall[0m [0;90m›[0m [0;90m- Space to select. Return to submit[0m [0m
+[0;32m◉[0m   @soundworks/plugin-platform-init[0m
+[0;32m◉[0m   [0;36;4m@soundworks/plugin-sync[0m[0m
+◯   @soundworks/plugin-filesystem[0m
+◯   @soundworks/plugin-scripting[0m
+◯   @soundworks/plugin-checkin[0m
+◯   @soundworks/plugin-position[0m
+◯   @soundworks/plugin-logger[0m
+```
+
+And the `@ircam/sc-components` library:
+
+```ansi
+[0;36m# Install libraries[0m[0m
+[0;36m?[0m [0;1mSelect the libraries you would like to install/uninstall[0m [0;90m›[0m [0;90m- Space to select. Return to submit[0m [0m
+[0;32m◉[0m   [0;36;4m@ircam/sc-components[0m[0m
+◯   @ircam/sc-scheduling[0m
+◯   @ircam/sc-utils[0m
+◯   node-web-audio-api[0m
+```
 
 Then, when the wizard will ask you for the configuration of the default client:
 - Name it `player`
 - Select the `browser` target
 - Select the `default` template
 
-![wizard-create-player-confirm](../assets/tutorials/plugin-sync/wizard-create-player-confirm.png)
+```ansi
+[0;36m# Create client[0m[0m
+[0;32m✔[0m [0;1mName of your new client (lowercase, no-space):[0m [0;90m…[0m player[0m
+[0;32m✔[0m [0;1mWhich runtime for your client?[0m [0;90m›[0m browser[0m
+[0;32m✔[0m [0;1mWhich template would you like to use?[0m [0;90m›[0m default[0m
+[0m
+- Creating client "player" in file "src/clients/player.js"[0m
+- name: [0;36mplayer[0m[0m
+- runtime: [0;36mbrowser[0m[0m
+- template: [0;36mdefault[0m[0m
+- default: [0;36mtrue[0m[0m
+[0m
+[0;36m?[0m [0;1mConfirm?[0m [0;90m›[0m no [0;90m/[0m [0;36;4myes[0m
+```
 
 Finally, open the new `plugin-sync` directory in your favorite editor and launch the application in development mode:
 
@@ -98,46 +131,43 @@ npm run dev
 
 Now that everything is ready let's start with installing our plugin both on the server and on the client side.
 
-Open the `src/server/index.js` file and add the following code:
+Open the `src/server.js` file and add the following code:
 
 ```js
-// src/server/index.js
-import '@soundworks/helpers/polyfills.js';
+// src/server.js
 import { Server } from '@soundworks/core/server.js';
-import pluginSync from '@soundworks/plugin-sync/server.js'; // [!code ++]
+import { loadConfig, configureHttpRouter } from '@soundworks/helpers/server.js';
+import ServerPluginSync from '@soundworks/plugin-sync/server.js'; // [!code ++]
 
 // ...
 
 const server = new Server(config);
-// configure the server for usage within this application template
-server.useDefaultApplicationTemplate();
-// register plugins
-server.pluginManager.register('sync', pluginSync); // [!code ++]
+configureHttpRouter(server);
+server.pluginManager.register('sync', ServerPluginSync); // [!code ++]
 ```
 
-Then on the client-side, in the `src/clients/player/index.js`:
+Then on the client-side, in the `src/clients/player.js`:
 
 ```js
-// src/clients/player/index.js
-import '@soundworks/helpers/polyfills.js';
+// src/clients/player.js
 import { Client } from '@soundworks/core/client.js';
-import launcher from '@soundworks/helpers/launcher.js';
-import pluginSync from '@soundworks/plugin-sync/client.js'; // [!code ++]
+import { loadConfig, launcher } from '@soundworks/helpers/browser.js';
+import ClientPluginSync from '@soundworks/plugin-sync/client.js'; // [!code ++]
 
 // ...
 
 const client = new Client(config);
-// register plugins
-client.pluginManager.register('sync', pluginSync); // [!code ++]
+client.pluginManager.register('sync', ClientPluginSync); // [!code ++]
 ```
 
-If you launch a client, i.e. [http://127.0.0.1:8000](http://127.0.0.1:8000), you should now see at startup of the client, a screen telling you that the synchronizing process is on going:
+If you launch a client, i.e. [http://127.0.0.1:8000](http://127.0.0.1:8000), you should now see a screen telling you that the synchronizing process is on-going at startup:
 
 ![sync-screen](../assets/tutorials/plugin-sync/sync-screen.png)
+
 Finally, let's add a bit of code to display the current reference time as estimated by the client, alongside its local time:
 
 ```js
-// src/clients/player/index.js
+// src/clients/player.js
 await client.start();
 // retrieve the sync plugin instance
 const sync = await client.pluginManager.get('sync'); // [!code ++]
@@ -160,59 +190,54 @@ function renderApp() {
 renderApp();
 ```
 
-If you now open several browser windows side by side, you should see how the synchronization process allows to estimate a common reference clock (i.e. `syncTime`) alongside a local clock (i.e. `localTime`):
+If you now open several browser windows side by side, you should see how the synchronization process allows to estimate a common reference clock (i.e. `syncTime`) alongside their own local clock (i.e. `localTime`):
 
 ![sync-clients](../assets/tutorials/plugin-sync/sync-clients.png)
 
 ## Synchronizing the audio context
 
-So far so good, but what we are interested in is to synchronize the clock of an `AudioContext` to synchronize our synthesis, but so far we haven't created yet any `AudioContext`, so what can we do with this synchronization process? Indeed, by default, the _sync_ plugin just uses a default clock which is either [`Date.now`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/now) or [`performance.now`](https://developer.mozilla.org/docs/Web/API/Performance/now) depending on the context.
+So far so good, but what we are interested in is to synchronize the clock of an `AudioContext` to synchronize our audio events.
 
-However, it is indeed possible to do it with another clock, such as [`AudioContext.currentTime`](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime) along which the synchronization process should be done. So, let's thus use implement that.
+By default, the _sync_ plugin uses a default clock which is either [`Date.now`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/now) or [`performance.now`](https://developer.mozilla.org/docs/Web/API/Performance/now) depending on the runtime (i.e. browser or Node.js). However, it is indeed possible to configure it to use another clock, such as the one provided by [`AudioContext.currentTime`](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime). Let's see how to implement that.
 
-First, let's install the `@soundworks/plugin-platform-init` plugin which will allow us to resume the `AudioContext` and thus have a working clock. Indeed, if we used an `AudioContext` in default `suspended` state, the current time would always be zero, then the synchronization would fail...
+First, we will to setup the `@soundworks/plugin-platform-init` plugin which will allow us to resume the `AudioContext` and thus have a working clock. Indeed, if we used an `AudioContext` in default `suspended` state, the current time would always be zero, which would not be very useful for synchronizing...
 
-Let's add the following code in the `src/server/index.js` file:
+Let's then add the following code in the `src/server.js` file:
 
 ```js
-// src/server/index.js
-import { Server } from '@soundworks/core/server.js';
-import pluginPlatformInit from '@soundworks/plugin-platform-init/server.js'; // [!code ++]
-import pluginSync from '@soundworks/plugin-sync/server.js';
+// src/server.js
+import { loadConfig, configureHttpRouter } from '@soundworks/helpers/server.js';
+import ServerPluginPlatformInit from '@soundworks/plugin-platform-init/server.js'; // [!code ++]
+import ServerPluginSync from '@soundworks/plugin-sync/server.js';
 
 // ...
 
-server.pluginManager.register('platform-init', pluginPlatformInit); // [!code ++]
-server.pluginManager.register('sync', pluginSync);
+server.pluginManager.register('platform-init', ServerPluginPlatformInit); // [!code ++]
+server.pluginManager.register('sync', ServerPluginSync);
 ```
 
 And the following on the client side, to resume our `AudioContext` when the user clicks on the screen:
 
 ```js
-// src/clients/player/index.js
-import pluginPlatformInit from '@soundworks/plugin-platform-init/client.js'; // [!code ++]
-import pluginSync from '@soundworks/plugin-sync/client.js';
-
-// ...
-
-const config = window.SOUNDWORKS_CONFIG;
-// create an new audio context instance
-const audioContext = new AudioContext(); // [!code ++]
+// src/clients/player.js
+import ClientPluginPlatformInit from '@soundworks/plugin-platform-init/client.js'; // [!code ++]
+import ClientPluginSync from '@soundworks/plugin-sync/client.js';
 
 // ...
 
 const client = new Client(config);
-// register plugins
-client.pluginManager.register('platform-init', pluginPlatformInit, { // [!code ++]
-  audioContext // [!code ++]
+const audioContext = new AudioContext(); // [!code ++]
+
+client.pluginManager.register('platform-init', ClientPluginPlatformInit, { // [!code ++]
+  audioContext, // [!code ++]
 }); // [!code ++]
-client.pluginManager.register('sync', pluginSync);
+client.pluginManager.register('sync', ClientPluginSync);
 ```
- 
+
 Finally, let configure further the _sync_ plugin so that it uses the clock provided by the `AudioContext` and starts the synchronization process only when the audio context is properly resumed:
 
 ```js
-// src/clients/player/index.js
+// src/clients/player.js
 client.pluginManager.register('sync', pluginSync); // [!code --]
 client.pluginManager.register('sync', pluginSync, { // [!code ++]
   // use the audio context clock // [!code ++]
@@ -223,6 +248,10 @@ client.pluginManager.register('sync', pluginSync, { // [!code ++]
 ```
 
 And that's all, we now have a synchronization process estimating the server reference time using the clock provided by our audio context.
+
+<!-- ## Trigger a synchronized audio event
+
+@todo -->
 
 ## Conclusion
 

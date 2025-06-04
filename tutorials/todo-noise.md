@@ -43,8 +43,6 @@ npx @soundworks/create@latest todo-noise
 You can already select the [`@soundworks/plugin-platform-init`](https://github.com/collective-soundworks/soundworks-plugin-platform-init) plugin to have it installed.
 
 ```ansi
-[0;90m[@soundworks/wizard#v5.0.3][0m[0m
-[0m
 [0;36m# Install plugins[0m[0m
 [0;36m?[0m [0;1mSelect the plugins you would like to install/uninstall[0m [0;90m›[0m [0;90m- Space to select. Return to submit[0m [0m
 [0;32m◉[0m   [0;36;4m@soundworks/plugin-platform-init[0m[0m
