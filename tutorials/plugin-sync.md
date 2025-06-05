@@ -4,6 +4,8 @@ In this tutorial, we will dig into a very important problem when dealing with di
 
 After a short introduction about why this can be an issue and of the underlying concepts involved in synchronizing devices on a network, we will learn how to use the [`@soundworks/plugin-sync`](https://github.com/collective-soundworks/soundworks-plugin-sync) plugin which is proposed to solve this particular class of problems.
 
+> The final source code of this tutorial can be found [here](https://github.com/collective-soundworks/tutorials/tree/main/plugin-sync)
+
 ### Related documentation
 
 - [@soundworks/plugin-sync](https://github.com/collective-soundworks/soundworks-plugin-sync)

@@ -6,6 +6,9 @@ Indeed, this functionality enables to work with screen less embedded hardware, s
 
 To illustrate this possibility and discover some of the tools you have at hand to help you, we will build a very simple application where a browser controller client can trigger a sound synthesized by another client running in a Node.js process.
 
+> The final source code of this tutorial can be found [here](https://github.com/collective-soundworks/tutorials/tree/main/node-clients)
+
+
 ### Related Documentation
 
 - [Client](https://soundworks.dev/soundworks/Client.html)
