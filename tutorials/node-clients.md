@@ -1,95 +1,108 @@
 # Working with Node Clients
 
-In this tutorial, we will explore how to use _soundworks_ to create clients that run within a _Node.js_ process, opening new possibilities of creating application outside Web Browsers.
+In this tutorial, we will explore how to use _soundworks_ to create clients that run within a _Node.js_ process, opening new possibilities for creating applications outside Web Browsers.
 
-Indeed, this functionality allows to create applications that can work in screen less embedded hardware, such as the Raspberry Pi, allowing to access some functionalities, such as controlling a motor or a LED, which are hard to achieve in sandboxed environment that are Web browsers.
+Indeed, this functionality enables to work with screen less embedded hardware, such as the Raspberry Pi, which allows us to access some functionalities (e.g. control a motor or a LED) which are hard or impossible to achieve in the sandboxed environment that are Web browsers.
 
 To illustrate this possibility and discover some of the tools you have at hand to help you, we will build a very simple application where a browser controller client can trigger a sound synthesized by another client running in a Node.js process.
 
 ### Related Documentation
 
-- [soundworks Client](https://soundworks.dev/soundworks/client.html)
+- [Client](https://soundworks.dev/soundworks/Client.html)
 - [node-web-audio-api](https://github.com/ircam-ismm/node-web-audio-api)
 
 ## Scaffolding Application
 
-Let's start with scaffolding our application:
+Let's start as usual with scaffolding our application:
 
 ```sh
 cd path/to/tutorials
 npx @soundworks/create@latest node-clients
 ```
 
-When the wizard asks you to create the default client, let's just create a browser client with the "controller" template (we will create our _Node.js_ client afterward):
+When the wizard asks you for plugins and libraries, just select the `@ircam/sc-components` and `node-web-audio-api` libraries:
 
-![wizard-init](../assets/tutorials/node-clients/wizard-init.png)
-
-Then let's start our application with:
-
+```ansi
+[0;36m# Install plugins[0m[0m
+[0;32m✔[0m [0;1mSelect the plugins you would like to install/uninstall[0m [0;90m›[0m [0m
+[0;33m+ nothing to do, aborting...[0m[0m
+[0m
+[0;36m# Install libraries[0m[0m
+[0;36m?[0m [0;1mSelect the libraries you would like to install/uninstall[0m [0;90m›[0m [0;90m- Space to select. Return to submit[0m [0m
+[0;32m◉[0m   @ircam/sc-components[0m
+◯   @ircam/sc-scheduling[0m
+◯   @ircam/sc-utils[0m
+[0;32m◉[0m   [0;36;4mnode-web-audio-api[0m
 ```
+
+::: info
+The [`node-web-audio-api`](https://github.com/ircam-ismm/node-web-audio-api) package provides an implementation of the Web Audio API specification written in the `Rust` language to be used in Node.js programs.
+
+For those who might be interested in using the library directly in a `Rust` project, see [web-audio-api-rs](https://github.com/orottier/web-audio-api-rs)
+:::
+
+Then when the wizard asks you to create the default client, let's just create a browser client with the "controller" template (we will create our _Node.js_ client later in the tutorial):
+
+```ansi
+[0;36m# Create client[0m[0m
+[0;32m✔[0m [0;1mName of your new client (lowercase, no-space):[0m [0;90m…[0m controller[0m
+[0;32m✔[0m [0;1mWhich runtime for your client?[0m [0;90m›[0m browser[0m
+[0;32m✔[0m [0;1mWhich template would you like to use?[0m [0;90m›[0m controller[0m
+[0m
+- Creating client "controller" in file "src/clients/controller.js"[0m
+- name: [0;36mcontroller[0m[0m
+- runtime: [0;36mbrowser[0m[0m
+- template: [0;36mcontroller[0m[0m
+- default: [0;36mtrue[0m[0m
+[0m
+[0;32m✔[0m [0;1mConfirm?[0m [0;90m…[0m no [0;90m/[0m [0;36;4myes[0m
+```
+
+Then let's jump into the directory and start our application:
+
+```sh
 cd node-clients
 npm run dev
 ```
 
-## Implementing the control logic
+## Implementing the controller
 
-Before implementing our _Node.js_ client, let's use the features we have learned so far so that our controller can trigger a sound on any of our future _Node.js_ clients.
+Before implementing our _Node.js_ client, let's use the features we have learned so far so that we can trigger a sound on any of our future _Node.js_ clients through the `controller` interface.
 
-Let's start with defining the state we will call `thing`, that will be created by our _Node.js_ clients when they connect to the application. Create a file named `thing.js` in `src/server/schemas` and declare the following schema definition:
-
-```js
-// src/server/schemas/thing.js
-export default {
-  id: {
-    type: 'integer',
-    default: null,
-    nullable: true,
-  },
-  triggerSound: {
-    type: 'boolean',
-    event: true,
-  },
-};
-```
-
-Now that our schema is declared, let's just import it into our server index file and register it into our server state manager:
+Let's thus start with defining a shared state class, we will call `thing`, that will be created by each of our _Node.js_ clients when they connect to the application.
 
 ```js
-// src/server/index.js
-import { loadConfig } from '../utils/load-config.js';
-import '../utils/catch-unhandled-errors.js';
-// import the schema of our thing client
-import thingSchema from './schemas/thing.js'; // [!code ++]
-
-// ...
-
+// src/server.js
 const server = new Server(config);
-// configure the server for usage within this application template
-server.useDefaultApplicationTemplate();
-// register the schema into the state manager
-server.stateManager.registerSchema('thing', thingSchema); // [!code ++]
+configureHttpRouter(server);
 
-await server.start();
+server.stateManager.defineClass('thing', { // [!code ++]
+  id: { // [!code ++]
+    type: 'integer', // [!code ++]
+    default: null, // [!code ++]
+    nullable: true, // [!code ++]
+  }, // [!code ++]
+  triggerSound: { // [!code ++]
+    type: 'boolean', // [!code ++]
+    event: true, // [!code ++]
+  }, // [!code ++]
+}); // [!code ++]
 ```
 
-Now let's go to our controller to, first, create a collection of our "thing" states:
+And that's everything we have to do on the server side!
+
+Let's then create our control interface. First, we need to grab a collection of our "thing" shared states:
 
 ```js
-// src/clients/controller/index.js
+// src/clients/controller.js
 await client.start();
 
-// create the collection and update the GUI on every collection event
 const thingCollection = await client.stateManager.getCollection('thing'); // [!code ++]
-thingCollection.onUpdate(() => renderApp()); // [!code ++]
-thingCollection.onAttach(() => renderApp()); // [!code ++]
-thingCollection.onDetach(() => renderApp()); // [!code ++]
-
-function renderApp() {
-  // ...
-}
+// update GUI when any changes in the collection occurs // [!code ++]
+thingCollection.onChange(() => renderApp()); // [!code ++]
 ```
 
-And 2. modify the `renderApp` function to create a simple graphical control interface:
+Then. let's modify the `renderApp` function to show a simple graphical control interface for each `thing` state in the collection:
 
 ```js
 function renderApp() {
@@ -117,35 +130,32 @@ function renderApp() {
 }
 ```
 
-Of course if you launch the controller ([http://127.0.0.1:8000/](http://127.0.0.1:8000/)) right now, the screen will be empty but everything is now ready to create and control our node clients.
+Of course if you launch the controller ([http://127.0.0.1:8000/](http://127.0.0.1:8000/)) right now, the screen will be empty as we don't have any `thing` state in our colllection, but everything is now ready to create and control our Node.js clients.
 
-## Implementing the _Node.js_ client
+## Creating and running a _Node.js_ client
 
-Let's shutdown our server (`Ctrl + C`) for a while to launch a few commands. 
-
-First let's install a node package that will allow us to write Web Audio code into _Node.js_:
-
-```sh
-npm install --save node-web-audio-api
-```
-
-::: info
-The [`node-web-audio-api`](https://github.com/ircam-ismm/node-web-audio-api) package is the re-implementation of the Web Audio API specification to be used within Node.js written in the `Rust` language. The package is relatively recent and does not expose yet all the features, such as `AudioWorklet`, you would expect in Web browsers. However, it already offers interesting compatibility and descent performances which makes it usable in a (hopefully) quite large spectrum of projects.
-
-For those who might be interested in using the library directly in a `Rust` project, see [web-audio-api-rs](https://github.com/orottier/web-audio-api-rs)
-:::
-
-Then let's create our second client:
+Let's shutdown our server (`Ctrl + C`) for a while and create our Node.js client using the _soundworks_ wizard with the following command line:
 
 ```sh
 npx soundworks --create-client
 ```
 
-with "thing" as name and "node" as target:
+Enter "thing" as name and "node" as target:
 
-![wizard-create-client](../assets/tutorials/node-clients/wizard-create-client.png)
+```ansi
+[0;36m# Create client[0m[0m
+[0;32m✔[0m [0;1mName of your new client (lowercase, no-space):[0m [0;90m…[0m thing[0m
+[0;32m✔[0m [0;1mWhich runtime for your client?[0m [0;90m›[0m node[0m
+[0m
+- Creating client "thing" in file "src/clients/thing.js"[0m
+- name: [0;36mthing[0m[0m
+- runtime: [0;36mnode[0m[0m
+[0m
+[0;36m?[0m [0;1mConfirm?[0m [0;90m›[0m no [0;90m/[0m [0;36;4myes[0m[0m
+[0m
+```
 
-Once done, you can restart the development server:
+Once done, you can just restart the development server:
 
 ```sh
 npm run dev
@@ -162,11 +172,18 @@ npm run watch thing
 
 And tada! Your node client should now be connected to the server:
 
-![node-client](../assets/tutorials/node-clients/node-client.png)
+```ansi
+[0;36m> watching process	 .build/clients/thing.js[0m[0m
+[0;36m[launcher][client thing] connecting to http://127.0.0.1:8000[0m[0m
+[0;36m[launcher][client thing(0)] connected[0m[0m
+Hello node-clients![0m
+```
 
-Now that everything is setup and ready, let's write the code needed so our node clients react to the instructions from the controller and play some sound.
+## Implementing the _Node.js_ client
 
-First, let's thus create our "thing" state and initialize its `id` field with the id of the _soundworks_ client. Open the `src/clients/thing/index.js` file and add the following snippet:
+Now that everything is setup and ready, let's write the code needed so our newly created client plays some sound when the button is clicked on the controller interface.
+
+First, let's thus create our "thing" shared state and initialize its `id` field with the `id` of the _soundworks_ client. Open the `src/clients/thing.js` file and add the following snippet:
 
 ```js
 await client.start();
@@ -174,31 +191,20 @@ await client.start();
 const thing = await client.stateManager.create('thing', { // [!code ++]
   id: client.id, // [!code ++]
 }); // [!code ++]
-// react to updates triggered from controller // [!code ++]
-thing.onUpdate(updates => { // [!code ++]
-  if ('triggerSound' in updates) { // [!code ++]
-    console.log('make some noise!'); // [!code ++]
-  } // [!code ++]
-}); // [!code ++]
-
-console.log(`Hello ${client.config.app.name}!`);
 ```
 
 ::: info
-If you go see the "Terminal" in which you launched your node client, you can see that the client automatically restarted each time you saved a file, just as with the server. This is the goal of the `npm run watch [process_name]` command.
-::: 
+If you go in the "Terminal" where you launched the Node.js client, you should see that the client automatically restarted each time you save a file, just as with the server. This is the behavior and goal of the `npm run watch [process_name]` command.
+:::
 
-If you go back to your controller, you should now see the interface updated with your connected client:
+If reload your controller now, you should also see the interface updated with your connected client:
 
 ![controller](../assets/tutorials/node-clients/controller.png)
-And if you click on the "trigger sound" button, the "make some noise!" should in turn appear in the terminal where you launched your _thing_ client:
 
-![trigger-sound](../assets/tutorials/node-clients/trigger-sound.png)
-
-Let's finally write our Web Audio code so that a sound is actually triggered from the _Node.js_ process:
+Let's finally write our Web Audio code so that a sound is triggered from the _Node.js_ process when the "trigger sound" button is pressed on the controller interface:
 
 ```js
-// src/clients/thing/index.js
+// src/clients/thing.js
 import { Client } from '@soundworks/core/client.js';
 import launcher from '@soundworks/helpers/launcher.js';
 // import some classes from the node-web-audio-api package // [!code ++]
@@ -206,16 +212,16 @@ import { AudioContext, GainNode, OscillatorNode } from 'node-web-audio-api'; // 
 
 // ...
 
+await client.start();
+// create an audio context (note that it is resumed by default)
+const audioContext = new AudioContext(); // [!code ++]
+// create the thing state and initialize it's id field
 const thing = await client.stateManager.create('thing', {
   id: client.id,
 });
-// register audioContext
-const audioContext = new AudioContext(); // [!code ++]
-
 // react to updates triggered from controller
-thing.onUpdate(updates => {
-  if ('triggerSound' in updates) {
-    console.log('make some noise!'); // [!code --]
+thing.onUpdate(updates => { // [!code ++]
+  if ('triggerSound' in updates) { // [!code ++]
     const now = audioContext.currentTime; // [!code ++]
  // [!code ++]
     const env = new GainNode(audioContext, { gain: 0 }); // [!code ++]
@@ -223,56 +229,90 @@ thing.onUpdate(updates => {
     env.gain.setValueAtTime(0, now); // [!code ++]
     env.gain.linearRampToValueAtTime(1, now + 0.01); // [!code ++]
     env.gain.exponentialRampToValueAtTime(0.0001, now + 1); // [!code ++]
- // [!code ++]
-    // randomly pick one of harmonics of a sound at 50Hz // [!code ++]
-    const frequency = Math.floor(Math.random() * 10) * 50 + 50; // [!code ++]
+    // randomly pick one of the harmonics of a sound at 50Hz // [!code ++]
+    const frequency = Math.floor(Math.random() * 10) * 50 + 100; // [!code ++]
     const osc = new OscillatorNode(audioContext, { frequency }); // [!code ++]
     osc.connect(env); // [!code ++]
     osc.start(now); // [!code ++]
     osc.stop(now + 1); // [!code ++]
-  }
-});
+  } // [!code ++]
+}); // [!code ++]
 ```
 
-And that's all! You have now a simple _soundworks_ client that runs into _Node.js_ process and can trigger sound. 
+And that's all! You have now a simple _soundworks_ client that runs into _Node.js_ process and can synthesize some sound.
 
-As you can see, the code you wrote to create this client is exactly the same as the one you would have written in a browser client. Indeed, abstracting the platform in such manner is an important goal of _soundworks_ and of the related libraries, such as the `node-web-audio-api` package.
+::: tip
+As you can see, the code you wrote to make this Node.js client work is the same as the one you would have written in a browser client.
+
+Abstracting the platform in such a way is an important goal of _soundworks_ and of the related libraries, such as the `node-web-audio-api` package.
+:::
 
 ## Notes
 
-### Emulating multiple clients
+### Locally emulate multiple clients
 
-In the previous tutorial, we often used the `?emulate=6` query parameter in our URL to emulate several clients in only one browser window, which is very practical when developing a distributed application.
+In previous tutorials, we often used the `?emulate=6` query parameter in our URL to emulate several clients in only one browser window, which is handy when developing distributed applications.
 
-In a similar manner, this is also possible to run several node clients in the same terminal, for example run:
+A similar behavior can be achieved with Node.js clients to run many of them in the same terminal. For example, to launch four clients in parallel, you can just write:
 
 ```sh
 EMULATE=4 npm run watch thing
 ```
 
-to launch four clients in parallel.
+### Running Node.js clients on a network
 
-### Running node client on a network
+Another important point to consider is that Node.js clients do need some configuration to be able to connect to the server. Indeed, when we launch a client in a browser, we just tell the browser where to reach the server when we write the URL in the address bar of the Web browser.
 
-Another important point to consider is that the node clients needs some configuration to be able to connect to the server. Indeed, when we launch a client in a browser we, as human, tell the browser where to reach the server when we write the URL in the address bar of the Web browser. 
+However, as you may have notices, Terminals and Node.js processes don't have any address bar... Hence if your node client doesn't run into your computer but in a remote device, it will need a bit of configuration to know the IP address of the server.
 
-However, node clients don't have any address bar, hence if your node client doesn't run into your computer but in a remote device, it will need a bit of configuration to know the IP address of the server. To that end, you can launch the following command to create a environment config file that node clients will be able to consume:
+The _soundworks_ wizard has an dedicated command to help you to create additional environment config files:
 
 ```sh
 npx soundworks --create-env
 ```
 
-![create-env](../assets/tutorials/node-clients/create-env.png)
+The command will prompt you with a series of questions to configure a environment, and in particular the question about the "Address of the server":
 
-A future tutorial will explain in more detail how to configure a soundworks application in a production setting.
+```ansi
+[0;36m# Create environment configuration file:[0m[0m
+[0;32m✔[0m [0;1mName of the config[0m [0;90m…[0m remote[0m
+[0;32m✔[0m [0;1mType:[0m [0;90m›[0m development[0m
+[0;32m✔[0m [0;1mPort (default is 80 for http and 443 for https):[0m [0;90m…[0m 80[0m
+[0;32m✔[0m [0;1mAddress of the server (domain or ip), leave empty for local development:[0m [0;90m…[0m 192.168.1.34[0m
+[0;32m✔[0m [0;1mUse https?[0m [0;90m…[0m no[0m
+[0;32m✔[0m [0;1mbaseUrl (if the application live behind a proxy server, leave empty for most cases):[0m [0;90m…[0m [0m
+[0;32m✔[0m [0;1mDo you want to protect some clients with a password?[0m [0;90m…[0m no[0m
+[0m
+- creating config file "env-remote.yaml":[0m
+```[0m
+type: development[0m
+port: 80[0m
+baseUrl: ""[0m
+serverAddress: 192.168.1.34[0m
+useHttps: false[0m
+httpsInfos:[0m
+  cert: null[0m
+  key: null[0m
+auth:[0m
+  clients: [][0m
+  login: ""[0m
+  password: ""[0m
+[0m
+```[0m
+[0m
+[0;32m✔[0m [0;1mConfirm?[0m [0;90m…[0m yes[0m
+[0m
+[0;32m+ config file "env-remote.yaml" successfully created[0m
+```
+
+To use this configuration file, you will just have to start your clients by giving them the name of the config, e.g.:
+
+```sh
+ENV=remote npm run watch thing
+```
 
 ## Conclusion
 
 In this tutorial, we have explored an important feature of _soundworks_, i.e. the possibility to create clients that are not running in a Web browser, but rather in a _Node.js_ process.
 
 In the next tutorials, we will continue our journey into _soundworks_, by tackling the important question of synchronization between different processes and machines.
-
-
-
-
-
