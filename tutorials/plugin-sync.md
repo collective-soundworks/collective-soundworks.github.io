@@ -240,8 +240,8 @@ Finally, let configure further the _sync_ plugin so that it uses the clock provi
 
 ```js
 // src/clients/player.js
-client.pluginManager.register('sync', pluginSync); // [!code --]
-client.pluginManager.register('sync', pluginSync, { // [!code ++]
+client.pluginManager.register('sync', ClientPluginSync); // [!code --]
+client.pluginManager.register('sync', ClientPluginSync, { // [!code ++]
   // use the audio context clock // [!code ++]
   getTimeFunction: () => audioContext.currentTime, // [!code ++]
   // declare the 'platform-init' plugin as a dependency, so that the // [!code ++]
