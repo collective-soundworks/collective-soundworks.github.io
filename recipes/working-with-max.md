@@ -2,7 +2,7 @@
 
 In this recipe example we will explore how to use _soundworks_ in the _Max (Cycling '74)_ environement and learn why we need to keep some specific manoeuver in mind in order to make our applications fully working and stable.
 
-In the [Working with Node Clients](https://soundworks.dev/tutorials/node-clients.html) tutorial, we explored the possibilites to work outside Web Browsers using Node.js. This enables the use of _soundworks_ in a large set of use. The Max app encapsulates a _node.script_ object that will allow us to run _soundworks_ clients inside a _patch_.
+In the [Working with Node Clients](https://soundworks.dev/tutorials/node-clients.html) tutorial, we explored the possibilites to work outside Web Browsers using Node.js. This enables the use of _soundworks_ in a large set of use. The _Max_ app encapsulates a _node.script_ object that will allow us to run _soundworks_ clients inside a _patch_.
 
 To illustrate such possibilities, we will create a simple _soundworks-max_ application using the _soundworks_ wizard that will be your base skeleton for your own projects!
 
@@ -30,18 +30,32 @@ mkdir my-super-app
 cd my-super-app
 ```
 
-As well as in tutorials, we will use the _soundworks_ wizard in order to scaffold the application. This will create a skeleton with a _js_ template specifically adapted to the Max environment as well as his associated _patch_.
+As well as in tutorials, we will use the _soundworks_ wizard in order to scaffold the application. This will create a skeleton with a _js_ template specifically adapted to the _Max_ environment as well as his associated _patch_.
 
 ```sh
 npx @soundworks/create@latest working-with-max
 ```
 
-When the wizard asks you for plugins and libraries, just skip steps using `enter`
+When the wizard asks you for plugins and libraries, just skip steps using `enter`.
 
 Then, when the wizard asks you for the configuration of the default client:
 - Name it `helloworld`
 - Select the `node` target
 - Select the `max` template
+
+```ansi
+[0;36m# Create client[0m[0m
+[0;32m✔[0m [0;1mName of your new client (lowercase, no-space):[0m [0;90m…[0m helloworld[0m
+[0;32m✔[0m [0;1mWhich runtime for your client?[0m [0;90m›[0m node[0m
+[0;32m✔[0m [0;1mWhich template would you like to use?[0m [0;90m›[0m max (`node.script`)[0m
+[0m
+- Creating client "helloworld" in file "src/clients/helloworld.js"[0m
+- name: [0;36mhelloworld[0m[0m
+- runtime: [0;36mnode[0m[0m
+- template: [0;36mmax[0m[0m
+[0m
+[0;36m?[0m [0;1mConfirm?[0m [0;90m›[0m no [0;90m/[0m [0;36;4myes[0m
+```
 
 After confirming, it will ask you where you would like to create your associated _Max patch_. This is a rather important information since during the installation process, a folder including a _Max patch_ template and a _js_ file pointing at the _soundworks_ app will be created.
 
@@ -78,6 +92,12 @@ cd working-with-max
 npm run dev
 ```
 
+Then, open the _patch_ and click on the `script start` message box. You should see the _Node for Max debug tool_ turning green with _process running_ message. If you click on the `hello` message box, the object should answer `world`.
+
+![hello-world_max-patch.png](../assets/recipes/hello-world_max-patch.png)
+
+You have a fully working _soundworks_ app with a client running in _Node for Max_!
+
 ## Architecture
 
 Let's now have a look at your project's architecture and what was created by the wizard :
@@ -87,7 +107,7 @@ my-super-app
 ├── working-with-max              # Soundworks directory (where you do soundworks stuff)
 │   ├── src
 │       └── clients
-│           └── helloworld.js     # Your client script :)
+│           └── helloworld.js     # Your client script (the one you edit)
 │   ├── public
 │   ├── node_modules
 │   └── config
@@ -97,11 +117,11 @@ my-super-app
                                   # to the soundworks app (should remain unchanged)
 ```
 
-You might now wonder why we are using a 'bridge script'. If you have a closer look at the _node.script_ object in _Max_ documentation, you will see that :
+You might now wonder why we are using a 'bridge script'. If you take a closer look at the _node.script_ object in the _Max_ documentation, you will see that :
 
 > _"Node and Max can sometimes disagree about how folder should be organized"_
 
-For that matter, the _script_ you use with the _node.script_ _Max_ object should always remain in the same directory than your _patch_. 
+For that matter, the _script_ instanciated by the _node.script_ _Max_ object should always remain in the same directory than your _patch_.
 
 If for some reason you would like to move the _patches_ directory, it is essential to keep in mind that you will also have to change the relative path to the _soundworks_ app inside the associated script in `/my-max-patches/node-helloworld.js` :
 
@@ -109,6 +129,12 @@ If for some reason you would like to move the _patches_ directory, it is essenti
 // change process.cwd() to soundworks application root
 process.chdir('../working-with-max');
 ```
+
+:::info
+The _patch_ and the script should **always** remain in the same directory!
+:::
+
+However, a good practice would be for example to use this _patch_ as an _abstraction_, and have the entire directory in your _File Preferences'_ path in _Max_.
 
 ## What's different in the _soundworks_ app
 
@@ -124,5 +150,5 @@ import Max from 'max-api';
 ```js
 const ENV = 'default';
 ```
-3. Since it does not make any sense to emulate clients in _Node for Max_, there is no bootstrap as you could see in a regular _soundworks_ client.
+3. Since it does not make any sense to emulate clients in _Node for Max_, there is no bootstrap function as you could see in a regular _soundworks_ client.
 
