@@ -45,6 +45,12 @@ export default {
         ],
       },
       {
+        text: 'Recipes',
+        items: [
+          { text: 'Working with Max', link: '/recipes/working-with-max', },
+        ],
+      },
+      {
         text: 'Documentation',
         items: [
           { text: 'soundworks API', link: 'https://soundworks.dev/soundworks', },

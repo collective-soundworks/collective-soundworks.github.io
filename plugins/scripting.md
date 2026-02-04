@@ -386,7 +386,7 @@ Register a callback to be executed when the script is updated.
 *   `executeListener` **[boolean][34]** If true, execute the given
     callback immediately. (optional, default `false`)
 
-Returns **[Function][35]** Function that unregister the callback when executed.
+Returns **[Function][35]** Function that removes the callback from the listeners when executed.
 
 ### onDetach
 

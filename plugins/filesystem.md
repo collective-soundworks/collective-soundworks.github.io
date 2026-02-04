@@ -14,6 +14,7 @@
 - [API](#api)
 - [ClientPluginFilesystem](#clientpluginfilesystem)
 - [ServerPluginFilesystem](#serverpluginfilesystem)
+- [formatTreeAsUrlMap](#formattreeasurlmap)
 - [Credits](#credits)
 - [License](#license)
 
@@ -96,13 +97,16 @@ See the `config/env-**.js` files to configure your application (@todo - tutorial
     *   [Examples][12]
     *   [switch][13]
     *   [getTree][14]
-    *   [onUpdate][15]
-    *   [findInTree][16]
-    *   [readFile][17]
-    *   [writeFile][18]
-    *   [mkdir][19]
-    *   [rename][20]
-    *   [rm][21]
+    *   [getTreeAsUrlMap][15]
+    *   [onUpdate][16]
+    *   [findInTree][17]
+    *   [readFile][18]
+    *   [writeFile][19]
+    *   [mkdir][20]
+    *   [rename][21]
+    *   [rm][22]
+*   [formatTreeAsUrlMap][23]
+    *   [Parameters][24]
 
 ## ClientPluginFilesystem
 
@@ -117,7 +121,7 @@ instantiated when registered in the `pluginManager`
 
 Return the current filesystem tree.
 
-Returns **[Object][22]**&#x20;
+Returns **[Object][25]**&#x20;
 
 ### onUpdate
 
@@ -127,11 +131,11 @@ and the list of `events` describing the modifications made on the tree.
 
 #### Parameters
 
-*   `callback` **[Function][23]** Callback function to execute
-*   `executeListener` **[boolean][24]** If true, execute the given
+*   `callback` **[Function][26]** Callback function to execute
+*   `executeListener` **[boolean][27]** If true, execute the given
     callback immediately. (optional, default `false`)
 
-Returns **[Function][23]** Function that unregister the listener when executed.
+Returns **[Function][26]** Function that unregister the listener when executed.
 
 ### getTreeAsUrlMap
 
@@ -139,11 +143,11 @@ Return the tree as flat map of `<filename, url>`
 
 #### Parameters
 
-*   `filterExt` **[String][25]** File extension to retrieve in the list
-*   `keepExtension` **[Boolean][24]** Keep or remove the file extension
+*   `filterExt` **[String][28]** File extension to retrieve in the list
+*   `keepExtension` **[Boolean][27]** Keep or remove the file extension
     from the keys (optional, default `false`)
 
-Returns **[Object][22]** Map of `<filename, url>`
+Returns **[Object][25]** Map of `<filename, url>`
 
 ### findInTree
 
@@ -151,10 +155,10 @@ Return a node from the tree matching the given path.
 
 #### Parameters
 
-*   `pathOrUrl` **[String][25]** Path of the node to be retrieved, relative to
+*   `pathOrUrl` **[String][28]** Path of the node to be retrieved, relative to
     `options.dirname` or URL of the node.
 
-Returns **[Object][22]**&#x20;
+Returns **[Object][25]**&#x20;
 
 ### readFile
 
@@ -162,9 +166,9 @@ Read a file
 
 #### Parameters
 
-*   `pathname` **[String][25]** Pathname, relative to `options.dirname`.
+*   `pathname` **[String][28]** Pathname, relative to `options.dirname`.
 
-Returns **[Promise][26]<[Blob][27]>**&#x20;
+Returns **[Promise][29]<[Blob][30]>**&#x20;
 
 ### writeFile
 
@@ -172,10 +176,10 @@ Write a file
 
 #### Parameters
 
-*   `pathname` **[String][25]** Pathname, relative to `options.dirname`.
-*   `data` **([String][25] | File | [Blob][27])** Content of the file. (optional, default `''`)
+*   `pathname` **[String][28]** Pathname, relative to `options.dirname`.
+*   `data` **([String][28] | File | [Blob][30])** Content of the file. (optional, default `''`)
 
-Returns **[Promise][26]**&#x20;
+Returns **[Promise][29]**&#x20;
 
 ### mkdir
 
@@ -183,9 +187,9 @@ Create a directory
 
 #### Parameters
 
-*   `pathname` **[String][25]** Path of the directory, relative to `options.dirname`.
+*   `pathname` **[String][28]** Path of the directory, relative to `options.dirname`.
 
-Returns **[Promise][26]**&#x20;
+Returns **[Promise][29]**&#x20;
 
 ### rename
 
@@ -193,10 +197,10 @@ Rename a file or directory
 
 #### Parameters
 
-*   `oldPath` **[String][25]** Current pathname, relative to `options.dirname`.
-*   `newPath` **[String][25]** New pathname, relative to `options.dirname`.
+*   `oldPath` **[String][28]** Current pathname, relative to `options.dirname`.
+*   `newPath` **[String][28]** New pathname, relative to `options.dirname`.
 
-Returns **[Promise][26]**&#x20;
+Returns **[Promise][29]**&#x20;
 
 ### rm
 
@@ -204,9 +208,9 @@ Delete a file or directory
 
 #### Parameters
 
-*   `pathname` **[String][25]** Pathname, relative to `options.dirname`.
+*   `pathname` **[String][28]** Pathname, relative to `options.dirname`.
 
-Returns **[Promise][26]**&#x20;
+Returns **[Promise][29]**&#x20;
 
 ## ServerPluginFilesystem
 
@@ -244,11 +248,11 @@ keeping the same plugin and related logic at hand.
 
 #### Parameters
 
-*   `options` **[Object][22]**&#x20;
+*   `options` **[Object][25]**&#x20;
 
-    *   `options.dirname` **[String][25]** directory to watch, plugin is idle
+    *   `options.dirname` **[String][28]** directory to watch, plugin is idle
         if null (optional, default `null`)
-    *   `options.publicPath` **[String][25]** optional public path for the
+    *   `options.publicPath` **[String][28]** optional public path for the
         assets. If set, a route will be added to the router to serve the assets and
         an `url` entry will be added to each node of the tree. (optional, default `null`)
 
@@ -256,7 +260,19 @@ keeping the same plugin and related logic at hand.
 
 Return the current filesystem tree.
 
-Returns **[Object][22]**&#x20;
+Returns **[Object][25]**&#x20;
+
+### getTreeAsUrlMap
+
+Return the tree as flat map of `<filename, url>`
+
+#### Parameters
+
+*   `filterExt` **[String][28]** File extension to retrieve in the list
+*   `keepExtension` **[Boolean][27]** Keep or remove the file extension
+    from the keys (optional, default `false`)
+
+Returns **[Object][25]** Map of `<filename, url>`
 
 ### onUpdate
 
@@ -266,11 +282,11 @@ and the list of `events` describing the modifications made on the tree.
 
 #### Parameters
 
-*   `callback` **[Function][23]** Callback function to execute
-*   `executeListener` **[boolean][24]** If true, execute the given
+*   `callback` **[Function][26]** Callback function to execute
+*   `executeListener` **[boolean][27]** If true, execute the given
     callback immediately. (optional, default `false`)
 
-Returns **[Function][23]** Function that unregister the listener when executed.
+Returns **[Function][26]** Function that unregister the listener when executed.
 
 ### findInTree
 
@@ -278,9 +294,9 @@ Return a node from the tree matching the given path.
 
 #### Parameters
 
-*   `pathname` **[String][25]** Pathname, relative to `options.dirname`.
+*   `pathname` **[String][28]** Pathname, relative to `options.dirname`.
 
-Returns **[Object][22]**&#x20;
+Returns **[Object][25]**&#x20;
 
 ### readFile
 
@@ -288,9 +304,9 @@ Read a file.
 
 #### Parameters
 
-*   `pathname` **[String][25]** Pathname, relative to `options.dirname`.
+*   `pathname` **[String][28]** Pathname, relative to `options.dirname`.
 
-Returns **[Promise][26]<[Blob][27]>**&#x20;
+Returns **[Promise][29]<[Blob][30]>**&#x20;
 
 ### writeFile
 
@@ -298,10 +314,10 @@ Write a file
 
 #### Parameters
 
-*   `pathname` **[String][25]** Pathname, relative to `options.dirname`.
-*   `data` **([String][25] | [Blob][27])** Content of the file.
+*   `pathname` **[String][28]** Pathname, relative to `options.dirname`.
+*   `data` **([String][28] | [Blob][30])** Content of the file.
 
-Returns **[Promise][26]**&#x20;
+Returns **[Promise][29]**&#x20;
 
 ### mkdir
 
@@ -309,9 +325,9 @@ Create a directory
 
 #### Parameters
 
-*   `pathname` **[String][25]** Path of the directory, relative to `options.dirname`.
+*   `pathname` **[String][28]** Path of the directory, relative to `options.dirname`.
 
-Returns **[Promise][26]**&#x20;
+Returns **[Promise][29]**&#x20;
 
 ### rename
 
@@ -319,10 +335,10 @@ Rename a file or directory
 
 #### Parameters
 
-*   `oldPath` **[String][25]** Current pathname, relative to `options.dirname`.
-*   `newPath` **[String][25]** New pathname, relative to `options.dirname`.
+*   `oldPath` **[String][28]** Current pathname, relative to `options.dirname`.
+*   `newPath` **[String][28]** New pathname, relative to `options.dirname`.
 
-Returns **[Promise][26]**&#x20;
+Returns **[Promise][29]**&#x20;
 
 ### rm
 
@@ -330,9 +346,18 @@ Delete a file or directory
 
 #### Parameters
 
-*   `pathname` **[String][25]** Pathname, relative to `options.dirname`.
+*   `pathname` **[String][28]** Pathname, relative to `options.dirname`.
 
-Returns **[Promise][26]**&#x20;
+Returns **[Promise][29]**&#x20;
+
+## formatTreeAsUrlMap
+
+### Parameters
+
+*   `tree` **any**&#x20;
+*   `filterExt` **[String][28]** File extension to retrieve in the list
+*   `keepExtension` **[Boolean][27]** Keep or remove the file extension
+    from the keys (optional, default `false`)
 
 [1]: #clientpluginfilesystem
 
@@ -362,31 +387,37 @@ Returns **[Promise][26]**&#x20;
 
 [14]: #gettree-1
 
-[15]: #onupdate-1
+[15]: #gettreeasurlmap-1
 
-[16]: #findintree-1
+[16]: #onupdate-1
 
-[17]: #readfile-1
+[17]: #findintree-1
 
-[18]: #writefile-1
+[18]: #readfile-1
 
-[19]: #mkdir-1
+[19]: #writefile-1
 
-[20]: #rename-1
+[20]: #mkdir-1
 
-[21]: #rm-1
+[21]: #rename-1
 
-[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[22]: #rm-1
 
-[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[23]: #formattreeasurlmap
 
-[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[24]: #parameters-17
 
-[25]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[25]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[26]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[26]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
-[27]: https://developer.mozilla.org/docs/Web/API/Blob
+[27]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[28]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[29]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+[30]: https://developer.mozilla.org/docs/Web/API/Blob
 
 <!-- apistop -->
 
