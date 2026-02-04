@@ -8,7 +8,7 @@ The tutorial requires basic knowledge of _JavaScript_, _Node.js_ and of the comm
 
 ### Prerequisites
 
-- [Node.js 16+](https://nodejs.org/en/)
+- [Node.js LTS](https://nodejs.org/en/)
 - A modern browser (e.g. Chrome, Firefox)
 
 ## Step 1 - Setting things up
