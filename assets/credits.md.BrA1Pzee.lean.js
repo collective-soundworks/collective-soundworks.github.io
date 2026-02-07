@@ -1,0 +1,1 @@
+import{_ as r,o as a,c as t,ak as i}from"./chunks/framework.CRk2WtWN.js";const p=JSON.parse('{"title":"Credits","description":"","frontmatter":{},"headers":[],"relativePath":"credits.md","filePath":"credits.md"}'),n={name:"credits.md"};function o(s,e,l,c,h,d){return a(),t("div",null,[...e[0]||(e[0]=[i("",17)])])}const f=r(n,[["render",o]]);export{p as __pageData,f as default};
