@@ -3,7 +3,6 @@ import sidebarPlugins from './sidebar-plugins.js';
 export default {
   title: 'soundworks',
   description: 'Creative coding framework for distributed applications based on Web technologies',
-
   srcExclude: ['README.md', 'TODOS.md'],
 
   // https://vitepress.vuejs.org/config/app-configs#markdown
@@ -14,11 +13,12 @@ export default {
 
   themeConfig: {
     logo: '/logo-nav.png',
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/collective-soundworks/collective-soundworks.github.io' },
     ],
-
+    search: {
+      provider: 'local'
+    },
     nav: [
       { text: 'Guide', link: '/tutorials/getting-started' },
       { text: 'soundworks API', link: 'https://soundworks.dev/soundworks' },
