@@ -2,7 +2,7 @@
 
 In this recipe we will explore how to use _soundworks_ in the _Max (Cycling '74)_ environment and learn why we need to keep some specific workaround in mind in order to make our applications fully working and stable.
 
-In the [Working with Node Clients](https://soundworks.dev/tutorials/node-clients.html) tutorial, we already explored the possibilities to work outside Web Browsers using Node.js, which to use _soundworks_ in a large set of use (for example, using the _node.script_ object exposed by the _Max_ environment).
+In the [Working with Node Clients](https://soundworks.dev/tutorials/node-clients.html) tutorial, we already explored the possibilities to work outside Web Browsers using Node.js, which makes it possible to use _soundworks_ in a large set of use (for example, using the _node.script_ object exposed by the _Max_ environment).
 
 To illustrate this specific usage, we will create a simple _soundworks-max_ application using the _soundworks_ wizard that will be your base skeleton for your own projects!
 
